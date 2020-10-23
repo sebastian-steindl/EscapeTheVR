@@ -64,7 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\CameraScript.cs" />
+    <Compile Include="Assets\DragObject.cs" />
     <Compile Include="Assets\ElementStone.cs" />
+    <Compile Include="Assets\GameBoard.cs" />
+    <Compile Include="Assets\GameBoardScript.cs" />
     <Compile Include="Assets\PlayerScript.cs" />
     <Compile Include="Assets\Puzzle.cs" />
     <Reference Include="UnityEngine">
@@ -628,14 +631,6 @@
       <Project>{E4ABB8F6-8683-2C37-56A0-1D4E3DFD51DF}</Project>
       <Name>Unity.Rider.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{28FFF952-791C-3EBA-7FFF-BA252EB87D10}</Project>
-      <Name>Unity.TextMeshPro</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{A26B1AC9-D5F5-C66A-DFFA-4643D7187709}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
     <ProjectReference Include="SteamVR_Input_Editor.csproj">
       <Project>{DD2D5411-E31D-5483-D0D7-5B649BF9C063}</Project>
       <Name>SteamVR_Input_Editor</Name>
@@ -648,9 +643,17 @@
       <Project>{F6ECCDCE-0C17-9CBE-BD8F-7D45B8FF480B}</Project>
       <Name>SteamVR</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{28FFF952-791C-3EBA-7FFF-BA252EB87D10}</Project>
+      <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
     <ProjectReference Include="SteamVR_Windows_EditorHelper.csproj">
       <Project>{86CD470B-5FDF-5369-89D0-ABCE26145474}</Project>
       <Name>SteamVR_Windows_EditorHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{A26B1AC9-D5F5-C66A-DFFA-4643D7187709}</Project>
+      <Name>UnityEditor.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

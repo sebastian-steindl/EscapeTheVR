@@ -6,11 +6,12 @@ public class Puzzle
 {
     ElementStone[] elementStones; // the given order of programmingElements
     programmingElement[] elementOrder; // the correct, expected order of programmingElements
-    List<int> wrongIndices; 
+    List<int> wrongIndices;
 
+    private int emptySlots; // if you want to provide empty slots, e.g. puzzle needs 4 but you provide 5 slots
     public Puzzle()
     {
-
+        emptySlots = 0;
     }
 
     /*
@@ -53,10 +54,11 @@ public class Puzzle
                 wrongIndices.Add(i);
             }
         }
-        
-
         return wrongIndices;
-
     }
 
+   public int getNumberOfSlots()
+    {
+        return elementStones.Length + emptySlots;
+    }
 }
