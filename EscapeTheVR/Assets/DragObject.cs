@@ -11,10 +11,18 @@ public class DragObject : MonoBehaviour
     private float zCoord;
 
     public GameObject gameBoard;
+    private ElementStone element;
+
     private void OnMouseDown()
     {
         //offset = gameObject.transform.position - GetMouseWorldPos();
         zCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+    }
+
+    private void OnMouseUp()
+    {
+        // with the GetComponent we can call functions from other scripts
+        gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(gameObject, element);
     }
 
     private void OnMouseDrag()

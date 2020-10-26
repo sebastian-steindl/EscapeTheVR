@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameBoardScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public GameBoard gameBoard;
     public Puzzle puzzle;
+    private GameObject selectedGameObj;
+    private ElementStone selectedElement;
 
     void Start()
     {
@@ -21,5 +21,27 @@ public class GameBoardScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnMouseEnter()
+    {
+        Debug.Log("Enter");
+    }
+
+    private void OnMouseExit()
+    {
+        Debug.Log("Exit");
+    }
+
+    public void registerSelectedElement(GameObject obj, ElementStone element) // TODO: Is param GameObject?
+    {
+        selectedGameObj = obj;
+        selectedElement = element;
+    }
+
+    public void resetSelectedElement()
+    {
+        selectedGameObj = null;
+        selectedElement = null;
     }
 }
