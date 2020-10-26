@@ -45,12 +45,12 @@ public class GameBoard
 
     }
 
-    internal bool checkIfElementIsPlacedOverASlot(GameObject gameObject)
+    internal (bool, Slot) checkIfElementIsPlacedOverASlot(GameObject gameObject)
     {
         // c# 7 tuple syntax, finally you can write code nearly as nice as in python
         (Slot closestSlot, float dist) = getClostestSlotAndDistance(gameObject);
 
-        return closestSlot.isElemCloseEnough(dist);
+        return (closestSlot.isElemCloseEnough(dist), closestSlot);
     }
 
     internal (Slot, float) getClostestSlotAndDistance(GameObject gameObject)
@@ -95,7 +95,6 @@ public class GameBoard
                 slotPositions.Add(new Vector3(slotX, slotY, slotZ));
             }
         }
-
     }
 }
 
@@ -103,7 +102,7 @@ public class GameBoard
 public class Slot
 {
     public Vector3 position;
-    private programmingElement? elem; // null if empty
+    private ElementStone elem; // null if empty
     private float width;
     private float height;
     static float threshold = 15;
@@ -116,13 +115,13 @@ public class Slot
         this.height = height;
     }
 
-    public void setElement(programmingElement element)
+    public void setElement(ElementStone element)
     {
         elem = element;
     }
 
     // TODO : does this correctly return null after reset?
-    public programmingElement getElement() { return (programmingElement)elem; }
+    public ElementStone getElement() { return elem; }
 
     public void resetElement()
     {

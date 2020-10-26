@@ -35,7 +35,12 @@ public class GameBoardScript : MonoBehaviour
 
     private void OnMouseOver()
     {
-        Debug.Log("Over" + Input.mousePosition.ToString());
+        (bool isCloseEnough, Slot closestSlot) = gameBoard.checkIfElementIsPlacedOverASlot(selectedGameObj);
+
+        if(isCloseEnough)
+        {
+            closestSlot.setElement(selectedElement);
+        }
     }
 
     public void registerSelectedElement(GameObject obj, ElementStone element) // TODO: Is param GameObject?
