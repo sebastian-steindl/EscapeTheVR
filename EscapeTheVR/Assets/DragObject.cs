@@ -9,7 +9,7 @@ public class DragObject : MonoBehaviour
 {
     //private Vector3 offset;
     private float zCoord;
-
+    private float xCoord;
     public GameObject gameBoard;
     private ElementStone element;
 
@@ -17,10 +17,6 @@ public class DragObject : MonoBehaviour
     {
         //offset = gameObject.transform.position - GetMouseWorldPos();
         zCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-    }
-
-    private void OnMouseUp()
-    {
         // with the GetComponent we can call functions from other scripts
         gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(gameObject, element);
     }
@@ -33,7 +29,6 @@ public class DragObject : MonoBehaviour
     private Vector3 GetMouseWorldPos()
     {
         Vector3 mousePoint = Input.mousePosition;
-
         mousePoint.z = zCoord;
 
         return Camera.main.ScreenToWorldPoint(mousePoint);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class GameBoard 
@@ -13,6 +14,7 @@ public class GameBoard
 
     private int numberOfSlots;
     private List<Vector3> slotPositions;
+    private float slotWidthHeight = 0.25f;
 
     public GameBoard(Vector3 pos, Vector3 scale)
     {
@@ -33,19 +35,43 @@ public class GameBoard
 
     internal void initSlots()
     {
-        this.numberOfSlots = activePuzzle.getNumberOfSlots();
+        numberOfSlots = activePuzzle.getNumberOfSlots();
         generateSlotPositions();
 
         for (int i = 0; i < numberOfSlots; i++)
         {
-            addSlot(new Slot(slotPositions[i]));
+            addSlot(new Slot(slotPositions[i], slotWidthHeight, slotWidthHeight));
         }
 
     }
 
+    internal bool checkIfElementIsPlacedOverASlot(GameObject gameObject)
+    {
+        // c# 7 tuple syntax, finally you can write code nearly as nice as in python
+        (Slot closestSlot, float dist) = getClostestSlotAndDistance(gameObject);
+
+        return closestSlot.isElemCloseEnough(dist);
+    }
+
+    internal (Slot, float) getClostestSlotAndDistance(GameObject gameObject)
+    {
+        int indexOfClosestSlot = 0;
+        float closestDist = Mathf.Infinity;
+        for (int i = 0; i < numberOfSlots; i++)
+        {
+            float dist = Vector3.Distance(slots[i].position, gameObject.transform.position);
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+                indexOfClosestSlot = i;
+            }
+        }
+        return (slots[indexOfClosestSlot], closestDist);
+    }
+
     internal void generateSlotPositions()
     {
-        this.numberOfSlots = activePuzzle.getNumberOfSlots();
+        numberOfSlots = activePuzzle.getNumberOfSlots();
 
         float padding = 0.1f;
         float marginTopBottom = 0.5f;
@@ -53,8 +79,6 @@ public class GameBoard
 
         float availableWidth = scale.z - 2 * marginLeftRight;
         float availableHeight = scale.y - 2 * marginTopBottom;
-
-        float slotWidthHeight = 0.25f;
 
         float slotX = pos.x;
 
@@ -78,12 +102,18 @@ public class GameBoard
 
 public class Slot
 {
-    Vector3 position;
+    public Vector3 position;
     private programmingElement? elem; // null if empty
+    private float width;
+    private float height;
+    static float threshold = 15;
 
-    public Slot(Vector3 pos)
+
+    public Slot(Vector3 pos, float width, float height)
     {
         position = pos;
+        this.width = width;
+        this.height = height;
     }
 
     public void setElement(programmingElement element)
@@ -91,11 +121,16 @@ public class Slot
         elem = element;
     }
 
-    // ToDo: does this correctly return null after reset?
+    // TODO : does this correctly return null after reset?
     public programmingElement getElement() { return (programmingElement)elem; }
 
     public void resetElement()
     {
         elem = null;
+    }
+
+    public bool isElemCloseEnough(float distance)
+    {
+        return Math.Abs(distance) < threshold;
     }
 }

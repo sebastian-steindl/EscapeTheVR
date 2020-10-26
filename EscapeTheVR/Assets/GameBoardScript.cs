@@ -25,12 +25,17 @@ public class GameBoardScript : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.Log("Enter");
+        Debug.Log("Enter" + Input.mousePosition.ToString());
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("Exit");
+        Debug.Log("Exit" + Input.mousePosition.ToString());
+    }
+
+    private void OnMouseOver()
+    {
+        Debug.Log("Over" + Input.mousePosition.ToString());
     }
 
     public void registerSelectedElement(GameObject obj, ElementStone element) // TODO: Is param GameObject?
