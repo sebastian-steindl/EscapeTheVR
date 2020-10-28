@@ -43,6 +43,8 @@ public class GameBoardScript : MonoBehaviour
 
     private void OnMouseOver()
     {
+        if (!selectedGameObj) return;
+
         (bool isCloseEnough, Slot closestSlot) = gameBoard.checkIfElementIsPlacedOverASlot(selectedGameObj);
 
         if(isCloseEnough)

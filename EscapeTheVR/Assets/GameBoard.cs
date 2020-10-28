@@ -52,6 +52,8 @@ public class GameBoard
 
     internal (Slot, float) getClostestSlotAndDistance(GameObject gameObject)
     {
+        if (!gameObject) return (null, Mathf.Infinity);
+
         int indexOfClosestSlot = 0;
         float closestDist = Mathf.Infinity;
         for (int i = 0; i < numberOfSlots; i++)
@@ -83,7 +85,7 @@ public class GameBoard
 
         if (columns > numberOfSlots) columns = numberOfSlots;
 
-        int rows = (int)Math.Ceiling((double)(numberOfSlots / columns));
+        int rows = (int)Math.Ceiling((double)(numberOfSlots / columns));    
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
