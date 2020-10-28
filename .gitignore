@@ -1,45 +1,45 @@
 # =============== #
 # Unity generated #
 # =============== #
-[Tt]emp/
-[Oo]bj/
-[Bb]uild
-/[Bb]uilds/
-/[Ll]ibrary/
-sysinfo.txt
+EscapeTheVR/[Tt]emp/
+EscapeTheVR/[Oo]bj/
+EscapeTheVR/[Bb]uild
+EscapeTheVR/[Bb]uilds/
+EscapeTheVR/[Ll]ibrary/
+EscapeTheVR/sysinfo.txt
 *.stackdump
-/Assets/AssetStoreTools*
+EscapeTheVR/Assets/AssetStoreTools*
 *.apk
 *.unitypackage
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
-[Ee]xported[Oo]bj/
-.vs/
-/*.userprefs
-/*.csproj
-/*.pidb
-*.pidb.meta
-/*.suo
-/*.sln*
-/*.user
-/*.unityproj
-/*.booproj
-.consulo/
-/*.tmp
-/*.svd
+EscapeTheVR/[Ee]xported[Oo]bj/
+EscapeTheVR/.vs/
+EscapeTheVR/*.userprefs
+EscapeTheVR/*.csproj
+EscapeTheVR/*.pidb
+EscapeTheVR/*.pidb.meta
+EscapeTheVR/*.suo
+EscapeTheVR/*.sln*
+EscapeTheVR/*.user
+EscapeTheVR/*.unityproj
+EscapeTheVR/*.booproj
+EscapeTheVR/.consulo/
+EscapeTheVR/*.tmp
+EscapeTheVR/*.svd
  
 # ============ #
 # OS generated #
 # ============ #
-.DS_Store*
-._*
-.Spotlight-V100
-.Trashes
-Icon?
-ehthumbs.db
-[Tt]humbs.db
-[Dd]esktop.ini
-Corridor/Library/ShaderCache/
-Corridor/Library/metadata/
+EscapeTheVR/.DS_Store*
+EscapeTheVR/._*
+EscapeTheVR/.Spotlight-V100
+EscapeTheVR/.Trashes
+EscapeTheVR/Icon?
+EscapeTheVR/ehthumbs.db
+EscapeTheVR/[Tt]humbs.db
+EscapeTheVR/[Dd]esktop.ini
+EscapeTheVR/Corridor/Library/ShaderCache/
+EscapeTheVR/Corridor/Library/metadata/
