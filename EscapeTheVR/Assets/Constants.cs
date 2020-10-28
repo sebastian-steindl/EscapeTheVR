@@ -7,13 +7,14 @@ public static class Constants
     /*
                 Color constants 
     */
-    public readonly Color colorPrint = new Color(255, 0, 0);
-    public readonly Color colorVar = new Color(0, 255, 0);
+    public static readonly Color colorPrint = new Color(255, 0, 0);
+    public static readonly Color colorVar = new Color(0, 255, 0);
 
 
     /*
                 string Constants 
     */
-    public const string defaultDescription = "No desription";
+    public const string descriptionDefault = "No description";
+    public const string descriptionPrintStone= "TODO:Update. This is a print stone.";
 
 }

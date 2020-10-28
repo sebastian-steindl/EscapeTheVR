@@ -1,17 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
 
 public class Puzzle
 {
-    ElementStone[] elementStones; // the given order of programmingElements
-    programmingElement[] elementOrder; // the correct, expected order of programmingElements
+
+    string name;
+    // todo: if we allow multiple solutions, we need a nested array
+    List<ElementStone> solutionGivenByUser; // the solutionGivenByUser: ElementStones which contain programmingElements
+    List<programmingElement> correctSolution; // the correct, expected order of programmingElements
     List<int> wrongIndices;
 
     private int emptySlots; // if you want to provide empty slots, e.g. puzzle needs 4 but you provide 5 slots
-    public Puzzle()
+    public Puzzle(string puzzleName, int slots = 0)
     {
-        emptySlots = 0;
+        name = puzzleName;
+        emptySlots = slots;
+
+        solutionGivenByUser = new List<ElementStone>();
+        correctSolution = new List<programmingElement>();
+        wrongIndices = new List<int>();
     }
 
     /*
@@ -24,17 +32,21 @@ public class Puzzle
 
         if (shouldHighlight)
         {
-            for (int i = 0; i < elementStones.Length; i++)
+            for (int i = 0; i < solutionGivenByUser.Count; i++)
             {
                 if (wrongIndices.Contains(i)) 
-                    elementStones[i].redBorder();
+                    solutionGivenByUser.ElementAt(i).redBorder();
                 
-                else elementStones[i].greenBorder();
+                else solutionGivenByUser.ElementAt(i).greenBorder();
             }
-
         }
 
         return wrongIndices.Count == 0;
+    }
+
+    public void setSolution(List<ElementStone> solutionInCorrectOrder)
+    {
+        this.solutionGivenByUser = solutionInCorrectOrder;
     }
 
     /*
@@ -45,11 +57,11 @@ public class Puzzle
     {
         List<int> wrongIndices = new List<int>();
 
-        for (int i = 0; i < elementOrder.Length; i++)
+        for (int i = 0; i < correctSolution.Count; i++)
         {
             // this should also work if their length is different, e.g. 4 stones are needed
             // but only 3 are placed. 
-            if (elementStones[i].elem != elementOrder[i]) 
+            if (solutionGivenByUser[i].elem != correctSolution[i]) 
             {
                 wrongIndices.Add(i);
             }
@@ -59,6 +71,6 @@ public class Puzzle
 
    public int getNumberOfSlots()
     {
-        return elementStones.Length + emptySlots;
+        return solutionGivenByUser.Count + emptySlots;
     }
 }

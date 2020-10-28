@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
+using System.Linq;
 
 public class GameBoard 
 {
@@ -16,16 +17,14 @@ public class GameBoard
     private List<Vector3> slotPositions;
     private float slotWidthHeight = 0.25f;
 
-    public GameBoard(Vector3 pos, Vector3 scale)
-    {
-        this.pos = pos;
-        this.scale = scale;
-    }
-    public GameBoard(Vector3 pos, Vector3 scale, Puzzle puzzle)
+    public GameBoard(Vector3 pos, Vector3 scale, Puzzle puzzle = null)
     {
         this.pos = pos;
         this.scale = scale;
         activePuzzle = puzzle;
+
+        slots = new List<Slot>();
+        slotPositions = new List<Vector3>();
     }
 
     internal void addSlot(Slot slot)
@@ -37,12 +36,10 @@ public class GameBoard
     {
         numberOfSlots = activePuzzle.getNumberOfSlots();
         generateSlotPositions();
-
         for (int i = 0; i < numberOfSlots; i++)
         {
-            addSlot(new Slot(slotPositions[i], slotWidthHeight, slotWidthHeight));
+            addSlot(new Slot(slotPositions.ElementAt(i), slotWidthHeight, slotWidthHeight));
         }
-
     }
 
     internal (bool, Slot) checkIfElementIsPlacedOverASlot(GameObject gameObject)
@@ -82,9 +79,11 @@ public class GameBoard
 
         float slotX = pos.x;
 
-        int columns = (int)Math.Floor((availableWidth / slotWidthHeight));
-        int rows = (int)Math.Ceiling((double)(numberOfSlots / columns));
+        int columns = (int)Math.Floor(availableWidth / slotWidthHeight);
 
+        if (columns > numberOfSlots) columns = numberOfSlots;
+
+        int rows = (int)Math.Ceiling((double)(numberOfSlots / columns));
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -95,6 +94,7 @@ public class GameBoard
                 slotPositions.Add(new Vector3(slotX, slotY, slotZ));
             }
         }
+        Debug.Log("after generation: number" + slotPositions.Count);
     }
 }
 

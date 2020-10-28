@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.UI", "UnityEngine.UI.csproj", "{C91768D0-948E-EFA5-964C-E39F3A6978CA}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.TestRunner", "UnityEngine.TestRunner.csproj", "{7D4EC97B-86C2-3470-6F42-DDB407BF4703}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.UI", "UnityEngine.UI.csproj", "{C91768D0-948E-EFA5-964C-E39F3A6978CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamVR", "SteamVR.csproj", "{F6ECCDCE-0C17-9CBE-BD8F-7D45B8FF480B}"
 EndProject
@@ -39,14 +39,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C91768D0-948E-EFA5-964C-E39F3A6978CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C91768D0-948E-EFA5-964C-E39F3A6978CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C91768D0-948E-EFA5-964C-E39F3A6978CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C91768D0-948E-EFA5-964C-E39F3A6978CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7D4EC97B-86C2-3470-6F42-DDB407BF4703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7D4EC97B-86C2-3470-6F42-DDB407BF4703}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D4EC97B-86C2-3470-6F42-DDB407BF4703}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D4EC97B-86C2-3470-6F42-DDB407BF4703}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C91768D0-948E-EFA5-964C-E39F3A6978CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C91768D0-948E-EFA5-964C-E39F3A6978CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C91768D0-948E-EFA5-964C-E39F3A6978CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C91768D0-948E-EFA5-964C-E39F3A6978CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F6ECCDCE-0C17-9CBE-BD8F-7D45B8FF480B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F6ECCDCE-0C17-9CBE-BD8F-7D45B8FF480B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6ECCDCE-0C17-9CBE-BD8F-7D45B8FF480B}.Release|Any CPU.ActiveCfg = Release|Any CPU

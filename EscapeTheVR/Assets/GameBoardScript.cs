@@ -9,9 +9,17 @@ public class GameBoardScript : MonoBehaviour
     private GameObject selectedGameObj;
     private ElementStone selectedElement;
 
+    private List<ElementStone> allElementStones; 
     void Start()
     {
-        puzzle = new Puzzle();
+        puzzle = new Puzzle("Hello World", 2);
+        ElementStone printStone = new ElementStone(Constants.colorPrint, Constants.descriptionPrintStone);
+        VariableStone variableStone = new VariableStone(Constants.colorVar, Constants.descriptionDefault);
+        puzzle.setSolution(new List<ElementStone>()
+        {
+            printStone,
+            variableStone
+        });
         gameBoard = new GameBoard(gameObject.transform.position,gameObject.transform.localScale, puzzle);
         gameBoard.initSlots();
         

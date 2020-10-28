@@ -11,10 +11,10 @@ public class ElementStone
     public Color color; // color of the VR stone
     public Color border; // border of the VR stone
 
-    public ElementStone()
+    public ElementStone(Color stoneColor, string description=Constants.descriptionDefault)
     {
-        descriptionText = "No description";
-        color = new Color(209, 186, 111); // should be changed to nice looking default later
+        descriptionText = description;
+        color = stoneColor; 
     }
 
     public void greenBorder()
@@ -29,7 +29,7 @@ public class ElementStone
 
 public class VariableStone : ElementStone
 {
-    public VariableStone()
+    public VariableStone(Color stoneColor, string description = Constants.descriptionDefault) : base(stoneColor, description)
     {
         elem = programmingElement.elemVar;
     }
