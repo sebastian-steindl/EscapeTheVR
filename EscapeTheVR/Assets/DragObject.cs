@@ -11,7 +11,15 @@ public class DragObject : MonoBehaviour
     private float zCoord;
     private float xCoord;
     public GameObject gameBoard;
+
+    public string programmingElementType;
     private ElementStone element;
+
+    private void Awake()
+    {
+        element = ElementStoneFactory.Instance.createElementStone(programmingElementType);
+        
+    }
 
     private void OnMouseDown()
     {

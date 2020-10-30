@@ -558,6 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameBoard: {fileID: 1618767916}
+  programmingElementType: print
 --- !u!65 &614377342
 BoxCollider:
   m_ObjectHideFlags: 0

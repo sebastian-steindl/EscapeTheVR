@@ -11,7 +11,10 @@ EscapeTheVR/sysinfo.txt
 EscapeTheVR/Assets/AssetStoreTools*
 *.apk
 *.unitypackage
- 
+
+EscapeTheVR/Library/Artifacts/*
+[Ll]ibrary/
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #

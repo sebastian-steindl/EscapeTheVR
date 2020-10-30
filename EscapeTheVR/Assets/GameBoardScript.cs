@@ -49,6 +49,9 @@ public class GameBoardScript : MonoBehaviour
 
         if(isCloseEnough)
         {
+            Debug.Log("***Close enough***");
+            Debug.Log(closestSlot.ToString());
+            Debug.Log(selectedElement.ToString());
             closestSlot.setElement(selectedElement);
         }
     }
