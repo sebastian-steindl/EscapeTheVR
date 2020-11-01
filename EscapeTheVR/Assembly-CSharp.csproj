@@ -69,6 +69,7 @@
     <Compile Include="Assets\ElementStoneFactory.cs" />
     <Compile Include="Assets\GameBoard.cs" />
     <Compile Include="Assets\GameBoardScript.cs" />
+    <Compile Include="Assets\MaterialLoader.cs" />
     <Compile Include="Assets\PlayerScript.cs" />
     <Compile Include="Assets\Puzzle.cs" />
     <Reference Include="UnityEngine">

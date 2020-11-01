@@ -56,7 +56,7 @@ public class GameBoardScript : MonoBehaviour
         }
     }
 
-    public void registerSelectedElement(GameObject obj, ElementStone element) // TODO: Is param GameObject?
+    public void registerSelectedElement(GameObject obj, ElementStone element)
     {
         selectedGameObj = obj;
         selectedElement = element;

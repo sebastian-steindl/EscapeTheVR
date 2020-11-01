@@ -18,6 +18,8 @@ public class DragObject : MonoBehaviour
     private void Awake()
     {
         element = ElementStoneFactory.Instance.createElementStone(programmingElementType);
+
+        gameObject.GetComponent<Renderer>().material = MaterialLoader.Instance.getMaterial(programmingElementType);
         
     }
 
@@ -27,6 +29,11 @@ public class DragObject : MonoBehaviour
         zCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         // with the GetComponent we can call functions from other scripts
         gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(gameObject, element);
+    }
+
+    private void OnMouseUp()
+    {
+        gameBoard.GetComponent<GameBoardScript>().resetSelectedElement();
     }
 
     private void OnMouseDrag()
