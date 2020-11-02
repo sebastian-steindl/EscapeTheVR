@@ -110,7 +110,7 @@ public class Slot
     private ElementStone elem; // null if empty
     private float width;
     private float height;
-    static float threshold = 15;
+    static float threshold = 2.2f; //TODO: more granular adjustments needed!
 
 
     public Slot(Vector3 pos, float width, float height)
@@ -136,6 +136,7 @@ public class Slot
 
     public bool isElemCloseEnough(float distance)
     {
+        Debug.Log("slot->close: " + distance);
         return Math.Abs(distance) < threshold;
     }
 }

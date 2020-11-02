@@ -33,16 +33,31 @@ public class DragObject : MonoBehaviour
 
     private void OnMouseUp()
     {
-        gameBoard.GetComponent<GameBoardScript>().resetSelectedElement();
-        
-        // Update the current position of the programming elements in the puzzle.
+        Debug.Log("DragObject->OnMouseUp  + + + + + + +");
         GameBoard gameBoardEl = gameBoard.GetComponent<GameBoardScript>().GetGameBoard();
+        
+        // Update the current position of the programming elements in the puzzle. 
         List<ElementStone> stones = new List<ElementStone>();
         gameBoardEl.getSlots().ForEach(el => stones.Add(el==null?null:el.getElement()));
         gameBoardEl.getPuzzle().setUserSolution(stones);
         
-        //Evaluate board
-        Debug.Log("DragObject->OnMouseUp->evalBoard: "+ gameBoard.GetComponent<GameBoardScript>().evaluateBoard());
+        //Check if currently selected element is close enougth for counting as inserted into the slot
+        (bool isCloseEnough, Slot closestSlot) = gameBoardEl.checkIfElementIsPlacedOverASlot(gameObject);
+        if (isCloseEnough)
+        {
+            // When snapping is enabled, snap current element to the position. => TODO!
+            if (gameBoardEl.getPuzzle().isSnapEnabled()) {
+                //gameObject.transform.position = closestSlot.position;
+            }
+
+            //Evaluate board (this should only be nesscary when at least the now droped element is close enougth to a slot...)
+            Debug.Log("DragObject->OnMouseUp->evalBoard: "+ gameBoard.GetComponent<GameBoardScript>().evaluateBoard());
+        }
+        else
+            closestSlot.resetElement();
+        
+        //Reset currently selected element
+        gameBoard.GetComponent<GameBoardScript>().resetSelectedElement();
     }
 
     private void OnMouseDrag()

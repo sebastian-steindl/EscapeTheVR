@@ -13,10 +13,13 @@ public class Puzzle
     List<int> wrongIndices;
 
     private int emptySlots; // if you want to provide empty slots, e.g. puzzle needs 4 but you provide 5 slots
-    public Puzzle(string puzzleName, int slots = 0)
+    private bool snapEnabled;
+
+    public Puzzle(string puzzleName, int slots = 0, bool snapEnabled= false)
     {
         name = puzzleName;
         emptySlots = slots;
+        this.snapEnabled = snapEnabled;
 
         solutionGivenByUser = new List<ElementStone>();
         correctSolution = new List<programmingElement>();
@@ -98,4 +101,6 @@ public class Puzzle
     {
         return solutionGivenByUser.Count + emptySlots;
     }
+
+    public bool isSnapEnabled() { return snapEnabled; }
 }

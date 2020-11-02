@@ -40,12 +40,6 @@ public class GameBoardScript : MonoBehaviour
     private void OnMouseExit()
     {
         Debug.Log("Exit" + Input.mousePosition.ToString());
-        if (!selectedGameObj) return;
-        (bool isCloseEnough, Slot closestSlot) = gameBoard.checkIfElementIsPlacedOverASlot(selectedGameObj);
-        if (!isCloseEnough)
-            closestSlot.resetElement();
-        else
-            Debug.Log("RIP Element ;)");
     }
 
     private void OnMouseOver()
