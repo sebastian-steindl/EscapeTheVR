@@ -5,7 +5,7 @@ using UnityEditor.Animations;
 using UnityEngine;
 using System.Linq;
 
-public class GameBoard 
+public class GameBoard
 {
     List<Slot> slots;
     public Puzzle activePuzzle;
@@ -85,7 +85,7 @@ public class GameBoard
 
         if (columns > numberOfSlots) columns = numberOfSlots;
 
-        int rows = (int)Math.Ceiling((double)(numberOfSlots / columns));    
+        int rows = (int)Math.Ceiling((double)(numberOfSlots / columns));
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -98,6 +98,9 @@ public class GameBoard
         }
         Debug.Log("after generation: number" + slotPositions.Count);
     }
+
+    public List<Slot> getSlots() { return slots; }
+    public Puzzle getPuzzle() {return activePuzzle;}
 }
 
 
@@ -127,6 +130,7 @@ public class Slot
 
     public void resetElement()
     {
+        Debug.Log("ResetElement Called!");
         elem = null;
     }
 

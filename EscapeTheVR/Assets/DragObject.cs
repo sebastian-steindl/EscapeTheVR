@@ -34,6 +34,15 @@ public class DragObject : MonoBehaviour
     private void OnMouseUp()
     {
         gameBoard.GetComponent<GameBoardScript>().resetSelectedElement();
+        
+        // Update the current position of the programming elements in the puzzle.
+        GameBoard gameBoardEl = gameBoard.GetComponent<GameBoardScript>().GetGameBoard();
+        List<ElementStone> stones = new List<ElementStone>();
+        gameBoardEl.getSlots().ForEach(el => stones.Add(el==null?null:el.getElement()));
+        gameBoardEl.getPuzzle().setUserSolution(stones);
+        
+        //Evaluate board
+        Debug.Log("DragObject->OnMouseUp->evalBoard: "+ gameBoard.GetComponent<GameBoardScript>().evaluateBoard());
     }
 
     private void OnMouseDrag()

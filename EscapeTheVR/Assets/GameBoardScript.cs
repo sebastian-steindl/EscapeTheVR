@@ -13,17 +13,17 @@ public class GameBoardScript : MonoBehaviour
     void Start()
     {
         puzzle = new Puzzle("Hello World", 2);
-        ElementStone printStone = new ElementStone(Constants.colorPrint, Constants.descriptionPrintStone);
-        VariableStone variableStone = new VariableStone(Constants.colorVar, Constants.descriptionDefault);
-        puzzle.setSolution(new List<ElementStone>()
+        puzzle.setSolution(new List<programmingElement>()
         {
-            printStone,
-            variableStone
+            programmingElement.elemFuncPrint,
+            programmingElement.elemVar
         });
         gameBoard = new GameBoard(gameObject.transform.position,gameObject.transform.localScale, puzzle);
         gameBoard.initSlots();
         
     }
+
+    public GameBoard GetGameBoard() { return (GameBoard)gameBoard; }
 
     // Update is called once per frame
     void Update()
@@ -33,12 +33,19 @@ public class GameBoardScript : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        //Do we want to light up the GameBoard when programmingElement enters 
         Debug.Log("Enter" + Input.mousePosition.ToString());
     }
 
     private void OnMouseExit()
     {
         Debug.Log("Exit" + Input.mousePosition.ToString());
+        if (!selectedGameObj) return;
+        (bool isCloseEnough, Slot closestSlot) = gameBoard.checkIfElementIsPlacedOverASlot(selectedGameObj);
+        if (!isCloseEnough)
+            closestSlot.resetElement();
+        else
+            Debug.Log("RIP Element ;)");
     }
 
     private void OnMouseOver()
@@ -62,9 +69,18 @@ public class GameBoardScript : MonoBehaviour
         selectedElement = element;
     }
 
+    public ElementStone getSelectedElement() {
+        return selectedElement;
+    }
+
     public void resetSelectedElement()
     {
         selectedGameObj = null;
         selectedElement = null;
+    }
+
+    public bool evaluateBoard() {
+        Debug.Log("evaluateBoard called");
+        return puzzle.evaluatePuzzle(true);
     }
 }
