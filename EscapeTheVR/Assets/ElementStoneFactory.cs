@@ -20,7 +20,7 @@ public class ElementStoneFactory
 
     public ElementStone createElementStone(string type)
     {
-        programmingElement elem = getProgrammingElement(type);
+        programmingElement elem = getProgrammingElementByString(type);
         Color color = getStoneColor(elem);
         string description = getDescription(elem);
 
@@ -91,7 +91,7 @@ public class ElementStoneFactory
         return Constants.colorVar;
     }
 
-    private programmingElement getProgrammingElement(string type)
+    public static programmingElement getProgrammingElementByString(string type)
     {
         switch (type)
         {

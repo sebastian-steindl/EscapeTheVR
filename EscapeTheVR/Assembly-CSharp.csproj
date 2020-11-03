@@ -69,9 +69,13 @@
     <Compile Include="Assets\ElementStoneFactory.cs" />
     <Compile Include="Assets\GameBoard.cs" />
     <Compile Include="Assets\GameBoardScript.cs" />
+    <Compile Include="Assets\Level.cs" />
     <Compile Include="Assets\MaterialLoader.cs" />
     <Compile Include="Assets\PlayerScript.cs" />
     <Compile Include="Assets\Puzzle.cs" />
+    <Compile Include="Assets\PuzzleProgrammingElement.cs" />
+    <Compile Include="Assets\PuzzleXMLReader.cs" />
+    <None Include="Assets\Resources\level1.xml" />
     <Reference Include="UnityEngine">
       <HintPath>E:/Program Files/Unity/2019.4.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

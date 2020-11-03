@@ -20,6 +20,7 @@ public class GameBoardScript : MonoBehaviour
         });
         gameBoard = new GameBoard(gameObject.transform.position,gameObject.transform.localScale, puzzle);
         gameBoard.initSlots();
+        PuzzleXMLReader.readLevel("/Resources/level1.xml");
         
     }
 
