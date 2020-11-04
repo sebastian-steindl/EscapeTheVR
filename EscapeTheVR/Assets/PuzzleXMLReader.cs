@@ -57,20 +57,23 @@ public class PuzzleXMLReader
 
     internal static List<programmingElement> getProgrammingElementsFromPuzzleProgrammingElements(List<PuzzleProgrammingElement> puzzleElements) {
         List<programmingElement> list = new List<programmingElement>();
-        puzzleElements.ForEach(el => list.Add(ElementStoneFactory.getProgrammingElementByString(el.type)));
+        puzzleElements.ForEach(el => {
+            if(el.isPartOfSolution)
+                list.Add(ElementStoneFactory.getProgrammingElementByString(el.type));
+        });
         return list;
     }
 
 
     internal static DragObject createElement(PuzzleProgrammingElement puzzleElement) {
-        GameObject.CreatePrimitive(PrimitiveType.Quad);
+        /*GameObject.CreatePrimitive(PrimitiveType.Quad);
         var data = new GameObject("Hallo", typeof(DragObject));
         data.AddComponent<DragObject>();
         data.GetComponent<DragObject>();
         DragObject drag = new DragObject(puzzleElement.type);
         drag.transform.position = new Vector3(puzzleElement.positionX, puzzleElement.positionY, puzzleElement.positionZ);
-        return drag;
-        //return null;
+        return drag;*/
+        return null;
     }
 
 }

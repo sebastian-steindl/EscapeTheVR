@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 
 public class PuzzleProgrammingElement
 {
@@ -11,4 +12,7 @@ public class PuzzleProgrammingElement
     public float positionZ;
 
     public string text;
+
+    [XmlAttribute]
+    public bool isPartOfSolution = false;
 }
