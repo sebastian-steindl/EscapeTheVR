@@ -29,6 +29,7 @@ public class ElementStone
 
 public class VariableStone : ElementStone
 {
+    public ElementStone filledWith;
     public VariableStone(Color stoneColor, string description = Constants.descriptionDefault) : base(stoneColor, description)
     {
         elem = programmingElement.elemVar;
@@ -47,4 +48,9 @@ public enum programmingElement
     elemLogicalAnd, // &&
     elemLogicalOr, // ||
     elemFuncPrint, // print()
+    elemText, // text for variables (string)
+    elemNumber, // number for variables (int)
+    elemBool, // bool for variables
+    elemInterval, // interval between two ints, e.g. used in for
+
 }
