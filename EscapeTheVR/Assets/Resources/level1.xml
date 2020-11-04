@@ -5,6 +5,7 @@
 	<descr>Create a program which outputs "Hello World!".</descr>
 	<program>
 		<element isPartOfSolution="true">
+      <id>1</id>
 			<type>variable</type>
 			<positionX>-1.9</positionX>
 			<positionY>3.638</positionY>
@@ -12,6 +13,7 @@
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
+      <id>2</id>
 			<type>print()</type>
 			<positionX>-1.9</positionX>
 			<positionY>3.638</positionY>

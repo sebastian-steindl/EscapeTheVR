@@ -3,6 +3,8 @@ using System.Xml.Serialization;
 
 public class PuzzleProgrammingElement
 {
+    public int id;
+
     public string type;
 
     public float positionX;
@@ -13,6 +15,9 @@ public class PuzzleProgrammingElement
 
     public string text;
 
-    [XmlAttribute]
+    [XmlAttribute("isPartOfSolution")]
     public bool isPartOfSolution = false;
+
+    [XmlAttribute("valueOfId")]
+    public int valueOfId;
 }
