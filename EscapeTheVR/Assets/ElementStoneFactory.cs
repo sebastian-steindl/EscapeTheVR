@@ -54,6 +54,15 @@ public class ElementStoneFactory
                 break;
             case programmingElement.elemFuncPrint:
                 return Constants.descriptionPrintStone;
+
+            case programmingElement.elemText:
+                break;
+            case programmingElement.elemNumber:
+                break;
+            case programmingElement.elemBool:
+                break;
+            case programmingElement.elemInterval:
+                break;
             default:
                 return Constants.descriptionDefault;
         }
@@ -84,6 +93,14 @@ public class ElementStoneFactory
                 break;
             case programmingElement.elemFuncPrint:
                 return Constants.colorPrint;
+            case programmingElement.elemText:
+                break;
+            case programmingElement.elemNumber:
+                break;
+            case programmingElement.elemBool:
+                break;
+            case programmingElement.elemInterval:
+                break;
             default:
                 break;
         }
@@ -113,6 +130,14 @@ public class ElementStoneFactory
                 return programmingElement.elemNegation;
             case "print()":
                 return programmingElement.elemFuncPrint;
+            case "text":
+                return programmingElement.elemText;
+            case "number":
+                return programmingElement.elemNumber;
+            case "bool":
+                return programmingElement.elemBool;
+            case "interval":
+                return programmingElement.elemInterval;
             default:
                 return programmingElement.elemVar;
         }

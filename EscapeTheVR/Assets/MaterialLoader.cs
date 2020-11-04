@@ -49,6 +49,14 @@ public class MaterialLoader
             //    return programmingElement.elemLogicalOr;
             //case "!":
             //    return programmingElement.elemNegation;
+            //case "text":
+            //    break;
+            //case "number":
+            //    break;
+            //case "bool":
+            //    break;
+            //case "interval":
+            //    break;
             case "print()":
                 return "GreenMaterial";
             default:
