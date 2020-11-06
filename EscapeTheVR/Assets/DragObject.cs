@@ -15,6 +15,10 @@ public class DragObject : MonoBehaviour
     public string programmingElementType;
     private ElementStone element;
 
+    public DragObject(string programmingElementType) {
+        this.programmingElementType = programmingElementType;
+    }
+
     private void Awake()
     {
         element = ElementStoneFactory.Instance.createElementStone(programmingElementType);
