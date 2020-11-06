@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class PuzzleXMLReader
 {
-    public static Puzzle readLevel(string filename, bool snapEnabled=false) {
+    public static (Puzzle, Level) readLevel(string filename, bool snapEnabled=false) {
         var serializer = new XmlSerializer(typeof(Level));
         var level = serializer.Deserialize(new FileStream(Application.dataPath+filename, FileMode.Open)) as Level;
         if (level.apiversion == null || !level.apiversion.Equals("10"))
@@ -15,7 +15,7 @@ public class PuzzleXMLReader
         p.setSolution(getProgrammingElementsFromPuzzleProgrammingElements(level.puzzleProgrammingElements));
         //TODO: Generate the CodeElements as DragObjects at the given coords.
         level.puzzleProgrammingElements.ForEach(el => createElement(el));
-        return p;
+        return (p, level);
     }
 
     /*
@@ -73,6 +73,8 @@ public class PuzzleXMLReader
         DragObject drag = new DragObject(puzzleElement.type);
         drag.transform.position = new Vector3(puzzleElement.positionX, puzzleElement.positionY, puzzleElement.positionZ);
         return drag;*/
+
+
         return null;
     }
 
