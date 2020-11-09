@@ -51,7 +51,7 @@ public class DragObject : MonoBehaviour
         {
             // When snapping is enabled, snap current element to the position. => TODO!
             if (gameBoardEl.getPuzzle().isSnapEnabled()) {
-                //gameObject.transform.position = closestSlot.position;
+                gameObject.transform.position = closestSlot.position;
             }
 
             //Evaluate board (this should only be nesscary when at least the now droped element is close enougth to a slot...)
