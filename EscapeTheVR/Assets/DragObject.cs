@@ -7,15 +7,15 @@ using UnityEngine;
  */
 public class DragObject : MonoBehaviour
 {
-    //private Vector3 offset;
     private float zCoord;
-    private float xCoord;
-    public GameObject gameBoard;
-
-    public string programmingElementType;
     private ElementStone element;
 
-    public DragObject(string programmingElementType) {
+    public GameObject gameBoard;
+    public string programmingElementType;
+    
+
+    public DragObject(string programmingElementType)
+    {
         this.programmingElementType = programmingElementType;
     }
 
@@ -24,13 +24,16 @@ public class DragObject : MonoBehaviour
         element = ElementStoneFactory.Instance.createElementStone(programmingElementType);
 
         gameObject.GetComponent<Renderer>().material = MaterialLoader.Instance.getMaterial(programmingElementType);
-        
     }
 
     private void OnMouseDown()
     {
-        //offset = gameObject.transform.position - GetMouseWorldPos();
-        zCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        // Remember distance to camera
+        this.zCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+
+        // Disable gravity while dragging
+        GetComponent<Rigidbody>().useGravity = false;
+
         // with the GetComponent we can call functions from other scripts
         gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(gameObject, element);
     }
@@ -38,35 +41,49 @@ public class DragObject : MonoBehaviour
     private void OnMouseUp()
     {
         Debug.Log("DragObject->OnMouseUp  + + + + + + +");
+
+        // Re-enable gravity if object is dropped
+        GetComponent<Rigidbody>().useGravity = true;
+
         GameBoard gameBoardEl = gameBoard.GetComponent<GameBoardScript>().GetGameBoard();
-        
+
         // Update the current position of the programming elements in the puzzle. 
         List<ElementStone> stones = new List<ElementStone>();
-        gameBoardEl.getSlots().ForEach(el => stones.Add(el==null?null:el.getElement()));
+        gameBoardEl.getSlots().ForEach(el => stones.Add(el == null ? null : el.getElement()));
         gameBoardEl.getPuzzle().setUserSolution(stones);
-        
-        //Check if currently selected element is close enougth for counting as inserted into the slot
+
+        // Check if currently selected element is close enough for counting as inserted into the slot
         (bool isCloseEnough, Slot closestSlot) = gameBoardEl.checkIfElementIsPlacedOverASlot(gameObject);
         if (isCloseEnough)
         {
             // When snapping is enabled, snap current element to the position. => TODO!
-            if (gameBoardEl.getPuzzle().isSnapEnabled()) {
+            if (gameBoardEl.getPuzzle().isSnapEnabled())
+            {
                 gameObject.transform.position = closestSlot.position;
             }
 
-            //Evaluate board (this should only be nesscary when at least the now droped element is close enougth to a slot...)
-            Debug.Log("DragObject->OnMouseUp->evalBoard: "+ gameBoard.GetComponent<GameBoardScript>().evaluateBoard());
+            // Evaluate board (this should only be necessary when at least the now dropped element is close enougth to a slot...)
+            Debug.Log("DragObject->OnMouseUp->evalBoard: " + gameBoard.GetComponent<GameBoardScript>().evaluateBoard());
         }
         else
+        {
             closestSlot.resetElement();
-        
-        //Reset currently selected element
+        }
+
+        // Reset currently selected element
         gameBoard.GetComponent<GameBoardScript>().resetSelectedElement();
     }
 
     private void OnMouseDrag()
     {
-        transform.position = GetMouseWorldPos();// + offset;
+        var rigidbody = GetComponent<Rigidbody>();
+
+
+        Vector3 newObjectPosition = GetMouseWorldPos();
+        Vector3 force = newObjectPosition - rigidbody.position;
+
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.AddForce(force * 100, ForceMode.Acceleration);
     }
 
     private Vector3 GetMouseWorldPos()
