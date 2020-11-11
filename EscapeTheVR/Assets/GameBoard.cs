@@ -72,14 +72,14 @@ public class GameBoard
     {
         numberOfSlots = activePuzzle.getNumberOfSlots();
 
-        float padding = 0.1f;
+        float padding = 1.5f * slotWidthHeight;
         float marginTopBottom = 0.5f;
         float marginLeftRight = marginTopBottom;
 
         float availableWidth = scale.z - 2 * marginLeftRight;
         float availableHeight = scale.y - 2 * marginTopBottom;
-
-        float slotX = pos.x;
+        float xOffset = 0.5f;
+        float slotX = pos.x + xOffset;
 
         int columns = (int)Math.Floor(availableWidth / slotWidthHeight);
 
@@ -90,9 +90,9 @@ public class GameBoard
         {
             for (int j = 0; j < columns; j++)
             {
-                float slotY = marginTopBottom + i * (slotWidthHeight + padding);
-                float slotZ = marginLeftRight + j * (slotWidthHeight + padding);
-
+                float slotY = pos.y + marginTopBottom + i * (slotWidthHeight + padding);
+                float slotZ = pos.z + marginLeftRight + j * (slotWidthHeight + padding);
+                Debug.Log("Adding position: x, y, z" + slotX + ", " + slotY + ", " + slotZ);
                 slotPositions.Add(new Vector3(slotX, slotY, slotZ));
             }
         }
@@ -130,13 +130,11 @@ public class Slot
 
     public void resetElement()
     {
-        Debug.Log("ResetElement Called!");
         elem = null;
     }
 
     public bool isElemCloseEnough(float distance)
     {
-        Debug.Log("slot->close: " + distance);
         return Math.Abs(distance) < threshold;
     }
 }

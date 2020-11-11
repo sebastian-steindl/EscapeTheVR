@@ -10,6 +10,7 @@ public class GameBoardScript : MonoBehaviour
     private ElementStone selectedElement;
 
     public GameObject prefab;
+    public GameObject slotPrefab;
     private List<ElementStone> allElementStones; 
     void Start()
     {
@@ -22,14 +23,22 @@ public class GameBoardScript : MonoBehaviour
         gameBoard = new GameBoard(gameObject.transform.position,gameObject.transform.localScale, puzzle);
         gameBoard.initSlots();
         (Puzzle puz, Level level) = PuzzleXMLReader.readLevel("/Resources/level1.xml");
-        level.puzzleProgrammingElements.ForEach(el => createFromPrefab(el));
+        level.puzzleProgrammingElements.ForEach(el => createElementFromPrefab(el));
+        gameBoard.getSlots().ForEach(s => createSlotFromPrefab(s));
     }
 
-    public DragObject createFromPrefab(PuzzleProgrammingElement puzzleElement)
+    public DragObject createElementFromPrefab(PuzzleProgrammingElement puzzleElement)
     {
-        //TODO anpassungen sodass richtig erzeugt wird
+        //TODO anpassungen sodass richtig erzeugt wird: Farbe etc.
         GameObject instantiated = Instantiate(prefab);
         instantiated.transform.position = new Vector3(puzzleElement.positionX, puzzleElement.positionY, puzzleElement.positionZ);
+        return null;
+    }
+
+    public Slot createSlotFromPrefab(Slot slot)
+    {
+        GameObject instantiated = Instantiate(slotPrefab);
+        instantiated.transform.position = slot.position;
         return null;
     }
 
