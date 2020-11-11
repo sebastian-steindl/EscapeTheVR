@@ -9,10 +9,10 @@ public class DragObject : MonoBehaviour
 {
     private float zCoord;
     private ElementStone element;
+    private bool hasGravity;
 
     public GameObject gameBoard;
     public string programmingElementType;
-    
 
     public DragObject(string programmingElementType)
     {
@@ -32,6 +32,7 @@ public class DragObject : MonoBehaviour
         this.zCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
         // Disable gravity while dragging
+        this.hasGravity = GetComponent<Rigidbody>().useGravity;
         GetComponent<Rigidbody>().useGravity = false;
 
         // with the GetComponent we can call functions from other scripts
@@ -43,7 +44,7 @@ public class DragObject : MonoBehaviour
         Debug.Log("DragObject->OnMouseUp  + + + + + + +");
 
         // Re-enable gravity if object is dropped
-        GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Rigidbody>().useGravity = this.hasGravity;
 
         GameBoard gameBoardEl = gameBoard.GetComponent<GameBoardScript>().GetGameBoard();
 
@@ -77,7 +78,6 @@ public class DragObject : MonoBehaviour
     private void OnMouseDrag()
     {
         var rigidbody = GetComponent<Rigidbody>();
-
 
         Vector3 newObjectPosition = GetMouseWorldPos();
         Vector3 force = newObjectPosition - rigidbody.position;
