@@ -21,9 +21,10 @@ public class DragObject : MonoBehaviour
 
     private void Awake()
     {
-        element = ElementStoneFactory.Instance.createElementStone(programmingElementType);
+        this.element = ElementStoneFactory.Instance.createElementStone(programmingElementType);
+        this.hasGravity = GetComponent<Rigidbody>().useGravity;
 
-        gameObject.GetComponent<Renderer>().material = MaterialLoader.Instance.getMaterial(programmingElementType);
+        this.gameObject.GetComponent<Renderer>().material = MaterialLoader.Instance.getMaterial(programmingElementType);
     }
 
     private void OnMouseDown()
@@ -32,7 +33,6 @@ public class DragObject : MonoBehaviour
         this.zCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
         // Disable gravity while dragging
-        this.hasGravity = GetComponent<Rigidbody>().useGravity;
         GetComponent<Rigidbody>().useGravity = false;
 
         // with the GetComponent we can call functions from other scripts
@@ -60,6 +60,8 @@ public class DragObject : MonoBehaviour
             // When snapping is enabled, snap current element to the position. => TODO!
             if (gameBoardEl.getPuzzle().isSnapEnabled())
             {
+                GetComponent<Rigidbody>().useGravity = false;
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
                 gameObject.transform.position = closestSlot.position;
             }
 
@@ -82,6 +84,7 @@ public class DragObject : MonoBehaviour
         Vector3 newObjectPosition = GetMouseWorldPos();
         Vector3 force = newObjectPosition - rigidbody.position;
 
+        // Reset velocity to prevent oscillating
         rigidbody.velocity = Vector3.zero;
         rigidbody.AddForce(force * 100, ForceMode.Acceleration);
     }

@@ -11,16 +11,16 @@ public class GameBoardScript : MonoBehaviour
 
     public GameObject prefab;
     public GameObject slotPrefab;
-    private List<ElementStone> allElementStones; 
+    private List<ElementStone> allElementStones;
     void Start()
     {
-        puzzle = new Puzzle("Hello World", 2);
+        puzzle = new Puzzle("Hello World", 2, true);
         puzzle.setSolution(new List<programmingElement>()
         {
             programmingElement.elemFuncPrint,
             programmingElement.elemVar
         });
-        gameBoard = new GameBoard(gameObject.transform.position,gameObject.transform.localScale, puzzle);
+        gameBoard = new GameBoard(gameObject.transform.position, gameObject.transform.localScale, puzzle);
         gameBoard.initSlots();
         (Puzzle puz, Level level) = PuzzleXMLReader.readLevel("/Resources/level1.xml");
         level.puzzleProgrammingElements.ForEach(el => createElementFromPrefab(el));
@@ -47,7 +47,7 @@ public class GameBoardScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnMouseEnter()
@@ -67,7 +67,7 @@ public class GameBoardScript : MonoBehaviour
 
         (bool isCloseEnough, Slot closestSlot) = gameBoard.checkIfElementIsPlacedOverASlot(selectedGameObj);
 
-        if(isCloseEnough)
+        if (isCloseEnough)
         {
             Debug.Log("***Close enough***");
             Debug.Log(closestSlot.ToString());
@@ -82,7 +82,8 @@ public class GameBoardScript : MonoBehaviour
         selectedElement = element;
     }
 
-    public ElementStone getSelectedElement() {
+    public ElementStone getSelectedElement()
+    {
         return selectedElement;
     }
 
@@ -92,7 +93,8 @@ public class GameBoardScript : MonoBehaviour
         selectedElement = null;
     }
 
-    public bool evaluateBoard() {
+    public bool evaluateBoard()
+    {
         Debug.Log("evaluateBoard called");
         return puzzle.evaluatePuzzle(true);
     }

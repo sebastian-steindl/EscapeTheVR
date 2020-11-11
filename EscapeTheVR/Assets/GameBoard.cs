@@ -7,15 +7,15 @@ using System.Linq;
 
 public class GameBoard
 {
-    List<Slot> slots;
-    public Puzzle activePuzzle;
-    // vr gameboard position and scale
-    public Vector3 pos;
-    public Vector3 scale;
-
     private int numberOfSlots;
     private List<Vector3> slotPositions;
     private float slotWidthHeight = 0.25f;
+    private List<Slot> slots;
+    public Puzzle activePuzzle;
+
+    // vr gameboard position and scale
+    public Vector3 pos;
+    public Vector3 scale;
 
     public GameBoard(Vector3 pos, Vector3 scale, Puzzle puzzle = null)
     {
@@ -101,40 +101,4 @@ public class GameBoard
 
     public List<Slot> getSlots() { return slots; }
     public Puzzle getPuzzle() {return activePuzzle;}
-}
-
-
-public class Slot
-{
-    public Vector3 position;
-    private ElementStone elem; // null if empty
-    private float width;
-    private float height;
-    static float threshold = 2.2f; //TODO: more granular adjustments needed!
-
-
-    public Slot(Vector3 pos, float width, float height)
-    {
-        position = pos;
-        this.width = width;
-        this.height = height;
-    }
-
-    public void setElement(ElementStone element)
-    {
-        elem = element;
-    }
-
-    // TODO : does this correctly return null after reset?
-    public ElementStone getElement() { return elem; }
-
-    public void resetElement()
-    {
-        elem = null;
-    }
-
-    public bool isElemCloseEnough(float distance)
-    {
-        return Math.Abs(distance) < threshold;
-    }
 }
