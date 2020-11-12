@@ -154,6 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd71f1dacd2f4940be9fb3775344d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerOnOff:
+    actionPath: 
+    needsReinit: 0
+  handType: 0
   gameBoard: {fileID: 1618767916}
   programmingElementType: variable
 --- !u!65 &118537095
@@ -367,7 +371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357186720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.25, y: -1.48, z: 0}
+  m_LocalPosition: {x: 5.25, y: -1, z: 0}
   m_LocalScale: {x: 20, y: 2, z: 20}
   m_Children: []
   m_Father: {fileID: 1133624794}
@@ -721,7 +725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567571676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.80298615, y: 1.84, z: 0.36}
+  m_LocalPosition: {x: 0.80298615, y: 2, z: 2.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -776,6 +780,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd71f1dacd2f4940be9fb3775344d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerOnOff:
+    actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  handType: 0
   gameBoard: {fileID: 1618767916}
   programmingElementType: print()
 --- !u!65 &614377342
@@ -1070,7 +1078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 475244, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 475244, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1131,7 +1139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1436,7 +1444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010544256}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.210474, y: 0.05, z: 0.43366432}
+  m_LocalPosition: {x: 5.210474, y: 0.01, z: 0.43366432}
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 1133624794}

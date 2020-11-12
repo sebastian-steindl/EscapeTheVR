@@ -1,12 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 /*
  https://www.youtube.com/watch?v=0yHBDZHLRbQ
  */
 public class DragObject : MonoBehaviour
 {
+    //VR
+    public SteamVR_Action_Boolean triggerOnOff;
+    public SteamVR_Input_Sources handType;
+
+    private void Start()
+    {
+        triggerOnOff.AddOnStateDownListener(TriggerDown, handType);
+        triggerOnOff.AddOnStateUpListener(TriggerUp, handType);
+    }
+
+    public void TriggerUp(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        Debug.Log("Trigger is up");
+    }
+
+    public void TriggerDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        Debug.Log("Trigger is down");
+    }
+
+
     private float zCoord;
     private ElementStone element;
     private bool hasGravity;
