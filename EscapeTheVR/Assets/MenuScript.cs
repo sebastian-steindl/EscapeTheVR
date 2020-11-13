@@ -16,6 +16,16 @@ public class MenuScript : MonoBehaviour
     {
         //For loading a new scene... -> https://www.youtube.com/watch?v=-GWjA6dixV4
         //SceneManager.LoadScene("SampleScene");
+        //Temporäres ausschalten des Menüs...
+        this.enabled = false;
+    }
+
+    public void exitMenu() {
+        this.enabled = false;
+    }
+
+    public void showMenu() {
+        this.enabled = true;
     }
 
     //Go back one settings page
