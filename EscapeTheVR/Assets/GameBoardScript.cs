@@ -12,10 +12,15 @@ public class GameBoardScript : MonoBehaviour
     public GameObject prefab;
     public GameObject slotPrefab;
     private List<ElementStone> allElementStones;
+
+    public AudioSource successSound;
     void Start()
     {
         (Puzzle puz, Level level) = PuzzleXMLReader.readLevel("/Resources/level1.xml", true);
         puzzle = puz;
+
+        successSound = GetComponent<AudioSource>();
+
         gameBoard = new GameBoard(gameObject.transform.position, gameObject.transform.localScale, puzzle);
         gameBoard.initSlots();
         level.puzzleProgrammingElements.ForEach(el => createElementFromPrefab(el));
@@ -64,12 +69,10 @@ public class GameBoardScript : MonoBehaviour
     private void OnMouseEnter()
     {
         //Do we want to light up the GameBoard when programmingElement enters 
-        Debug.Log("Enter" + Input.mousePosition.ToString());
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("Exit" + Input.mousePosition.ToString());
     }
 
     private void OnMouseOver()
@@ -114,7 +117,11 @@ public class GameBoardScript : MonoBehaviour
 
     public bool evaluateBoard()
     {
-        Debug.Log("evaluateBoard called");
-        return puzzle.evaluatePuzzle(true);
+        bool puzzleCorrectlySolved = puzzle.evaluatePuzzle();
+        if (puzzleCorrectlySolved)
+        {
+            successSound.Play();
+        }
+        return puzzleCorrectlySolved;
     }
 }
