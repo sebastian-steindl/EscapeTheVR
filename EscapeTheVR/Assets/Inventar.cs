@@ -107,7 +107,7 @@ public class Inventar : MonoBehaviour, IPointerClickHandler,
         GameObject instantiated = Instantiate(getPrefabForPuzzleProgrammingElement());
         instantiated.transform.position = Vector3.Scale(new Vector3(3f, 3f,3f), Camera.main.transform.forward) + Camera.main.ScreenToWorldPoint(pos);
         instantiated.GetComponent<DragObject>().gameBoard = FindObjectOfType<GameBoardScript>().gameObject;
-        instantiated.GetComponent<DragObject>().element.positionInProgram = draggedOutsideItem.positionInProgram;
+        instantiated.GetComponent<DragObject>().element.id = draggedOutsideItem.id;
         instantiated.GetComponent<DragObject>().disableGravity();
     }
 
