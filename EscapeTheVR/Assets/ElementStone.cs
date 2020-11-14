@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ElementStone
 {
     public programmingElement elem; // e.g. for/if 
-    public int positionInProgram; // the position in which it should be placed
+    public int id; // the position in which it should be placed
 
     public string descriptionText; // text to describe the stone
     public Color color; // color of the VR stone
