@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LowerThirdMenu : MonoBehaviour
+public class Inventar : MonoBehaviour
 {
 
     List<DragObject> storedObjects;
