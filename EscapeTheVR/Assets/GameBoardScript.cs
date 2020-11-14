@@ -76,16 +76,23 @@ public class GameBoardScript : MonoBehaviour
     {
         if (!selectedGameObj) return;
 
-        (bool isCloseEnough, Slot closestSlot) = gameBoard.checkIfElementIsPlacedOverASlot(selectedGameObj);
-        Debug.Log("Distance: " + Vector3.Distance(closestSlot.position, selectedGameObj.transform.position));
+        setSelectedElementToSlotIfCloseEnough();
+    }
 
+    public (bool isCloseEnough, Slot closestSlot) setSelectedElementToSlotIfCloseEnough() {
+        if (!selectedGameObj)
+            return (false, null);
+        
+        //Get Distance
+        (bool isCloseEnough, Slot closestSlot) = gameBoard.checkIfElementIsPlacedOverASlot(selectedGameObj);
         if (isCloseEnough)
         {
+
             Debug.Log("***Close enough***");
-            Debug.Log(closestSlot.ToString());
-            Debug.Log(selectedElement.ToString());
+            //Debug.Log("SetSlot: \nClosest: "+closestSlot.position+"\tLast: "+ (last == null ? new Vector3(-1f, -1f, -1f) : last.position));
             closestSlot.setElement(selectedElement);
         }
+        return (isCloseEnough, closestSlot);
     }
 
     public void registerSelectedElement(GameObject obj, ElementStone element)
