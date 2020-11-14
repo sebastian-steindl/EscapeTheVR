@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ElementStoneFactory
 {
@@ -26,9 +27,47 @@ public class ElementStoneFactory
 
         ElementStone es = new ElementStone(color, description);
         es.elem = elem;
-
+        es.icon = getIcon(elem);
         return es;
 
+    }
+
+    private Sprite getIcon(programmingElement elem)
+    {
+        // todo fill switch case
+        switch (elem)
+        {
+            case programmingElement.elemVar:
+                break;
+            case programmingElement.elemFor:
+                break;
+            case programmingElement.elemIf:
+                break;
+            case programmingElement.elemWhile:
+                break;
+            case programmingElement.elemCompare:
+                break;
+            case programmingElement.elemNegation:
+                break;
+            case programmingElement.elemLogicalAnd:
+                break;
+            case programmingElement.elemLogicalOr:
+                break;
+            case programmingElement.elemFuncPrint:
+                return Resources.Load("ItemPlaceholder", typeof(Sprite)) as Sprite;
+
+            case programmingElement.elemText:
+                break;
+            case programmingElement.elemNumber:
+                break;
+            case programmingElement.elemBool:
+                break;
+            case programmingElement.elemInterval:
+                break;
+            default:
+                return Resources.Load("ItemPlaceholder", typeof(Sprite)) as Sprite;
+        }
+        return Resources.Load("ItemPlaceholder", typeof(Sprite)) as Sprite;
     }
 
     private string getDescription(programmingElement elem)

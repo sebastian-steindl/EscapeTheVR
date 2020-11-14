@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ElementStone
 {
@@ -11,6 +12,7 @@ public class ElementStone
     public Color color; // color of the VR stone
     public Color border; // border of the VR stone
 
+    public Sprite icon;
     public ElementStone(Color stoneColor, string description=Constants.descriptionDefault)
     {
         descriptionText = description;

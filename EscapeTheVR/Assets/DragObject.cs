@@ -30,7 +30,7 @@ public class DragObject : MonoBehaviour
 
 
     private float zCoord;
-    private ElementStone element;
+    public ElementStone element;
     private bool hasGravity;
 
     public GameObject gameBoard;
