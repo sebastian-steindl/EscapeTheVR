@@ -105,9 +105,10 @@ public class Inventar : MonoBehaviour, IPointerClickHandler,
     {
         //TODO anpassungen sodass richtig erzeugt wird: Farbe etc.
         GameObject instantiated = Instantiate(getPrefabForPuzzleProgrammingElement());
-        instantiated.transform.position = Camera.main.ScreenToWorldPoint(pos);
+        instantiated.transform.position = Vector3.Scale(new Vector3(3f, 3f,3f), Camera.main.transform.forward) + Camera.main.ScreenToWorldPoint(pos);
         instantiated.GetComponent<DragObject>().gameBoard = FindObjectOfType<GameBoardScript>().gameObject;
         instantiated.GetComponent<DragObject>().element.positionInProgram = draggedOutsideItem.positionInProgram;
+        instantiated.GetComponent<DragObject>().disableGravity();
     }
 
     private GameObject getPrefabForPuzzleProgrammingElement()

@@ -127,13 +127,14 @@ public class DragObject : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
-    private void disableGravity() {
+    public void disableGravity() {
         hasGravity = false;
         GetComponent<Rigidbody>().useGravity = hasGravity;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
-    private void enableGravity() {
+
+    public void enableGravity() {
         hasGravity = true;
         GetComponent<Rigidbody>().useGravity = hasGravity;
         //GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 9.81f, 0.0f);
