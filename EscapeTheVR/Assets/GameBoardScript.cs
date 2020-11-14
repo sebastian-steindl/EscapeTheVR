@@ -97,7 +97,7 @@ public class GameBoardScript : MonoBehaviour
 
     public bool evaluateBoard()
     {
-        bool puzzleCorrectlySolved = puzzle.evaluatePuzzle(true);
+        bool puzzleCorrectlySolved = puzzle.evaluatePuzzle();
         if (puzzleCorrectlySolved)
         {
             successSound.Play();

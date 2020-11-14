@@ -30,27 +30,12 @@ public class Puzzle
      * shouldHighlight: highlights Borders if true
      * return: true if puzzle is correctly solved, false if not
      */
-    public bool evaluatePuzzle(bool shouldHighlight)
+    public bool evaluatePuzzle()
     {
         this.wrongIndices = checkOrder();
 
         //If no element is inside the GameBoard, just retrun false, since puzzle is not solved.
         if (wrongIndices == null) return false;
-
-        if (shouldHighlight)
-        {
-            for (int i = 0; i < solutionGivenByUser.Count; i++)
-            {
-                //if elements not placed in the GameBoard, ignore them...
-                if (solutionGivenByUser.ElementAt(i) == null) continue;
-
-                if (wrongIndices.Contains(i)) 
-                    solutionGivenByUser.ElementAt(i).redBorder();
-                
-                else solutionGivenByUser.ElementAt(i).greenBorder();
-            }
-        }
-
         return wrongIndices.Count == 0;
     }
 

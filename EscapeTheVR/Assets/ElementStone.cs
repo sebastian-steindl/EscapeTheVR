@@ -9,7 +9,6 @@ public class ElementStone
 
     public string descriptionText; // text to describe the stone
     public Color color; // color of the VR stone
-    public Color border; // border of the VR stone
 
     public ElementStone(Color stoneColor, string description=Constants.descriptionDefault)
     {
@@ -17,14 +16,6 @@ public class ElementStone
         color = stoneColor; 
     }
 
-    public void greenBorder()
-    {
-        border = Color.green;
-    }
-    public void redBorder()
-    {
-        border = Color.red;
-    }
 }
 
 public class VariableStone : ElementStone
