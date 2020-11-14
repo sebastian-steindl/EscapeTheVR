@@ -9,6 +9,7 @@ public class MenuScript : MonoBehaviour
 {
 
     private Stack<Page> prevPages;
+    [SerializeField]
     private Page current;
     // Start is called before the first frame update
 
@@ -16,16 +17,17 @@ public class MenuScript : MonoBehaviour
     {
         //For loading a new scene... -> https://www.youtube.com/watch?v=-GWjA6dixV4
         //SceneManager.LoadScene("SampleScene");
-        //Temporäres ausschalten des Menüs...
-        this.enabled = false;
+        current.Show();
     }
 
     public void exitMenu() {
+        current.Hide();
         this.enabled = false;
     }
 
     public void showMenu() {
         this.enabled = true;
+        current.Show();
     }
 
     //Go back one settings page

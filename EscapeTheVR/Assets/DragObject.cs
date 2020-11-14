@@ -59,6 +59,8 @@ public class DragObject : MonoBehaviour
 
         // with the GetComponent we can call functions from other scripts
         gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(gameObject, element);
+
+        FindObjectOfType<LowerThirdMenu>().setCurrentlySelectedElement(this);
     }
 
     private void OnMouseUp()
@@ -82,8 +84,7 @@ public class DragObject : MonoBehaviour
             // When snapping is enabled, snap current element to the position. => TODO!
             if (gameBoardEl.getPuzzle().isSnapEnabled())
             {
-                GetComponent<Rigidbody>().useGravity = false;
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                disableGravity();
                 gameObject.transform.position = closestSlot.position;
             }
 
@@ -93,6 +94,13 @@ public class DragObject : MonoBehaviour
         else
         {
             closestSlot.resetElement();
+
+            //Since the element was not close enougth to any slot, check try adding it to the lower third menu / "storage"
+            if (FindObjectOfType<LowerThirdMenu>().mouseUpFunction())
+                disableGravity();
+            else
+                enableGravity();
+
         }
 
         // Reset currently selected element
@@ -117,5 +125,17 @@ public class DragObject : MonoBehaviour
         mousePoint.z = zCoord;
 
         return Camera.main.ScreenToWorldPoint(mousePoint);
+    }
+
+    private void disableGravity() {
+        hasGravity = false;
+        GetComponent<Rigidbody>().useGravity = hasGravity;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+    }
+
+    private void enableGravity() {
+        hasGravity = true;
+        GetComponent<Rigidbody>().useGravity = hasGravity;
+        //GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 9.81f, 0.0f);
     }
 }
