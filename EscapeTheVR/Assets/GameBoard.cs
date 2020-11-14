@@ -10,7 +10,7 @@ public class GameBoard
     private int numberOfSlots;
     private List<Vector3> slotPositions;
     private float slotWidthHeight = 0.25f;
-    private List<Slot> slots;
+    public List<Slot> slots { get; }
     public Puzzle activePuzzle;
 
     // vr gameboard position and scale
@@ -98,7 +98,4 @@ public class GameBoard
         }
         Debug.Log("after generation: number" + slotPositions.Count);
     }
-
-    public List<Slot> getSlots() { return slots; }
-    public Puzzle getPuzzle() {return activePuzzle;}
 }

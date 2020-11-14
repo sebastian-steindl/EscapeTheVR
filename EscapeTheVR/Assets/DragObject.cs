@@ -78,15 +78,15 @@ public class DragObject : MonoBehaviour
 
         // Update the current position of the programming elements in the puzzle. 
         List<ElementStone> stones = new List<ElementStone>();
-        gameBoardEl.getSlots().ForEach(el => stones.Add(el == null ? null : el.getElement()));
-        gameBoardEl.getPuzzle().setUserSolution(stones);
+        gameBoardEl.slots.ForEach(el => stones.Add(el == null ? null : el.getElement()));
+        gameBoardEl.activePuzzle.setUserSolution(stones);
 
         // Check if currently selected element is close enough for counting as inserted into the slot
         (bool isCloseEnough, Slot closestSlot) = gameBoardEl.checkIfElementIsPlacedOverASlot(gameObject);
         if (isCloseEnough)
         {
             // When snapping is enabled, snap current element to the position. => TODO!
-            if (gameBoardEl.getPuzzle().isSnapEnabled())
+            if (gameBoardEl.activePuzzle.isSnapEnabled())
             {
                 disableGravity();
                 gameObject.transform.position = closestSlot.position;

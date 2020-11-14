@@ -19,7 +19,7 @@ public class GameBoardScript : MonoBehaviour
         gameBoard = new GameBoard(gameObject.transform.position, gameObject.transform.localScale, puzzle);
         gameBoard.initSlots();
         level.puzzleProgrammingElements.ForEach(el => createElementFromPrefab(el));
-        gameBoard.getSlots().ForEach(s => createSlotFromPrefab(s));
+        gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
     }
 
     public DragObject createElementFromPrefab(PuzzleProgrammingElement puzzleElement)
