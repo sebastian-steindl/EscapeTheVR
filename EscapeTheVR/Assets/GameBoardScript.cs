@@ -30,9 +30,24 @@ public class GameBoardScript : MonoBehaviour
     public DragObject createElementFromPrefab(PuzzleProgrammingElement puzzleElement)
     {
         //TODO anpassungen sodass richtig erzeugt wird: Farbe etc.
-        GameObject instantiated = Instantiate(prefab);
+        GameObject instantiated = Instantiate(getPrefabForPuzzleProgrammingElement(puzzleElement));
         instantiated.transform.position = new Vector3(puzzleElement.positionX, puzzleElement.positionY, puzzleElement.positionZ);
+        instantiated.GetComponent<DragObject>().gameBoard = this.gameObject;
         return null;
+    }
+
+    private GameObject getPrefabForPuzzleProgrammingElement(PuzzleProgrammingElement puzzleProgrammingElement)
+    {
+
+        switch (puzzleProgrammingElement.type)
+        {
+            case "print()":
+                return Resources.Load("prefabPrintElement", typeof(GameObject)) as GameObject;
+            case "variable":
+                return Resources.Load("prefabVarElement", typeof(GameObject)) as GameObject;
+            default:
+                return Resources.Load("prefabVarElement", typeof(GameObject)) as GameObject;
+        }
     }
 
     public Slot createSlotFromPrefab(Slot slot)
