@@ -97,9 +97,11 @@ public class DragObject : MonoBehaviour
         }
         else
         {
+            // Reset dragged element from other instances
             closestSlot.resetElement();
+            FindObjectOfType<Inventar>().resetCurrentlySelectedElement();
 
-            //Since the element was not close enougth to any slot, check try adding it to the lower third menu / "storage"
+            //Reenable gravity
             enableGravity();
 
         }
