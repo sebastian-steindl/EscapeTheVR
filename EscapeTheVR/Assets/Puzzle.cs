@@ -9,7 +9,7 @@ public class Puzzle
     string name;
     // todo: if we allow multiple solutions, we need a nested array
     List<ElementStone> solutionGivenByUser; // the solutionGivenByUser: ElementStones which contain programmingElements
-    List<programmingElement> correctSolution; // the correct, expected order of programmingElements
+    List<int> correctSolution; // the correct, expected order of programmingElements
     List<int> wrongIndices;
 
     private int emptySlots; // if you want to provide empty slots, e.g. puzzle needs 4 but you provide 5 slots
@@ -22,7 +22,7 @@ public class Puzzle
         this.snapEnabled = snapEnabled;
 
         solutionGivenByUser = new List<ElementStone>();
-        correctSolution = new List<programmingElement>();
+        correctSolution = new List<int>();
         wrongIndices = new List<int>();
     }
 
@@ -54,7 +54,7 @@ public class Puzzle
         return wrongIndices.Count == 0;
     }
 
-    public void setSolution(List<programmingElement> solutionInCorrectOrder)
+    public void setSolution(List<int> solutionInCorrectOrder)
     {
         this.correctSolution = solutionInCorrectOrder;
     }
@@ -89,7 +89,7 @@ public class Puzzle
 
             // this should also work if their length is different, e.g. 4 stones are needed
             // but only 3 are placed. 
-            if (solutionGivenByUser[i].elem != correctSolution[i]) 
+            if (solutionGivenByUser[i].id != correctSolution[i]) 
             {
                 wrongIndices.Add(i);
             }

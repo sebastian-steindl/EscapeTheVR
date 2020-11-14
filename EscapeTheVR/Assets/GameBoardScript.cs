@@ -14,15 +14,10 @@ public class GameBoardScript : MonoBehaviour
     private List<ElementStone> allElementStones;
     void Start()
     {
-        puzzle = new Puzzle("Hello World", 2, true);
-        puzzle.setSolution(new List<programmingElement>()
-        {
-            programmingElement.elemFuncPrint,
-            programmingElement.elemVar
-        });
+        (Puzzle puz, Level level) = PuzzleXMLReader.readLevel("/Resources/level1.xml", true);
+        puzzle = puz;
         gameBoard = new GameBoard(gameObject.transform.position, gameObject.transform.localScale, puzzle);
         gameBoard.initSlots();
-        (Puzzle puz, Level level) = PuzzleXMLReader.readLevel("/Resources/level1.xml");
         level.puzzleProgrammingElements.ForEach(el => createElementFromPrefab(el));
         gameBoard.getSlots().ForEach(s => createSlotFromPrefab(s));
     }
@@ -33,6 +28,7 @@ public class GameBoardScript : MonoBehaviour
         GameObject instantiated = Instantiate(getPrefabForPuzzleProgrammingElement(puzzleElement));
         instantiated.transform.position = new Vector3(puzzleElement.positionX, puzzleElement.positionY, puzzleElement.positionZ);
         instantiated.GetComponent<DragObject>().gameBoard = this.gameObject;
+        instantiated.GetComponent<DragObject>().setElementId(puzzleElement.id);
         return null;
     }
 
@@ -81,6 +77,7 @@ public class GameBoardScript : MonoBehaviour
         if (!selectedGameObj) return;
 
         (bool isCloseEnough, Slot closestSlot) = gameBoard.checkIfElementIsPlacedOverASlot(selectedGameObj);
+        Debug.Log("Distance: " + Vector3.Distance(closestSlot.position, selectedGameObj.transform.position));
 
         if (isCloseEnough)
         {

@@ -41,6 +41,10 @@ public class DragObject : MonoBehaviour
         this.programmingElementType = programmingElementType;
     }
 
+    public void setElementId(int id) {
+        element.id = id;
+    }
+
     private void Awake()
     {
         this.element = ElementStoneFactory.Instance.createElementStone(programmingElementType);
@@ -60,7 +64,7 @@ public class DragObject : MonoBehaviour
         // with the GetComponent we can call functions from other scripts
         gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(gameObject, element);
 
-        FindObjectOfType<Inventar>().setCurrentlySelectedElement(this);
+        //FindObjectOfType<Inventar>().setCurrentlySelectedElement(this);
     }
 
     private void OnMouseUp()
@@ -96,10 +100,10 @@ public class DragObject : MonoBehaviour
             closestSlot.resetElement();
 
             //Since the element was not close enougth to any slot, check try adding it to the lower third menu / "storage"
-            if (FindObjectOfType<Inventar>().mouseUpFunction())
+            /*if (FindObjectOfType<Inventar>().mouseUpFunction())
                 disableGravity();
             else
-                enableGravity();
+                enableGravity();*/
 
         }
 
