@@ -49,7 +49,7 @@ public class MenuScript : MonoBehaviour
     }
 
     public void startGame() {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void deleteGameElements() {
