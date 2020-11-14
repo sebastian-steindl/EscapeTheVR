@@ -17,6 +17,7 @@ public class MenuScript : MonoBehaviour
     {
         //For loading a new scene... -> https://www.youtube.com/watch?v=-GWjA6dixV4
         //SceneManager.LoadScene("SampleScene");
+        prevPages = new Stack<Page>();
         current.Show();
     }
 
@@ -41,14 +42,14 @@ public class MenuScript : MonoBehaviour
 
     //Set the current settings page
     public void setCurrentPage(Page curr) {
+        prevPages.Push(current);
         current.Hide();
         current = curr;
         current.Show();
-        prevPages.Push(curr);
     }
 
     public void startGame() {
-        Debug.Log(":)");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void deleteGameElements() {
@@ -66,6 +67,7 @@ public class MenuScript : MonoBehaviour
     }
 
     public void terminateGame() {
+        Debug.Log("Application Terminated :) - Just not in debug.");
         Application.Quit();
     }
 }
