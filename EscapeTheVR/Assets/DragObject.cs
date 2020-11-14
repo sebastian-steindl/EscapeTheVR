@@ -97,9 +97,8 @@ public class DragObject : MonoBehaviour
         }
         else
         {
-            // Reset dragged element from other instances
+            // Reset slot
             closestSlot.resetElement();
-            FindObjectOfType<Inventar>().resetCurrentlySelectedElement();
 
             //Reenable gravity
             enableGravity();
@@ -107,6 +106,7 @@ public class DragObject : MonoBehaviour
         }
 
         // Reset currently selected element
+        FindObjectOfType<Inventar>().resetCurrentlySelectedElement();
         gameBoard.GetComponent<GameBoardScript>().resetSelectedElement();
     }
 
