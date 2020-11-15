@@ -1,9 +1,3 @@
----
-title: API (level)-Documentation
-created: '2020-11-15T10:24:42.707Z'
-modified: '2020-11-15T11:34:27.023Z'
----
-
 # API (level)-Documentation
 *Aplies to API-version* :1.0
 *Fileformat* : XML
