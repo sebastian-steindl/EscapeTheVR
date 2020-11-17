@@ -16,7 +16,10 @@ public class GameBoardScript : MonoBehaviour
     public AudioSource successSound;
     void Start()
     {
-        (Puzzle puz, Level level) = PuzzleXMLReader.readLevel("/Resources/level1.xml", true);
+        string path = "/Resources/level" + (PlayerPrefs.GetInt("level",-1)!=-1?""+PlayerPrefs.GetInt("level"):"1")+".xml";
+        bool enableSnap = PlayerPrefs.GetString("snapEnabled","true").Equals("true");
+        (Puzzle puz, Level level) = PuzzleXMLReader.readLevel(path, enableSnap);
+        //(Puzzle puz, Level level) = PuzzleXMLReader.readLevel("/Resources/level1.xml", true);
         puzzle = puz;
 
         successSound = GetComponent<AudioSource>();
