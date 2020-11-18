@@ -74,6 +74,22 @@ public class SlotManager
         return (isCloseEnough, closestSlot);
     }
 
+    internal float getClostestDistance(GameObject gameObject)
+    {
+        if (!gameObject) return Mathf.Infinity;
+
+        float closestDist = Mathf.Infinity;
+        for (int i = 0; i < numberOfSlots; i++)
+        {
+            float dist = Vector3.Distance(slots[i].position, gameObject.transform.position);
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+            }
+        }
+        return closestDist;
+    }
+
     internal (Slot, float) getClostestSlotAndDistance(GameObject gameObject)
     {
         if (!gameObject) return (null, Mathf.Infinity);

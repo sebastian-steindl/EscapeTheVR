@@ -32,23 +32,6 @@ public class Inventar : MonoBehaviour, IPointerClickHandler,
         currSel = obj;
     }
 
-    /// <summary>
-    /// returns if the pointer is currently inside the element
-    /// </summary>
-    public bool mouseUpFunction() {
-
-
-        return isInside;
-        //if (isInside) {
-        //    //storedObjects.Add(currSel);
-        //    Debug.Log("Added Element: " + currSel.programmingElementType+"\tName: "+currSel.name);
-        //}
-        //else if (storedObjects.Contains(currSel)) //If an element was draged out of the storage... ->reactivate Gravety
-        //    storedObjects.Remove(currSel);
-        //resetCurrentlySelectedElement();
-        //return isInside;
-    }
-
     public void resetCurrentlySelectedElement() {
         currSel = null;
     }

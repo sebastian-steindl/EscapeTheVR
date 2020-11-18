@@ -7,9 +7,8 @@ public class WorkbenchScript : MonoBehaviour
 {
     public GameObject slotPrefab;
 
-    private SlotManager containerSlotManager; // this manages the first slot that is always active, and decides how many other slots appear
-    
-    private SlotManager contentSlotManager;
+    public SlotManager containerSlotManager; // this manages the first slot that is always active, and decides how many other slots appear
+    public SlotManager contentSlotManager;
 
     Vector3 contentSlotOffset;
     private GameBoardScript gameboard;
@@ -22,6 +21,7 @@ public class WorkbenchScript : MonoBehaviour
         contentSlotOffset = new Vector3(0,0,0.5f);
         containerSlotManager.initSlots(); 
         containerSlotManager.slots.ForEach(s => createSlotFromPrefab(s));
+        contentSlotManager = new SlotManager(gameObject.transform.position + contentSlotOffset, gameObject.transform.localScale, 0);
     }
 
     // Update is called once per frame

@@ -6,9 +6,11 @@ public class GameBoardScript : MonoBehaviour
 {
     public SlotManager gameBoard;
     public Puzzle puzzle;
+    /* Shared variable
+     * These are also used for the workbench*/
     public GameObject selectedGameObj;
     private ElementStone selectedElement;
-
+    /* End shared variable*/
     public GameObject slotPrefab;
     private List<ElementStone> allElementStones;
     private Slot lastClosest;
@@ -62,7 +64,7 @@ public class GameBoardScript : MonoBehaviour
         return null;
     }
 
-    public SlotManager GetGameBoard() { return (SlotManager)gameBoard; }
+    public SlotManager GetGameBoard() { return gameBoard; }
 
     // Update is called once per frame
     void Update()

@@ -51,43 +51,78 @@ public class DragObject : MonoBehaviour
         Debug.Log("DragObject->OnMouseUp  + + + + + + +");
 
         // Re-enable gravity if object is dropped
-        GetComponent<Rigidbody>().useGravity = this.hasGravity;
+        GetComponent<Rigidbody>().useGravity = hasGravity;
 
-        SlotManager gameBoardEl = gameBoard.GetComponent<GameBoardScript>().GetGameBoard();
+        var workbench = FindObjectOfType<WorkbenchScript>();
+        SlotManager gameBoardSlotManager = gameBoard.GetComponent<GameBoardScript>().GetGameBoard();
+        SlotManager wbContainerSM = workbench.containerSlotManager;
+        SlotManager wbContentSM = workbench.contentSlotManager;
+        var currentSelection = gameBoard.GetComponent<GameBoardScript>().selectedGameObj;
+        float closestWbContainerDistance = wbContainerSM.getClostestDistance(currentSelection);
+        float closestWbContentDistance = wbContentSM.getClostestDistance(currentSelection);
+        float closestWbDistance = closestWbContainerDistance;
+        if (closestWbContentDistance < closestWbDistance) closestWbDistance = closestWbContentDistance;
+        float closestGameBoardDistance = gameBoardSlotManager.getClostestDistance(currentSelection); 
 
-        //Make shure that the latest slot has been set...
-        (bool isCloseEnough, Slot closestSlot) = gameBoard.GetComponent<GameBoardScript>().setSelectedElementToSlotIfCloseEnough();
+        if (closestGameBoardDistance <= closestWbDistance)
+        { 
+            //Make sure that the latest slot has been set...
+            (bool isCloseEnough, Slot closestSlot) = gameBoard.GetComponent<GameBoardScript>().setSelectedElementToSlotIfCloseEnough();
 
-        // Update the current position of the programming elements in the puzzle. 
-        List<ElementStone> stones = new List<ElementStone>();
-        gameBoardEl.slots.ForEach(el => stones.Add(el == null ? null : el.getElement()));
+            // Update the current position of the programming elements in the puzzle. 
+            List<ElementStone> stones = new List<ElementStone>();
+            gameBoardSlotManager.slots.ForEach(el => stones.Add(el == null ? null : el.getElement()));
 
-        gameBoard.GetComponent<GameBoardScript>().puzzle.setUserSolution(stones);
+            gameBoard.GetComponent<GameBoardScript>().puzzle.setUserSolution(stones);
 
-        // Check if currently selected element is close enough for counting as inserted into the slot
-        if (isCloseEnough)
-        {
-            // When snapping is enabled, snap current element to the position. => TODO!
-            if (gameBoard.GetComponent<GameBoardScript>().puzzle.isSnapEnabled())
+            // Check if currently selected element is close enough for counting as inserted into the slot
+            if (isCloseEnough)
             {
-                disableGravity();
-                gameObject.transform.position = closestSlot.position;
+                // When snapping is enabled, snap current element to the position. => TODO!
+                if (gameBoard.GetComponent<GameBoardScript>().puzzle.isSnapEnabled())
+                {
+                    disableGravity();
+                    gameObject.transform.position = closestSlot.position;
+                }
+
+                // Evaluate board (this should only be necessary when at least the now dropped element is close enougth to a slot...)
+                bool evaluated = gameBoard.GetComponent<GameBoardScript>().evaluateBoard();
+                Debug.Log("DragObject->OnMouseUp->evalBoard: " + evaluated);
+            }
+            else
+            {
+                // Reset slot TODO: needed?
+                //closestSlot.resetElement();
+                //Reenable gravity
+                enableGravity();
             }
 
-            // Evaluate board (this should only be necessary when at least the now dropped element is close enougth to a slot...)
-            Debug.Log("DragObject->OnMouseUp->evalBoard: " + gameBoard.GetComponent<GameBoardScript>().evaluateBoard());
         }
-        else
+        else // we are closer to the workbench, so let the workbench handle it
         {
-            // Reset slot
-            closestSlot.resetElement();
+            //Make sure that the latest slot has been set...
+            (bool isCloseEnough, Slot closestSlot) = workbench.setSelectedElementToSlotIfCloseEnough();
 
-            //Reenable gravity
-            enableGravity();
-
+            // Check if currently selected element is close enough for counting as inserted into the slot
+            if (isCloseEnough)
+            {
+                // When snapping is enabled, snap current element to the position. => TODO!
+                if (gameBoard.GetComponent<GameBoardScript>().puzzle.isSnapEnabled())
+                {
+                    disableGravity();
+                    gameObject.transform.position = closestSlot.position;
+                }
+            }
+            else
+            {
+                // Reset slot TODO: needed?
+                //closestSlot.resetElement();
+                //Reenable gravity
+                enableGravity();
+            }
         }
 
-        // Reset currently selected element
+        // Reset currently selected element in components that keep track of it
         FindObjectOfType<Inventar>().resetCurrentlySelectedElement();
         gameBoard.GetComponent<GameBoardScript>().resetSelectedElement();
     }
