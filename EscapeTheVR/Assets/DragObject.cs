@@ -8,27 +8,6 @@ using Valve.VR;
  */
 public class DragObject : MonoBehaviour
 {
-    //VR
-    public SteamVR_Action_Boolean triggerOnOff;
-    public SteamVR_Input_Sources handType;
-
-    private void Start()
-    {
-        triggerOnOff.AddOnStateDownListener(TriggerDown, handType);
-        triggerOnOff.AddOnStateUpListener(TriggerUp, handType);
-    }
-
-    public void TriggerUp(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
-    {
-        Debug.Log("Trigger is up");
-    }
-
-    public void TriggerDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
-    {
-        Debug.Log("Trigger is down");
-    }
-
-
     private float zCoord;
     public ElementStone element;
     private bool hasGravity;
