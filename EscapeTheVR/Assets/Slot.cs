@@ -13,12 +13,18 @@ public class Slot
     private float width;
     private float height;
     static float threshold = 0.3f;
+    private DragObject dragObject;
 
     public Slot(Vector3 pos, float width, float height)
     {
         position = pos;
         this.width = width;
         this.height = height;
+    }
+
+    public void setElement(DragObject dragObject) {
+        this.dragObject = dragObject;
+        elem = dragObject.element;
     }
 
     public void setElement(ElementStone element)
@@ -29,6 +35,10 @@ public class Slot
     public ElementStone getElement()
     {
         return elem;
+    }
+
+    public DragObject GetDragObject() {
+        return dragObject;
     }
 
     public void resetElement()

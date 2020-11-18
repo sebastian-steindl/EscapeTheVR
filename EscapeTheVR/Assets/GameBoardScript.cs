@@ -8,7 +8,7 @@ public class GameBoardScript : MonoBehaviour
     public Puzzle puzzle;
     /* Shared variable
      * These are also used for the workbench*/
-    public GameObject selectedGameObj;
+    public DragObject selectedGameObj;
     private ElementStone selectedElement;
     /* End shared variable*/
     public GameObject slotPrefab;
@@ -98,13 +98,13 @@ public class GameBoardScript : MonoBehaviour
             return (false, null);
 
 
-        return gameBoard.handlesElementToSlotRelation(selectedGameObj, selectedElement);
+        return gameBoard.handlesElementToSlotRelation(selectedGameObj);
     }
 
-    public void registerSelectedElement(GameObject obj, ElementStone element)
+    public void registerSelectedElement(DragObject obj)
     {
         selectedGameObj = obj;
-        selectedElement = element;
+        selectedElement = obj.element;
     }
 
     public ElementStone getSelectedElement()

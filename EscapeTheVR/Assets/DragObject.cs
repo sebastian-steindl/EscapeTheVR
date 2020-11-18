@@ -41,7 +41,7 @@ public class DragObject : MonoBehaviour
         GetComponent<Rigidbody>().useGravity = false;
 
         // with the GetComponent we can call functions from other scripts
-        gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(gameObject, element);
+        gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(this);
 
         FindObjectOfType<Inventar>().setCurrentlySelectedElement(this);
     }

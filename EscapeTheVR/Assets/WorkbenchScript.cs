@@ -60,31 +60,33 @@ public class WorkbenchScript : MonoBehaviour
     /// <returns></returns>
     public (bool isCloseEnough, Slot closestSlot) setSelectedElementToSlotIfCloseEnough()
     {
-        var selectedElement = gameboard.getSelectedElement();
+        var selectedElement = gameboard.selectedGameObj;
         if (selectedElement == null)
             return (false, null);
+
+        var selectedProgrammigElementType = selectedElement.element.elem;
 
         if (containerSlotManager.slots[0].isEmpty())
         { 
             // there is no container e.g. var / interval yet
             Debug.Log("ContainerSlot is empty");
-            if (selectedElement.elem == programmingElement.elemVar || selectedElement.elem == programmingElement.elemInterval)
+            if (selectedProgrammigElementType == programmingElement.elemVar || selectedProgrammigElementType == programmingElement.elemInterval)
             {
-                contentSlotManager = new SlotManager(gameObject.transform.position+contentSlotOffset, gameObject.transform.localScale, getNumberOfNeededFillSlots(selectedElement.elem));
+                contentSlotManager = new SlotManager(gameObject.transform.position+contentSlotOffset, gameObject.transform.localScale, getNumberOfNeededFillSlots(selectedProgrammigElementType));
                 contentSlotManager.initSlots();
                 contentSlotManager.slots.ForEach(s => createSlotFromPrefab(s));
                 // if selectedElem is a container, checkIf its close enhough to the slot
-                return containerSlotManager.handlesElementToSlotRelation(gameboard.selectedGameObj, selectedElement);
+                return containerSlotManager.handlesElementToSlotRelation(selectedElement);
             }
             else return (false, null);
         }
         else
         {
             // there is a container
-            if (selectedElement.elem != programmingElement.elemVar || selectedElement.elem != programmingElement.elemInterval)
+            if (selectedProgrammigElementType != programmingElement.elemVar || selectedProgrammigElementType != programmingElement.elemInterval)
             {
                 // if selectedElem is a container, checkIf its close enhough to the slot
-                return contentSlotManager.handlesElementToSlotRelation(gameboard.selectedGameObj, selectedElement);
+                return contentSlotManager.handlesElementToSlotRelation(selectedElement);
             }
             else return (false, null);
         }

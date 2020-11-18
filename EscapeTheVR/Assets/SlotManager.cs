@@ -46,7 +46,7 @@ public class SlotManager
         }
     }
 
-    internal (bool, Slot) checkIfElementIsPlacedOverASlot(GameObject gameObject)
+    internal (bool, Slot) checkIfElementIsPlacedOverASlot(DragObject gameObject)
     {
         // c# 7 tuple syntax, finally you can write code nearly as nice as in python
         (Slot closestSlot, float dist) = getClostestSlotAndDistance(gameObject);
@@ -54,27 +54,28 @@ public class SlotManager
         return (closestSlot.isElemCloseEnough(dist), closestSlot);
     }
 
-    internal (bool isCloseEnough, Slot closestSlot) handlesElementToSlotRelation(GameObject selectedGameObj, ElementStone selectedElement)
+    internal (bool isCloseEnough, Slot closestSlot) handlesElementToSlotRelation(DragObject selectedGameObj)
     {
+        var selectedElemnt = selectedGameObj.element;
         //Get Distance
         (bool isCloseEnough, Slot closestSlot) = checkIfElementIsPlacedOverASlot(selectedGameObj);
         if (isCloseEnough)
         {
             //If the latest slot is not equal to the current one and is populated by the current element, reset that slot.
-            if (lastClosest != null && lastClosest != closestSlot && closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedElement))
+            if (lastClosest != null && lastClosest != closestSlot && closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedGameObj))
                 lastClosest.resetElement();
 
             Debug.Log("***Close enough***");
             Debug.Log("SetSlot: \nClosest: " + closestSlot.position + "\tLast: " + (lastClosest == null ? new Vector3(-1f, -1f, -1f) : lastClosest.position));
-            closestSlot.setElement(selectedElement);
+            closestSlot.setElement(selectedGameObj);
             lastClosest = closestSlot;
         }
-        else if (closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedElement)) // if slot isn't close enough but the current element is still set in the slot, remove it.
+        else if (closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedGameObj)) // if slot isn't close enough but the current element is still set in the slot, remove it.
             closestSlot.resetElement();
         return (isCloseEnough, closestSlot);
     }
 
-    internal float getClostestDistance(GameObject gameObject)
+    internal float getClostestDistance(DragObject gameObject)
     {
         if (!gameObject) return Mathf.Infinity;
 
@@ -90,7 +91,7 @@ public class SlotManager
         return closestDist;
     }
 
-    internal (Slot, float) getClostestSlotAndDistance(GameObject gameObject)
+    internal (Slot, float) getClostestSlotAndDistance(DragObject gameObject)
     {
         if (!gameObject) return (null, Mathf.Infinity);
 
