@@ -36,6 +36,11 @@ public class Slot
         elem = null;
     }
 
+    public bool isEmpty()
+    {
+        return elem == null;
+    }
+
     public bool isElemCloseEnough(float distance)
     {
         return Math.Abs(distance) < threshold;

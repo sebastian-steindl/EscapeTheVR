@@ -53,7 +53,7 @@ public class DragObject : MonoBehaviour
         // Re-enable gravity if object is dropped
         GetComponent<Rigidbody>().useGravity = this.hasGravity;
 
-        GameBoard gameBoardEl = gameBoard.GetComponent<GameBoardScript>().GetGameBoard();
+        SlotManager gameBoardEl = gameBoard.GetComponent<GameBoardScript>().GetGameBoard();
 
         //Make shure that the latest slot has been set...
         (bool isCloseEnough, Slot closestSlot) = gameBoard.GetComponent<GameBoardScript>().setSelectedElementToSlotIfCloseEnough();
@@ -61,13 +61,14 @@ public class DragObject : MonoBehaviour
         // Update the current position of the programming elements in the puzzle. 
         List<ElementStone> stones = new List<ElementStone>();
         gameBoardEl.slots.ForEach(el => stones.Add(el == null ? null : el.getElement()));
-        gameBoardEl.activePuzzle.setUserSolution(stones);
+
+        gameBoard.GetComponent<GameBoardScript>().puzzle.setUserSolution(stones);
 
         // Check if currently selected element is close enough for counting as inserted into the slot
         if (isCloseEnough)
         {
             // When snapping is enabled, snap current element to the position. => TODO!
-            if (gameBoardEl.activePuzzle.isSnapEnabled())
+            if (gameBoard.GetComponent<GameBoardScript>().puzzle.isSnapEnabled())
             {
                 disableGravity();
                 gameObject.transform.position = closestSlot.position;

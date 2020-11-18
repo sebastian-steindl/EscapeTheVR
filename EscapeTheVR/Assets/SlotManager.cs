@@ -5,26 +5,30 @@ using UnityEditor.Animations;
 using UnityEngine;
 using System.Linq;
 
-public class GameBoard
+public class SlotManager
 {
     private int numberOfSlots;
     private List<Vector3> slotPositions;
     private float slotWidthHeight = 0.25f;
     public List<Slot> slots { get; }
-    public Puzzle activePuzzle;
 
     // vr gameboard position and scale
     public Vector3 pos;
     public Vector3 scale;
 
-    public GameBoard(Vector3 pos, Vector3 scale, Puzzle puzzle = null)
+    private Slot lastClosest;
+
+    public float marginTopBottom = 0.25f;
+    public float marginLeftRight = 0.25f;
+
+    public SlotManager(Vector3 pos, Vector3 scale, int slotNum = 1)
     {
         this.pos = pos;
         this.scale = scale;
-        activePuzzle = puzzle;
 
         slots = new List<Slot>();
         slotPositions = new List<Vector3>();
+        numberOfSlots = slotNum;
     }
 
     internal void addSlot(Slot slot)
@@ -34,7 +38,7 @@ public class GameBoard
 
     internal void initSlots()
     {
-        numberOfSlots = activePuzzle.getNumberOfSlots();
+        slots.Clear(); //empty list
         generateSlotPositions();
         for (int i = 0; i < numberOfSlots; i++)
         {
@@ -48,6 +52,26 @@ public class GameBoard
         (Slot closestSlot, float dist) = getClostestSlotAndDistance(gameObject);
 
         return (closestSlot.isElemCloseEnough(dist), closestSlot);
+    }
+
+    internal (bool isCloseEnough, Slot closestSlot) handlesElementToSlotRelation(GameObject selectedGameObj, ElementStone selectedElement)
+    {
+        //Get Distance
+        (bool isCloseEnough, Slot closestSlot) = checkIfElementIsPlacedOverASlot(selectedGameObj);
+        if (isCloseEnough)
+        {
+            //If the latest slot is not equal to the current one and is populated by the current element, reset that slot.
+            if (lastClosest != null && lastClosest != closestSlot && closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedElement))
+                lastClosest.resetElement();
+
+            Debug.Log("***Close enough***");
+            Debug.Log("SetSlot: \nClosest: " + closestSlot.position + "\tLast: " + (lastClosest == null ? new Vector3(-1f, -1f, -1f) : lastClosest.position));
+            closestSlot.setElement(selectedElement);
+            lastClosest = closestSlot;
+        }
+        else if (closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedElement)) // if slot isn't close enough but the current element is still set in the slot, remove it.
+            closestSlot.resetElement();
+        return (isCloseEnough, closestSlot);
     }
 
     internal (Slot, float) getClostestSlotAndDistance(GameObject gameObject)
@@ -70,11 +94,7 @@ public class GameBoard
 
     internal void generateSlotPositions()
     {
-        numberOfSlots = activePuzzle.getNumberOfSlots();
-
         float padding = 1.5f * slotWidthHeight;
-        float marginTopBottom = 0.5f;
-        float marginLeftRight = marginTopBottom;
 
         float availableWidth = scale.z - 2 * marginLeftRight;
         float availableHeight = scale.y - 2 * marginTopBottom;
@@ -98,4 +118,11 @@ public class GameBoard
         }
         Debug.Log("after generation: number" + slotPositions.Count);
     }
+
+    public void setNumberOfSlots(int nr)
+    {
+        numberOfSlots = nr;
+        initSlots();
+    }
+
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameBoardScript : MonoBehaviour
 {
-    public GameBoard gameBoard;
+    public SlotManager gameBoard;
     public Puzzle puzzle;
-    private GameObject selectedGameObj;
+    public GameObject selectedGameObj;
     private ElementStone selectedElement;
 
     public GameObject slotPrefab;
@@ -24,8 +24,9 @@ public class GameBoardScript : MonoBehaviour
 
         successSound = GetComponent<AudioSource>();
 
-        gameBoard = new GameBoard(gameObject.transform.position, gameObject.transform.localScale, puzzle);
+        gameBoard = new SlotManager(gameObject.transform.position, gameObject.transform.localScale, puzzle.getNumberOfSlots());
         gameBoard.initSlots();
+
         level.puzzleProgrammingElements.ForEach(el => createElementFromPrefab(el));
         gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
     }
@@ -35,7 +36,7 @@ public class GameBoardScript : MonoBehaviour
         //TODO anpassungen sodass richtig erzeugt wird: Farbe etc.
         GameObject instantiated = Instantiate(getPrefabForPuzzleProgrammingElement(puzzleElement));
         instantiated.transform.position = new Vector3(puzzleElement.positionX, puzzleElement.positionY, puzzleElement.positionZ);
-        instantiated.GetComponent<DragObject>().gameBoard = this.gameObject;
+        instantiated.GetComponent<DragObject>().gameBoard = gameObject;
         instantiated.GetComponent<DragObject>().setElementId(puzzleElement.id);
         return null;
     }
@@ -61,7 +62,7 @@ public class GameBoardScript : MonoBehaviour
         return null;
     }
 
-    public GameBoard GetGameBoard() { return (GameBoard)gameBoard; }
+    public SlotManager GetGameBoard() { return (SlotManager)gameBoard; }
 
     // Update is called once per frame
     void Update()
@@ -93,23 +94,9 @@ public class GameBoardScript : MonoBehaviour
     public (bool isCloseEnough, Slot closestSlot) setSelectedElementToSlotIfCloseEnough() {
         if (!selectedGameObj)
             return (false, null);
-        
-        //Get Distance
-        (bool isCloseEnough, Slot closestSlot) = gameBoard.checkIfElementIsPlacedOverASlot(selectedGameObj);
-        if (isCloseEnough)
-        {
-           //If the latest slot is not equal to the current one and is populated by the current element, reset that slot.
-            if (lastClosest != null && lastClosest != closestSlot && closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedElement))
-                lastClosest.resetElement();
 
-            Debug.Log("***Close enough***");
-            Debug.Log("SetSlot: \nClosest: "+closestSlot.position+"\tLast: "+ (lastClosest == null ? new Vector3(-1f, -1f, -1f) : lastClosest.position));
-            closestSlot.setElement(selectedElement);
-            lastClosest = closestSlot;
-        }
-        else if (closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedElement)) // if slot isn't close enough but the current element is still set in the slot, remove it.
-            closestSlot.resetElement();
-        return (isCloseEnough, closestSlot);
+
+        return gameBoard.handlesElementToSlotRelation(selectedGameObj, selectedElement);
     }
 
     public void registerSelectedElement(GameObject obj, ElementStone element)
