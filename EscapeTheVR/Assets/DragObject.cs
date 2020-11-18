@@ -91,8 +91,6 @@ public class DragObject : MonoBehaviour
             }
             else
             {
-                // Reset slot TODO: needed?
-                //closestSlot.resetElement();
                 //Reenable gravity
                 enableGravity();
             }
@@ -115,8 +113,6 @@ public class DragObject : MonoBehaviour
             }
             else
             {
-                // Reset slot TODO: needed?
-                //closestSlot.resetElement();
                 //Reenable gravity
                 enableGravity();
             }
