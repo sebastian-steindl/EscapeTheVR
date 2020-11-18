@@ -12,13 +12,14 @@ public class GameBoardScript : MonoBehaviour
     public GameObject prefab;
     public GameObject slotPrefab;
     private List<ElementStone> allElementStones;
+    private Slot lastClosest;
 
     public AudioSource successSound;
     void Start()
     {
         string path = "/Resources/level" + (PlayerPrefs.GetInt("level",-1)!=-1?""+PlayerPrefs.GetInt("level"):"1")+".xml";
         bool enableSnap = PlayerPrefs.GetString("snapEnabled","true").Equals("true");
-        (Puzzle puz, Level level) = PuzzleXMLReader.readLevel(path, enableSnap);
+        (Puzzle puz, Level level) = PuzzleXMLReader.readLevel(path, true);
         //(Puzzle puz, Level level) = PuzzleXMLReader.readLevel("/Resources/level1.xml", true);
         puzzle = puz;
 
@@ -85,6 +86,11 @@ public class GameBoardScript : MonoBehaviour
         setSelectedElementToSlotIfCloseEnough();
     }
 
+    /// <summary>
+    /// This function sets the currently selected object to the closest slot, if it is close enough.
+    /// Attention: It also resets the current object from the slot, if it is still set eventhogh the object isn't close enough.
+    /// </summary>
+    /// <returns></returns>
     public (bool isCloseEnough, Slot closestSlot) setSelectedElementToSlotIfCloseEnough() {
         if (!selectedGameObj)
             return (false, null);
@@ -93,11 +99,17 @@ public class GameBoardScript : MonoBehaviour
         (bool isCloseEnough, Slot closestSlot) = gameBoard.checkIfElementIsPlacedOverASlot(selectedGameObj);
         if (isCloseEnough)
         {
+           //If the latest slot is not equal to the current one and is populated by the current element, reset that slot.
+            if (lastClosest != null && lastClosest != closestSlot && closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedElement))
+                lastClosest.resetElement();
 
             Debug.Log("***Close enough***");
-            //Debug.Log("SetSlot: \nClosest: "+closestSlot.position+"\tLast: "+ (last == null ? new Vector3(-1f, -1f, -1f) : last.position));
+            Debug.Log("SetSlot: \nClosest: "+closestSlot.position+"\tLast: "+ (lastClosest == null ? new Vector3(-1f, -1f, -1f) : lastClosest.position));
             closestSlot.setElement(selectedElement);
+            lastClosest = closestSlot;
         }
+        else if (closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedElement)) // if slot isn't close enough but the current element is still set in the slot, remove it.
+            closestSlot.resetElement();
         return (isCloseEnough, closestSlot);
     }
 
