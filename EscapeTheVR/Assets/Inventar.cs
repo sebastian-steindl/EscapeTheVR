@@ -82,6 +82,9 @@ public class Inventar : MonoBehaviour, IPointerClickHandler,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        //If you enter with an element, make shure it is removed from the GameBoard.
+        FindObjectOfType<GameBoardScript>().setSelectedElementToSlotIfCloseEnough();
+
         isInside = true;
         if (currSel != null)
         {
