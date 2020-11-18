@@ -12,20 +12,38 @@ public class SteamVRController : MonoBehaviour
     public GameObject collidingObject;
     public GameObject objectInHand;
 
-    public Vector3 force;
+    public Vector3 newHandPosition;
+    public Vector3 oldHandPosition;
 
+    public SteamVR_Behaviour_Pose pose;
 
     // Start is called before the first frame update
     void Start()
     {
+        pose = GetComponent<SteamVR_Behaviour_Pose>();
         triggerOnOff.AddOnStateDownListener(TriggerPress, handType);
         triggerOnOff.AddOnStateUpListener(TriggerRelease, handType);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+
+        Debug.Log(pose.GetAngularVelocity());
+        /*
+        if (objectInHand)
+        {
+
+            var rigidbody = objectInHand.GetComponent<Rigidbody>();
+
+            Vector3 newObjectPosition = this.transform.position;
+            Vector3 force = newObjectPosition - rigidbody.position;
+
+            // Reset velocity to prevent oscillating
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.AddForce(force * 10000, ForceMode.Acceleration);
+        }
+        */
     }
 
 
@@ -63,32 +81,22 @@ public class SteamVRController : MonoBehaviour
     private void GrabObject()
     {
         objectInHand = collidingObject;
+
         objectInHand.transform.SetParent(this.transform);
-        //objectInHand.transform.position = this.transform.position;
-        objectInHand.GetComponent<Rigidbody>().isKinematic = true;
+        objectInHand.transform.position = this.transform.position;
+        //objectInHand.GetComponent<Rigidbody>().isKinematic = false;
     }
 
     private void DropObject()
     {
-
-        objectInHand.GetComponent<Rigidbody>().isKinematic = false;
+        //objectInHand.GetComponent<Rigidbody>().isKinematic = false;
         objectInHand.transform.SetParent(null);
         objectInHand.GetComponent<Rigidbody>().useGravity = true;
+        objectInHand.GetComponent<Rigidbody>().velocity = pose.GetVelocity();
+        objectInHand.GetComponent<Rigidbody>().angularVelocity = pose.GetAngularVelocity();
+        objectInHand = null;
 
-        var rigidbody = objectInHand.GetComponent<Rigidbody>();
-
-        force = this.transform.position - rigidbody.position;
-
-        // Reset velocity to prevent oscillating
-        rigidbody.velocity = Vector3.zero;
-        rigidbody.AddForce(force * 100, ForceMode.Acceleration);
         
-
-        //objectInHand.GetComponent<Rigidbody>().isKinematic = false;
-        //objectInHand.transform.SetParent(null);
-        //objectInHand.GetComponent<Rigidbody>().useGravity = true;
-        //objectInHand.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        //objectInHand.GetComponent<Rigidbody>().AddForce(force * 100, ForceMode.Acceleration);
     }
 
 }
