@@ -2657,8 +2657,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531c6f2f6c1c4284b9be55fd73434b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  slotPrefab: {fileID: 0}
+  slotPrefab: {fileID: 2349171535577940172, guid: ea11757697e1bb24bab3861d39fa2444,
+    type: 3}
   successSound: {fileID: 0}
 --- !u!1 &1661105536
 GameObject:

@@ -9,7 +9,6 @@ public class GameBoardScript : MonoBehaviour
     private GameObject selectedGameObj;
     private ElementStone selectedElement;
 
-    public GameObject prefab;
     public GameObject slotPrefab;
     private List<ElementStone> allElementStones;
     private Slot lastClosest;
