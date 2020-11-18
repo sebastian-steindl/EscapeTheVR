@@ -115,6 +115,8 @@ public class DragObject : MonoBehaviour
             {
                 //Reenable gravity
                 enableGravity();
+                workbench.resetContentSlots();
+                workbench.containerSlotManager.slots[0].resetElement();
             }
         }
 

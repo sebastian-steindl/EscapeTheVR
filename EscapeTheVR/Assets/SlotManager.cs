@@ -63,7 +63,8 @@ public class SlotManager
         {
             //If the latest slot is not equal to the current one and is populated by the current element, reset that slot.
             if (lastClosest != null && lastClosest != closestSlot && closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedGameObj))
-                lastClosest.resetElement();
+                Debug.Log("!!!! wouldve reseted last closest slot !!!!");
+            //lastClosest.resetElement();
 
             Debug.Log("***Close enough***");
             Debug.Log("SetSlot: \nClosest: " + closestSlot.position + "\tLast: " + (lastClosest == null ? new Vector3(-1f, -1f, -1f) : lastClosest.position));
@@ -71,7 +72,8 @@ public class SlotManager
             lastClosest = closestSlot;
         }
         else if (closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedGameObj)) // if slot isn't close enough but the current element is still set in the slot, remove it.
-            closestSlot.resetElement();
+            Debug.Log("!!!! wouldve reseted closest slot !!!!");
+            //closestSlot.resetElement();
         return (isCloseEnough, closestSlot);
     }
 
@@ -140,6 +142,12 @@ public class SlotManager
     {
         numberOfSlots = nr;
         initSlots();
+    }
+
+    public void Clear()
+    {
+        numberOfSlots = 0;
+        slots.Clear();
     }
 
 }
