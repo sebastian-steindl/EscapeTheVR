@@ -28,8 +28,6 @@ public class SteamVRController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        Debug.Log(pose.GetAngularVelocity());
         /*
         if (objectInHand)
         {
@@ -82,21 +80,22 @@ public class SteamVRController : MonoBehaviour
     {
         objectInHand = collidingObject;
 
+        objectInHand.GetComponent<Rigidbody>().isKinematic = true;
+        objectInHand.GetComponent<Rigidbody>().useGravity = false;
         objectInHand.transform.SetParent(this.transform);
         objectInHand.transform.position = this.transform.position;
-        //objectInHand.GetComponent<Rigidbody>().isKinematic = false;
+        
     }
 
     private void DropObject()
     {
-        //objectInHand.GetComponent<Rigidbody>().isKinematic = false;
         objectInHand.transform.SetParent(null);
         objectInHand.GetComponent<Rigidbody>().useGravity = true;
+        objectInHand.GetComponent<Rigidbody>().isKinematic = false;
         objectInHand.GetComponent<Rigidbody>().velocity = pose.GetVelocity();
         objectInHand.GetComponent<Rigidbody>().angularVelocity = pose.GetAngularVelocity();
-        objectInHand = null;
 
-        
+        objectInHand = null;
     }
 
 }
