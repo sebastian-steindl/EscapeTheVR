@@ -100,7 +100,7 @@ public class DragObject : MonoBehaviour
 
         // Reset velocity to prevent oscillating
         rigidbody.velocity = Vector3.zero;
-        rigidbody.AddForce(force * 100, ForceMode.Acceleration);
+        rigidbody.AddForce(force * 300, ForceMode.Acceleration);
     }
 
     private Vector3 GetMouseWorldPos()
