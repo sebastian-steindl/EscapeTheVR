@@ -84,7 +84,7 @@ public class Puzzle
 
    public int getNumberOfSlots()
     {
-        return solutionGivenByUser.Count + emptySlots;
+        return correctSolution.Count;
     }
 
     public bool isSnapEnabled() { return snapEnabled; }
