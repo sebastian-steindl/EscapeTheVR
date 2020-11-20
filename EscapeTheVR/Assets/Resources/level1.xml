@@ -14,7 +14,7 @@
 		</element>
 		<element isPartOfSolution="true" valueOfId="1">
 			<id>2</id>
-			<type>text</type>
+			<type>number</type>
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>
