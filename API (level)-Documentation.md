@@ -14,7 +14,7 @@ levelId | int | identifier for the level
 name | string | Name of the level, that may be displayed to the user.|
 descr | string | A short description of the level that may be displayed to the user.|
 program.element:isPartOfSolution | bool | If set to true, this element has to be set on the solution (GameBoard) for the solution to be correct. *Default value: `false`*|
-program.element:valueOfId | int | **[Currently not used]** Only needed for all programmingElements that are wrappers. 
+program.element:valueOfId | int | Only needed for all programmingElements that are child elements. (These are (`bool`,`number` and `text`) 
 program.element.type | string / programmingElement | What type the generated object should be of.|
 program.element.positionX | float | X-Coordinate where the object should be placed.|
 program.element.positionY | float | Y-Coordinate where the object should be placed.|
@@ -36,4 +36,5 @@ Currently there are the following programmingElement-types:
 - `number`: represents a number value
 - `bool`: represents a bool value
 - `interval`: creates an interval (needs to number blocks as reference)
+- `end`: marks the end of a sequence
 
