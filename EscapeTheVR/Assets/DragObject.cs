@@ -114,9 +114,17 @@ public class DragObject : MonoBehaviour
             else
             {
                 //Reenable gravity
-                enableGravity();
-                workbench.resetContentSlots();
-                workbench.containerSlotManager.slots[0].resetElement();
+                // Reset elemnts if current object was a Var||Interval on the workbench.
+                if (this == workbench.containerSlotManager.slots[0].GetDragObject())
+                {
+                    enableGravity();
+                    workbench.resetContentSlots();
+                    workbench.containerSlotManager.slots[0].resetElement();
+                }
+                else if (workbench.contentSlotManager.Find(this) != -1) { //If element is currently set in one of the contentslots, reset only this slot. Matters only if object is on workbench.
+                    enableGravity();
+                    workbench.contentSlotManager.slots[workbench.contentSlotManager.Find(this)].resetElement();
+                }
             }
         }
 
