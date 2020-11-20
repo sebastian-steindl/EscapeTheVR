@@ -6,15 +6,12 @@ using UnityEngine;
 public class WorkbenchScript : MonoBehaviour
 {
     public GameObject slotPrefab;
-
     public SlotManager containerSlotManager; // this manages the first slot that is always active, and decides how many other slots appear
     public SlotManager contentSlotManager;
-
     Vector3 contentSlotOffset;
     private GameBoardScript gameboard;
+    private List<GameObject> createdContentSlots;    
 
-    private List<GameObject> createdContentSlots;
-    //private DragObject container;     
     void Start()
     {
         gameboard = FindObjectOfType<GameBoardScript>();
@@ -88,8 +85,8 @@ public class WorkbenchScript : MonoBehaviour
         }
         else
         {
-            // there is a container
-            if (selectedProgrammigElementType != programmingElement.elemVar || selectedProgrammigElementType != programmingElement.elemInterval)
+            // Content slots only allow boolean, number and text values. 
+            if (selectedProgrammigElementType == programmingElement.elemBool || selectedProgrammigElementType == programmingElement.elemText || selectedProgrammigElementType == programmingElement.elemNumber)
             {
                 (bool isCloseEnough, Slot closest) = contentSlotManager.handlesElementToSlotRelation(selectedElement);
                 if (isCloseEnough) {
@@ -137,14 +134,7 @@ public class WorkbenchScript : MonoBehaviour
         if (!selectedDragObject)
             return;
 
-        //var selectedElementType = selectedDragObject.element.elem;
-        ////If the removed object is a container object, remove all of the content-objects.
-        //if (selectedElementType == programmingElement.elemVar || selectedElementType == programmingElement.elemInterval)
-        //{
-        //    (bool isCloseEnough, Slot closest) = containerSlotManager.handleElementToSlotRelation(selectedDragObject);
-        //    if (!isCloseEnough)
-        //    {
-                //Remove all items in contentSlots and enable Gravity on the objects...
+        //Remove all items in contentSlots and enable Gravity on the objects...
         contentSlotManager.slots.ForEach(s => {
             if (s.GetDragObject())
             {
@@ -155,15 +145,6 @@ public class WorkbenchScript : MonoBehaviour
         contentSlotManager.Clear();
 
         deleteCreatedSlotPrefabs();
-                    //}
-                //}
-        //else
-        //{
-        //    (bool isCloseEnough, Slot closest) = contentSlotManager.handleElementToSlotRelation(selectedDragObject);
-        //    if (!isCloseEnough && closest != null)
-        //        closest.resetElement();
-        //}
-
     }
 
     private void deleteCreatedSlotPrefabs()
