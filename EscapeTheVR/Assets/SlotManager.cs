@@ -16,8 +16,6 @@ public class SlotManager
     public Vector3 pos;
     public Vector3 scale;
 
-    private Slot lastClosest;
-
     public float marginTopBottom = 0.25f;
     public float marginLeftRight = 0.25f;
 
@@ -62,18 +60,26 @@ public class SlotManager
         if (isCloseEnough)
         {
             //If the latest slot is not equal to the current one and is populated by the current element, reset that slot.
-            if (lastClosest != null && lastClosest != closestSlot && closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedGameObj))
-                Debug.Log("!!!! wouldve reseted last closest slot !!!!");
-            //lastClosest.resetElement();
+            var selObjIndex = Find(selectedGameObj);
+            if (selObjIndex >= 0 && selObjIndex != slots.IndexOf(closestSlot))
+            {
+                Debug.Log("Reseted latest Slot: " + selObjIndex);
+                slots[selObjIndex].resetElement();
+            }
 
             Debug.Log("***Close enough***");
-            Debug.Log("SetSlot: \nClosest: " + closestSlot.position + "\tLast: " + (lastClosest == null ? new Vector3(-1f, -1f, -1f) : lastClosest.position));
             closestSlot.setElement(selectedGameObj);
-            lastClosest = closestSlot;
         }
-        else if (closestSlot.getElement() != null && closestSlot.getElement().Equals(selectedGameObj)) // if slot isn't close enough but the current element is still set in the slot, remove it.
-            Debug.Log("!!!! wouldve reseted closest slot !!!!");
-            //closestSlot.resetElement();
+        else 
+        {
+            // if slot isn't close enough but the current element is still set in the slot, remove it.
+            var selectedObjIndex = Find(selectedGameObj);
+            if (Find(selectedGameObj) > -1)
+            {
+                Debug.Log("Would have Reset Slot No " + Find(selectedGameObj));
+                slots[Find(selectedGameObj)].resetElement();
+            }
+        }
         return (isCloseEnough, closestSlot);
     }
 

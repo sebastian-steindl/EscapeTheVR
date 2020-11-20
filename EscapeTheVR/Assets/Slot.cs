@@ -43,6 +43,7 @@ public class Slot
 
     public void resetElement()
     {
+        dragObject = null;
         elem = null;
     }
 
