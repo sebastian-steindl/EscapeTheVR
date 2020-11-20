@@ -11,7 +11,6 @@ public class Inventar : MonoBehaviour, IPointerClickHandler,
     List<InventorySlot> inventorySlots;
     //List<DragObject> storedObjects;
     DragObject currSel;
-    bool isInside = false;
     public Inventar instance;
     public ElementStone draggedOutsideItem;
     // Start is called before the first frame update
@@ -68,7 +67,6 @@ public class Inventar : MonoBehaviour, IPointerClickHandler,
         //If you enter with an element, make shure it is removed from the GameBoard.
         FindObjectOfType<GameBoardScript>().setSelectedElementToSlotIfCloseEnough();
 
-        isInside = true;
         if (currSel != null)
         {
             addItemToEmptySlot(currSel.element);
