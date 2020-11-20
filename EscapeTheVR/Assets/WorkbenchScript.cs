@@ -14,7 +14,7 @@ public class WorkbenchScript : MonoBehaviour
     private GameBoardScript gameboard;
 
     private List<GameObject> createdContentSlots;
-    //private DragObject container; 
+    //private DragObject container;     
     void Start()
     {
         gameboard = FindObjectOfType<GameBoardScript>();
@@ -91,8 +91,41 @@ public class WorkbenchScript : MonoBehaviour
             // there is a container
             if (selectedProgrammigElementType != programmingElement.elemVar || selectedProgrammigElementType != programmingElement.elemInterval)
             {
+                (bool isCloseEnough, Slot closest) = contentSlotManager.handlesElementToSlotRelation(selectedElement);
+                if (isCloseEnough) {
+                    
+                    var containerElement = containerSlotManager.slots[0].getElement();
+
+                    // Update Var element
+                    if (containerElement.elem == programmingElement.elemVar) {
+                        Debug.Log("Update Variable Stome...");
+                        VariableStone stone = (VariableStone)containerElement;
+                        stone.filledWith = selectedElement.element;
+                        containerElement = stone;
+                    }
+                    else if (containerElement.elem == programmingElement.elemInterval) { //Code for updating InvervalStones / elements
+                        Debug.Log("Update Variable Stome...");
+
+                        //Interval only works with Numberstones...
+                        if (selectedProgrammigElementType != programmingElement.elemNumber) {
+                            Console.Error.Write("Tried to update an IntervalStone with a non numeric stone element!");
+                            return (false, null);
+                        }
+
+                        IntervalStone stone = (IntervalStone)containerElement;
+                        if (closest == contentSlotManager.slots[0])
+                            stone.from = selectedElement.element;
+                        else
+                            stone.to = selectedElement.element;
+                        containerElement = stone;
+
+                    }
+                        
+
+                }
+
                 // if selectedElem is a container, checkIf its close enhough to the slot
-                return contentSlotManager.handlesElementToSlotRelation(selectedElement);
+                return (isCloseEnough, closest);
             }
             else return (false, null);
         }
