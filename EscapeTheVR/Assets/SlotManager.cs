@@ -150,4 +150,12 @@ public class SlotManager
         slots.Clear();
     }
 
+    public int Find(DragObject obj) {
+        for (int i = 0; i < slots.Count; i++) {
+            if (slots[i].GetDragObject() == obj)
+                return i;
+        }
+        return -1;
+    }
+
 }
