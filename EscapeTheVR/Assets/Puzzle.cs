@@ -9,7 +9,8 @@ public class Puzzle
     string name;
     // todo: if we allow multiple solutions, we need a nested array
     List<ElementStone> solutionGivenByUser; // the solutionGivenByUser: ElementStones which contain programmingElements
-    List<int> correctSolution; // the correct, expected order of programmingElements
+    List<ElementStone> flattenedCorrectSolution; // the correct, expected order of programmingElements
+    List<ElementStone> unflattenedCorrectSolution;
     List<int> wrongIndices;
 
     private int emptySlots; // if you want to provide empty slots, e.g. puzzle needs 4 but you provide 5 slots
@@ -22,7 +23,8 @@ public class Puzzle
         this.snapEnabled = snapEnabled;
 
         solutionGivenByUser = new List<ElementStone>();
-        correctSolution = new List<int>();
+        flattenedCorrectSolution = new List<ElementStone>();
+        unflattenedCorrectSolution = new List<ElementStone>();
         wrongIndices = new List<int>();
     }
 
@@ -39,9 +41,10 @@ public class Puzzle
         return wrongIndices.Count == 0;
     }
 
-    public void setSolution(List<int> solutionInCorrectOrder)
+    public void setSolution(List<ElementStone> solutionInCorrectOrder)
     {
-        this.correctSolution = solutionInCorrectOrder;
+        unflattenedCorrectSolution = solutionInCorrectOrder;
+        flattenedCorrectSolution = flattenSolution(solutionInCorrectOrder);
     }
 
     public void setUserSolution(List<ElementStone> solutionGivenByUser) { this.solutionGivenByUser = solutionGivenByUser; }
@@ -55,26 +58,26 @@ public class Puzzle
     {
         List<int> wrongIndices = new List<int>();
         Debug.Log("Puzzle->checkOrder->user:");
-        solutionGivenByUser.ForEach(es => {
-            if (es == null) Debug.Log("Slot not populated");
-            else Debug.Log(es.elem);
-        });
+        List<ElementStone> flattenedUserSolution = new List<ElementStone>();
+        flattenedUserSolution = flattenSolution(solutionGivenByUser);
         Debug.Log("Puzzle->checkOrder->correct:");
-        correctSolution.ForEach(es => Debug.Log(es.ToString()));
+        flattenedCorrectSolution.ForEach(es => Debug.Log(es.ToString()));
         Debug.Log("----------------------------------------------");
 
-        if (solutionGivenByUser.Count == 0) return null;
-        for (int i = 0; i < correctSolution.Count; i++)
+
+        if (flattenedUserSolution.Count == 0) return null;
+        for (int i = 0; i < flattenedCorrectSolution.Count; i++)
         {
             // when the current element hasn't yet been moved to a slot, or has been removed from the slot.
-            if (solutionGivenByUser[i] == null) {
+            if (flattenedUserSolution[i] == null)
+            {
                 wrongIndices.Add(i);
                 continue;
             }
 
             // this should also work if their length is different, e.g. 4 stones are needed
             // but only 3 are placed. 
-            if (solutionGivenByUser[i].id != correctSolution[i]) 
+            if (flattenedUserSolution[i].id != flattenedCorrectSolution[i].id)
             {
                 wrongIndices.Add(i);
             }
@@ -82,9 +85,31 @@ public class Puzzle
         return wrongIndices;
     }
 
-   public int getNumberOfSlots()
+    private List<ElementStone> flattenSolution(List<ElementStone> unflattedList)
     {
-        return correctSolution.Count;
+        List<ElementStone> flattened = new List<ElementStone>();
+        unflattedList.ForEach(es =>
+        {
+            if (es is VariableStone)
+            {
+                flattened.Add(es);
+                flattened.Add((es as VariableStone).filledWith);
+            }
+            else if (es is IntervalStone)
+            {
+                flattened.Add(es);
+                flattened.Add((es as IntervalStone).from);
+                flattened.Add((es as IntervalStone).to);
+            }
+            else flattened.Add(es);
+        });
+
+        return flattened;
+    }
+
+    public int getNumberOfSlots()
+    {
+        return unflattenedCorrectSolution.Count;
     }
 
     public bool isSnapEnabled() { return snapEnabled; }
