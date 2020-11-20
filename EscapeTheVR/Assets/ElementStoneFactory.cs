@@ -24,8 +24,15 @@ public class ElementStoneFactory
         programmingElement elem = getProgrammingElementByString(type);
         Color color = getStoneColor(elem);
         string description = getDescription(elem);
+        ElementStone es;
 
-        ElementStone es = new ElementStone(color, description);
+        if(elem == programmingElement.elemVar)
+            es = new VariableStone(color, description);
+        else if(elem == programmingElement.elemInterval)
+            es = new IntervalStone(color, description);
+        else
+            es = new ElementStone(color, description);
+
         es.elem = elem;
         es.icon = getIcon(elem);
         return es;
@@ -63,6 +70,8 @@ public class ElementStoneFactory
             case programmingElement.elemBool:
                 break;
             case programmingElement.elemInterval:
+                break;
+            case programmingElement.elemEnd:
                 break;
             default:
                 return Resources.Load("ItemPlaceholder", typeof(Sprite)) as Sprite;
@@ -102,6 +111,8 @@ public class ElementStoneFactory
                 break;
             case programmingElement.elemInterval:
                 break;
+            case programmingElement.elemEnd:
+                break;
             default:
                 return Constants.descriptionDefault;
         }
@@ -140,6 +151,8 @@ public class ElementStoneFactory
                 break;
             case programmingElement.elemInterval:
                 break;
+            case programmingElement.elemEnd:
+                break;
             default:
                 break;
         }
@@ -177,6 +190,8 @@ public class ElementStoneFactory
                 return programmingElement.elemBool;
             case "interval":
                 return programmingElement.elemInterval;
+            case "end":
+                return programmingElement.elemEnd;
             default:
                 return programmingElement.elemVar;
         }

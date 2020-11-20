@@ -28,6 +28,16 @@ public class VariableStone : ElementStone
         elem = programmingElement.elemVar;
     }
 }
+
+public class IntervalStone : ElementStone
+{
+    public ElementStone from;
+    public ElementStone to;
+    public IntervalStone(Color stoneColor, string description = Constants.descriptionDefault) : base(stoneColor, description)
+    {
+        elem = programmingElement.elemInterval;
+    }
+}
 public enum programmingElement
 {
     // feel free to add stuff
@@ -45,5 +55,5 @@ public enum programmingElement
     elemNumber, // number for variables (int)
     elemBool, // bool for variables
     elemInterval, // interval between two ints, e.g. used in for
-
+    elemEnd //End of loops/conditions
 }
