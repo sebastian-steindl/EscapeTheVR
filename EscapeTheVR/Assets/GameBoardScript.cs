@@ -58,6 +58,26 @@ public class GameBoardScript : MonoBehaviour
                 return Resources.Load("prefabVarElement", typeof(GameObject)) as GameObject;
             case "number":
                 return Resources.Load("prefabNumberElement", typeof(GameObject)) as GameObject;
+            case "text":
+                return Resources.Load("prefabTextElement", typeof(GameObject)) as GameObject;
+            case "bool":
+                return Resources.Load("prefabBoolElement", typeof(GameObject)) as GameObject;
+            case "for":
+                return Resources.Load("prefabForElement", typeof(GameObject)) as GameObject;
+            case "while":
+                return Resources.Load("prefabWhileElement", typeof(GameObject)) as GameObject;
+            case "==":
+                return Resources.Load("prefabEqualsElement", typeof(GameObject)) as GameObject;
+            case "&&":
+                return Resources.Load("prefabAndElement", typeof(GameObject)) as GameObject;
+            case "||":
+                return Resources.Load("prefabOrElement", typeof(GameObject)) as GameObject;
+            case "!":
+                return Resources.Load("prefabNotElement", typeof(GameObject)) as GameObject;
+            case "interval":
+                return Resources.Load("prefabIntervalElement", typeof(GameObject)) as GameObject;
+            case "end":
+                return Resources.Load("prefabEndElement", typeof(GameObject)) as GameObject;
             default:
                 return Resources.Load("prefabVarElement", typeof(GameObject)) as GameObject;
         }
