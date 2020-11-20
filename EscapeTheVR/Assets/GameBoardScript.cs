@@ -40,6 +40,10 @@ public class GameBoardScript : MonoBehaviour
         instantiated.transform.position = new Vector3(puzzleElement.positionX, puzzleElement.positionY, puzzleElement.positionZ);
         instantiated.GetComponent<DragObject>().gameBoard = gameObject;
         instantiated.GetComponent<DragObject>().setElementId(puzzleElement.id);
+
+        if (puzzleElement.text!= null && puzzleElement.text.Length>0) 
+            instantiated.GetComponent<DragObject>().element.descriptionText= puzzleElement.text;
+        
         return null;
     }
 
@@ -52,6 +56,8 @@ public class GameBoardScript : MonoBehaviour
                 return Resources.Load("prefabPrintElement", typeof(GameObject)) as GameObject;
             case "variable":
                 return Resources.Load("prefabVarElement", typeof(GameObject)) as GameObject;
+            case "number":
+                return Resources.Load("prefabNumberElement", typeof(GameObject)) as GameObject;
             default:
                 return Resources.Load("prefabVarElement", typeof(GameObject)) as GameObject;
         }
