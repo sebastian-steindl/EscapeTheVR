@@ -12,8 +12,24 @@
 			<positionZ>-2.73</positionZ>
 			<text></text>
 		</element>
-		<element isPartOfSolution="true">
+    <element isPartOfSolution="false" valueOfId="1">
       <id>2</id>
+			<type>number</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text>32</text>
+		</element>
+    <element isPartOfSolution="false" valueOfId="1">
+      <id>3</id>
+      <type>number</type>
+      <positionX>-1.93</positionX>
+      <positionY>3.638</positionY>
+      <positionZ>-2.2</positionZ>
+      <text>33</text>
+    </element>
+		<element isPartOfSolution="true">
+      <id>4</id>
 			<type>print()</type>
 			<positionX>-1.9</positionX>
 			<positionY>3.638</positionY>
