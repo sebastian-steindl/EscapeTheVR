@@ -50,6 +50,16 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/Inventory",
+      "type": "boolean",
+      "requirement": "suggested"
+    },
+    {
+      "name": "/actions/default/in/AddToInventory",
+      "type": "boolean",
+      "requirement": "suggested"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },

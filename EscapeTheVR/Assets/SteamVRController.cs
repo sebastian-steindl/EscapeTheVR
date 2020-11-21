@@ -5,61 +5,111 @@ using Valve.VR;
 
 public class SteamVRController : MonoBehaviour
 {
-    //SteamVR Action
-    public SteamVR_Action_Boolean triggerOnOff;
+    /* Variables */
+
+    /* Button Variables */
+    public SteamVR_Action_Boolean triggerButton;
+    public SteamVR_Action_Boolean inventoryButton;
+    public SteamVR_Action_Boolean addToInventoryButton;
+
+    /* Steam VR Variables */
+    public SteamVR_Behaviour_Pose pose;
     public SteamVR_Input_Sources handType;
 
+    /* Mixed Variables */
     public GameObject collidingObject;
     public GameObject objectInHand;
+    public List<GameObject> inventory;
+    public bool inventoryOpened = false;
 
-    public Vector3 newHandPosition;
-    public Vector3 oldHandPosition;
+    
 
-    public SteamVR_Behaviour_Pose pose;
 
-    // Start is called before the first frame update
+
+    /* Unity Methods */
+
     void Start()
     {
-        pose = GetComponent<SteamVR_Behaviour_Pose>();
-        triggerOnOff.AddOnStateDownListener(TriggerPress, handType);
-        triggerOnOff.AddOnStateUpListener(TriggerRelease, handType);
-    }
+        inventory = new List<GameObject>();
 
-    // Update is called once per frame
+        pose = GetComponent<SteamVR_Behaviour_Pose>();
+
+        //Trigger Press Action
+        triggerButton.AddOnStateDownListener(TriggerPressAction, handType);
+        triggerButton.AddOnStateUpListener(TriggerReleaseAction, handType);
+
+        //Menu Open Action
+        inventoryButton.AddOnStateDownListener(InventoryOpenCloseAction, handType);
+
+        //Menu Add Item Action
+        addToInventoryButton.AddOnStateDownListener(AddToInventoryAction, handType);
+    }
+    
     void FixedUpdate()
     {
-        /*
-        if (objectInHand)
-        {
 
-            var rigidbody = objectInHand.GetComponent<Rigidbody>();
-
-            Vector3 newObjectPosition = this.transform.position;
-            Vector3 force = newObjectPosition - rigidbody.position;
-
-            // Reset velocity to prevent oscillating
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.AddForce(force * 10000, ForceMode.Acceleration);
-        }
-        */
     }
 
 
 
-    public void TriggerPress(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    /* Actions */
+
+    public void TriggerPressAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
+        if (inventoryOpened)
+        {
+            if(inventory.Count > 0)
+            {
+                if (GrabObject(inventory[0]))
+                {
+                    objectInHand = inventory[0];
+                    inventory.Remove(objectInHand);
+                    objectInHand.SetActive(true);
+                    inventoryOpened = false;
+                }
+                    
+            }
+        }
         if (collidingObject)
         {
-            GrabObject();
+            if (GrabObject(collidingObject)) objectInHand = collidingObject;
         }
     }
-    public void TriggerRelease(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    public void TriggerReleaseAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
         if (objectInHand)
         {
-            DropObject();
+            if (DropObject(objectInHand)) objectInHand = null;
         }
     }
+
+    public void InventoryOpenCloseAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        if (!inventoryOpened)
+        {
+            //Open Inventory
+            Debug.Log("Open Inventory");
+            inventoryOpened = true;
+            
+        } else
+        {
+            //Close Inventory
+            Debug.Log("Close Inventory");
+            inventoryOpened = false;
+        }
+    }
+
+    public void AddToInventoryAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        if (objectInHand)
+        {
+            if (AddObjectToInventory(objectInHand)) objectInHand = null;
+        }
+    }
+
+
+
+    /* Listener */
 
     public void OnTriggerEnter(Collider other)
     {
@@ -76,26 +126,37 @@ public class SteamVRController : MonoBehaviour
         collidingObject = null;
     }
 
-    private void GrabObject()
-    {
-        objectInHand = collidingObject;
 
-        objectInHand.GetComponent<Rigidbody>().isKinematic = true;
-        objectInHand.GetComponent<Rigidbody>().useGravity = false;
-        objectInHand.transform.SetParent(this.transform);
-        objectInHand.transform.position = this.transform.position;
-        
+
+    /* Internal Methods */
+
+    private bool GrabObject(GameObject gameObject)
+    {
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        gameObject.GetComponent<Rigidbody>().useGravity = false;
+        gameObject.transform.SetParent(this.transform);
+        gameObject.transform.position = this.transform.position;
+
+        return true;
     }
 
-    private void DropObject()
+    private bool DropObject(GameObject gameObject)
     {
-        objectInHand.transform.SetParent(null);
-        objectInHand.GetComponent<Rigidbody>().useGravity = true;
-        objectInHand.GetComponent<Rigidbody>().isKinematic = false;
-        objectInHand.GetComponent<Rigidbody>().velocity = pose.GetVelocity();
-        objectInHand.GetComponent<Rigidbody>().angularVelocity = pose.GetAngularVelocity();
+        gameObject.transform.SetParent(null);
+        gameObject.GetComponent<Rigidbody>().useGravity = true;
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        gameObject.GetComponent<Rigidbody>().velocity = pose.GetVelocity();
+        gameObject.GetComponent<Rigidbody>().angularVelocity = pose.GetAngularVelocity();
 
-        objectInHand = null;
+        return true;
+    }
+
+    private bool AddObjectToInventory(GameObject gameObject)
+    {
+        gameObject.SetActive(false);
+        inventory.Add(gameObject);
+
+        return true;
     }
 
 }

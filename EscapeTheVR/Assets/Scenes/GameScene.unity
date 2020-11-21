@@ -1405,6 +1405,14 @@ PrefabInstance:
       propertyPath: showPlayAreaMarker
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11445746, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 3}
+      propertyPath: teleportAction.actionPath
+      value: /actions/default/in/Teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445746, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 3}
+      propertyPath: teleportAction.needsReinit
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 3}
 --- !u!1001 &883914569
@@ -2452,8 +2460,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e7f914a5ddb5c49ba9cdcb65df25d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerOnOff:
+  triggerButton:
     actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  inventoryButton:
+    actionPath: /actions/default/in/Inventory
+    needsReinit: 0
+  addToInventoryButton:
+    actionPath: /actions/default/in/AddToInventory
     needsReinit: 0
   handType: 2
   collidingObject: {fileID: 0}
@@ -2959,8 +2973,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e7f914a5ddb5c49ba9cdcb65df25d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerOnOff:
+  triggerButton:
     actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  inventoryButton:
+    actionPath: /actions/default/in/Inventory
+    needsReinit: 0
+  addToInventoryButton:
+    actionPath: /actions/default/in/AddToInventory
     needsReinit: 0
   handType: 1
   collidingObject: {fileID: 0}
