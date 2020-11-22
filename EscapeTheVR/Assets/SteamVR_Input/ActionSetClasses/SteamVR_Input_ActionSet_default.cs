@@ -121,6 +121,22 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean NextInventoryItem
+        {
+            get
+            {
+                return SteamVR_Actions.default_NextInventoryItem;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean LastInventoryItem
+        {
+            get
+            {
+                return SteamVR_Actions.default_LastInventoryItem;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get

@@ -60,6 +60,14 @@
       "requirement": "suggested"
     },
     {
+      "name": "/actions/default/in/NextInventoryItem",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/LastInventoryItem",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },

@@ -11,16 +11,22 @@ public class SteamVRController : MonoBehaviour
     public SteamVR_Action_Boolean triggerButton;
     public SteamVR_Action_Boolean inventoryButton;
     public SteamVR_Action_Boolean addToInventoryButton;
+    public SteamVR_Action_Boolean nextInventoryItemButton;
+    public SteamVR_Action_Boolean lastInventoryItemButton;
 
     /* Steam VR Variables */
     public SteamVR_Behaviour_Pose pose;
     public SteamVR_Input_Sources handType;
 
-    /* Mixed Variables */
-    public GameObject collidingObject;
-    public GameObject objectInHand;
+    /* Inventory */
     public List<GameObject> inventory;
     public bool inventoryOpened = false;
+    public int inventoryIndex = 0;
+
+    /* Object Variables */
+    public GameObject collidingObject;
+    public GameObject objectInHand;
+    
 
     
 
@@ -34,15 +40,19 @@ public class SteamVRController : MonoBehaviour
 
         pose = GetComponent<SteamVR_Behaviour_Pose>();
 
-        //Trigger Press Action
+        //Trigger Press Actions
         triggerButton.AddOnStateDownListener(TriggerPressAction, handType);
         triggerButton.AddOnStateUpListener(TriggerReleaseAction, handType);
 
-        //Menu Open Action
+        //Inventory Open Action
         inventoryButton.AddOnStateDownListener(InventoryOpenCloseAction, handType);
 
-        //Menu Add Item Action
+        //Inventory Add Item Action
         addToInventoryButton.AddOnStateDownListener(AddToInventoryAction, handType);
+
+        //Inventory Cicle Actions
+        nextInventoryItemButton.AddOnStateDownListener(NextInventoryItem, handType);
+        lastInventoryItemButton.AddOnStateDownListener(LastInventoryItem, handType);
     }
     
     void FixedUpdate()
@@ -58,17 +68,7 @@ public class SteamVRController : MonoBehaviour
     {
         if (inventoryOpened)
         {
-            if(inventory.Count > 0)
-            {
-                if (GrabObject(inventory[0]))
-                {
-                    objectInHand = inventory[0];
-                    inventory.Remove(objectInHand);
-                    objectInHand.SetActive(true);
-                    inventoryOpened = false;
-                }
-                    
-            }
+            TakeObjectFromInventory();
         }
         if (collidingObject)
         {
@@ -87,15 +87,11 @@ public class SteamVRController : MonoBehaviour
     {
         if (!inventoryOpened)
         {
-            //Open Inventory
-            Debug.Log("Open Inventory");
-            inventoryOpened = true;
+            OpenInventory();
             
         } else
         {
-            //Close Inventory
-            Debug.Log("Close Inventory");
-            inventoryOpened = false;
+            CloseInventory();
         }
     }
 
@@ -104,6 +100,22 @@ public class SteamVRController : MonoBehaviour
         if (objectInHand)
         {
             if (AddObjectToInventory(objectInHand)) objectInHand = null;
+        }
+    }
+
+    public void NextInventoryItem(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        if (inventoryOpened)
+        {
+            CycleRight();
+        }
+    }
+
+    public void LastInventoryItem(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        if (inventoryOpened)
+        {
+            CycleLeft();
         }
     }
 
@@ -132,6 +144,9 @@ public class SteamVRController : MonoBehaviour
 
     private bool GrabObject(GameObject gameObject)
     {
+        //Remove Constraints needed for mouse
+        gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
         gameObject.GetComponent<Rigidbody>().useGravity = false;
         gameObject.transform.SetParent(this.transform);
@@ -147,6 +162,7 @@ public class SteamVRController : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
         gameObject.GetComponent<Rigidbody>().velocity = pose.GetVelocity();
         gameObject.GetComponent<Rigidbody>().angularVelocity = pose.GetAngularVelocity();
+        
 
         return true;
     }
@@ -155,6 +171,65 @@ public class SteamVRController : MonoBehaviour
     {
         gameObject.SetActive(false);
         inventory.Add(gameObject);
+
+        return true;
+    }
+
+    private bool OpenInventory()
+    {
+        //If Inventory is empty, don't open it
+        if (inventory.Count == 0 || objectInHand) return false;
+
+
+        if (inventoryIndex >= inventory.Count) inventoryIndex = 0;
+
+        inventory[inventoryIndex].SetActive(true);
+
+        inventoryOpened = true;
+        return true;
+    }
+
+    private bool CloseInventory()
+    {
+        inventory[inventoryIndex].SetActive(false);
+
+        inventoryOpened = false;
+        return false;
+    }
+
+    
+    private bool CycleRight()
+    {
+        inventory[inventoryIndex].SetActive(false);
+
+        if (++inventoryIndex >= inventory.Count) inventoryIndex = 0;
+
+        inventory[inventoryIndex].SetActive(true);
+
+        return true;
+    }
+
+    private bool CycleLeft()
+    {
+        inventory[inventoryIndex].SetActive(false);
+
+        if (--inventoryIndex < 0) inventoryIndex = (inventory.Count - 1);
+
+        inventory[inventoryIndex].SetActive(true);
+
+        return true;
+    }
+
+    private bool TakeObjectFromInventory()
+    {
+        if (GrabObject(inventory[inventoryIndex]))
+        {
+            CloseInventory();
+
+            objectInHand = inventory[inventoryIndex];
+            inventory.Remove(objectInHand);
+            objectInHand.SetActive(true);
+        }
 
         return true;
     }
