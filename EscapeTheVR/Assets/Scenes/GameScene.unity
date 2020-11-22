@@ -2469,12 +2469,19 @@ MonoBehaviour:
   addToInventoryButton:
     actionPath: /actions/default/in/AddToInventory
     needsReinit: 0
+  nextInventoryItemButton:
+    actionPath: /actions/default/in/NextInventoryItem
+    needsReinit: 0
+  lastInventoryItemButton:
+    actionPath: /actions/default/in/LastInventoryItem
+    needsReinit: 0
+  pose: {fileID: 0}
   handType: 2
+  inventory: []
+  inventoryOpened: 0
+  inventoryIndex: 0
   collidingObject: {fileID: 0}
   objectInHand: {fileID: 0}
-  newHandPosition: {x: 0, y: 0, z: 0}
-  oldHandPosition: {x: 0, y: 0, z: 0}
-  pose: {fileID: 0}
 --- !u!135 &1522997569
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2982,12 +2989,19 @@ MonoBehaviour:
   addToInventoryButton:
     actionPath: /actions/default/in/AddToInventory
     needsReinit: 0
+  nextInventoryItemButton:
+    actionPath: /actions/default/in/NextInventoryItem
+    needsReinit: 0
+  lastInventoryItemButton:
+    actionPath: /actions/default/in/LastInventoryItem
+    needsReinit: 0
+  pose: {fileID: 0}
   handType: 1
+  inventory: []
+  inventoryOpened: 0
+  inventoryIndex: 0
   collidingObject: {fileID: 0}
   objectInHand: {fileID: 0}
-  newHandPosition: {x: 0, y: 0, z: 0}
-  oldHandPosition: {x: 0, y: 0, z: 0}
-  pose: {fileID: 0}
 --- !u!135 &1698838658
 SphereCollider:
   m_ObjectHideFlags: 0
