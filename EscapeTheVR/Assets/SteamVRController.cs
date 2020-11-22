@@ -13,6 +13,7 @@ public class SteamVRController : MonoBehaviour
     public SteamVR_Action_Boolean addToInventoryButton;
     public SteamVR_Action_Boolean nextInventoryItemButton;
     public SteamVR_Action_Boolean lastInventoryItemButton;
+    public SteamVR_Action_Boolean menuButton;
 
     /* Steam VR Variables */
     public SteamVR_Behaviour_Pose pose;
@@ -53,6 +54,9 @@ public class SteamVRController : MonoBehaviour
         //Inventory Cicle Actions
         nextInventoryItemButton.AddOnStateDownListener(NextInventoryItem, handType);
         lastInventoryItemButton.AddOnStateDownListener(LastInventoryItem, handType);
+
+        //Open Menu
+        menuButton.AddOnStateDownListener(TriggerMeAction, handType);
     }
     
     void FixedUpdate()
@@ -63,6 +67,10 @@ public class SteamVRController : MonoBehaviour
 
 
     /* Actions */
+
+    public void TriggerMeAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
+        FindObjectOfType<GameBoardScript>().openMenu();
+    }
 
     public void TriggerPressAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {

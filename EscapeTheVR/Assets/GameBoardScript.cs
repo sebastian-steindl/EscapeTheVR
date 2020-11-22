@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameBoardScript : MonoBehaviour
 {
@@ -95,7 +96,8 @@ public class GameBoardScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown("f1"))
+            openMenu();
     }
 
     private void OnMouseEnter()
@@ -152,5 +154,10 @@ public class GameBoardScript : MonoBehaviour
             successSound.Play();
         }
         return puzzleCorrectlySolved;
+    }
+
+    public void openMenu() {
+        Debug.Log("GameBoardScript:openMenu called!");
+        SceneManager.LoadScene("Menu");
     }
 }
