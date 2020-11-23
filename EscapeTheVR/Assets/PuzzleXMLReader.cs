@@ -6,15 +6,20 @@ using System.Collections.Generic;
 
 public class PuzzleXMLReader
 {
-    public static (Puzzle, Level) readLevel(string filename, bool snapEnabled = false)
+    public static (Puzzle, Level) createLevel(string filename, bool snapEnabled = false)
     {
+        var level = readLevel(filename);
+        Puzzle p = new Puzzle(level.name, level.puzzleProgrammingElements.Count, snapEnabled);
+        p.setSolution(getSolutionFromXMLPuzzle(level.puzzleProgrammingElements));
+        return (p, level);
+    }
+
+    public static Level readLevel(string filename) {
         var serializer = new XmlSerializer(typeof(Level));
         var level = serializer.Deserialize(new FileStream(Application.dataPath + filename, FileMode.Open)) as Level;
         if (level.apiversion == null || !level.apiversion.Equals("10"))
             Debug.Log("Incorrect API-Version detected!");
-        Puzzle p = new Puzzle(level.name, level.puzzleProgrammingElements.Count, snapEnabled);
-        p.setSolution(getSolutionFromXMLPuzzle(level.puzzleProgrammingElements));
-        return (p, level);
+        return level;
     }
 
     internal static List<ElementStone> getSolutionFromXMLPuzzle(List<PuzzleProgrammingElement> puzzleElements)
