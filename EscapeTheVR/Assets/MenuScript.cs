@@ -52,7 +52,7 @@ public class MenuScript : MonoBehaviour
     }
 
     public void startGame() {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void deleteGameElements() {
