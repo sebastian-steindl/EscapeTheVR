@@ -47,4 +47,10 @@ public class Page : MonoBehaviour
         PlayerPrefs.SetString("snapEnabled", "false");
 
     }
+
+
+    public void resetPreferences()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }
