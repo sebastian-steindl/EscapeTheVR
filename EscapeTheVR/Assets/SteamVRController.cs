@@ -84,7 +84,7 @@ public class SteamVRController : MonoBehaviour
             {
                 objectInHand = collidingObject;
                 registerElementAsActive();
-                //objectInHand.GetComponent<DragObject>().onButtonDown();
+                objectInHand.GetComponent<DragObject>().onButtonDown();
             }
         }
     }
@@ -94,7 +94,7 @@ public class SteamVRController : MonoBehaviour
         {
             if (DropObject(objectInHand))
             {
-                //objectInHand.GetComponent<DragObject>().onButtonUp();
+                objectInHand.GetComponent<DragObject>().onButtonUp();
                 objectInHand = null;
             }
         }
