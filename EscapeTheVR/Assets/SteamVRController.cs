@@ -80,14 +80,23 @@ public class SteamVRController : MonoBehaviour
         }
         if (collidingObject)
         {
-            if (GrabObject(collidingObject)) objectInHand = collidingObject;
+            if (GrabObject(collidingObject))
+            {
+                objectInHand = collidingObject;
+                registerElementAsActive();
+                //objectInHand.GetComponent<DragObject>().onButtonDown();
+            }
         }
     }
     public void TriggerReleaseAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
         if (objectInHand)
         {
-            if (DropObject(objectInHand)) objectInHand = null;
+            if (DropObject(objectInHand))
+            {
+                //objectInHand.GetComponent<DragObject>().onButtonUp();
+                objectInHand = null;
+            }
         }
     }
 
@@ -237,9 +246,18 @@ public class SteamVRController : MonoBehaviour
             objectInHand = inventory[inventoryIndex];
             inventory.Remove(objectInHand);
             objectInHand.SetActive(true);
+            registerElementAsActive();
         }
 
         return true;
+    }
+
+    private void registerElementAsActive()
+    {
+        // always call this function when the player has an element in his hand
+        // e.g. inventory, picking up
+        var gameboard = objectInHand.GetComponent<DragObject>().gameBoard;
+        gameboard.GetComponent<GameBoardScript>().registerSelectedElement(objectInHand.GetComponent<DragObject>());
     }
 
 }
