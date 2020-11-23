@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ public class MenuScript : MonoBehaviour
     private Stack<Page> prevPages;
     [SerializeField]
     private Page current;
+    private Regex regex;
     // Start is called before the first frame update
 
     void Start()
@@ -19,6 +21,7 @@ public class MenuScript : MonoBehaviour
         //SceneManager.LoadScene("SampleScene");
         prevPages = new Stack<Page>();
         current.Show();
+        regex = new Regex("level\\d+.xml");
     }
 
     public void exitMenu() {
@@ -69,5 +72,22 @@ public class MenuScript : MonoBehaviour
     public void terminateGame() {
         Debug.Log("Application Terminated :) - Just not in debug.");
         Application.Quit();
+    }
+
+    public List<Level> getLevels()
+    {
+        List<Level> levels = new List<Level>();
+        var dir = new System.IO.DirectoryInfo(Application.dataPath + "/Resources/");
+        foreach (System.IO.FileInfo f in dir.GetFiles()) {
+            var name = f.Name;
+            
+            //Exclude all files that aren't level files.
+            if (name.EndsWith(".meta") || !regex.IsMatch(name))
+                continue;
+
+            //Else parse file and add to list
+            levels.Add(PuzzleXMLReader.readLevel("/Resources/" + f.Name));
+        }
+        return levels;
     }
 }
