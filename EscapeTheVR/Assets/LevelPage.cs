@@ -30,9 +30,6 @@ public class LevelPage : Page
         textobj.GetComponent<LevelButton>().levelID = level.levelId;
         textobj.GetComponent<LevelButton>().text = level.name;
         textobj.transform.parent = this.transform;
-        //textobj.<TextMeshPro>().text = level.name;
-        Debug.Log("Well");
-        //textobj.GetComponent<TextMeshProUGUI>().text = level.name;
         return textobj;
     }
 }

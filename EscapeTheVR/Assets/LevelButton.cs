@@ -23,8 +23,7 @@ public class LevelButton : MonoBehaviour
     }
 
     public void onTriggerDown() {
-        Debug.Log("I will change the page. Current ID is: "+levelID);
-        PlayerPrefs.SetInt("level", levelID);
+        PlayerPrefs.SetInt(Constants.playerPrefsLevel, levelID);
         FindObjectOfType<MenuScript>().setCurrentPage(FindObjectOfType<LevelDetailPage>());
     }
 

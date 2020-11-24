@@ -5,7 +5,7 @@ public class LevelDetailPage:Page
 {
     private void Update()
     {
-        var level = LevelManager.Instance().getLevelById(PlayerPrefs.GetInt("level", 1));
+        var level = LevelManager.Instance().getLevelById(PlayerPrefs.GetInt(Constants.playerPrefsLevel, 1));
         var textFields = GetComponentsInChildren<TMP_Text>();
 
         //Fullfill text fields.

@@ -16,5 +16,6 @@ public static class Constants
     */
     public const string descriptionDefault = "No description";
     public const string descriptionPrintStone= "TODO:Update. This is a print stone.";
+    public const string playerPrefsLevel = "level";
 
 }

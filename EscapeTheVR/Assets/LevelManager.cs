@@ -19,6 +19,7 @@ public class LevelManager
     public static LevelManager Instance() { return levelInstance; }
 
     public Level getLevelById(int levelID) {
+        //Go through all levels and check the id, if correct, return if nothing is found, return null;
         foreach (Level l in levels)
             if (l.levelId == levelID)
                 return l;
@@ -30,9 +31,14 @@ public class LevelManager
     }
 
     public Level NextLevel() {
+        //If you have finished all levels, you will be stuck at the current one. --> TODO: better version.
         if ((currentLevelId + 1) == levels.Count)
             return levels[levels.Count-1];
+
+        //Increment current level.
         currentLevelId++;
+        PlayerPrefs.SetInt(Constants.playerPrefsLevel, currentLevelId);
+
         return levels[currentLevelId];
     }
 
