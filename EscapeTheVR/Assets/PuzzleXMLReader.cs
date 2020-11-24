@@ -9,9 +9,14 @@ public class PuzzleXMLReader
     public static (Puzzle, Level) createLevel(string filename, bool snapEnabled = false)
     {
         var level = readLevel(filename);
+        var p = createLevel(level, snapEnabled);
+        return (p, level);
+    }
+
+    public static Puzzle createLevel(Level level, bool snapEnabled = false) {
         Puzzle p = new Puzzle(level.name, level.puzzleProgrammingElements.Count, snapEnabled);
         p.setSolution(getSolutionFromXMLPuzzle(level.puzzleProgrammingElements));
-        return (p, level);
+        return p;
     }
 
     public static Level readLevel(string filename) {
