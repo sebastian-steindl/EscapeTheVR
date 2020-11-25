@@ -50,5 +50,6 @@ public class Page : MonoBehaviour
     public void resetPreferences()
     {
         PlayerPrefs.DeleteAll();
+        LevelManager.Instance().refreshLevels();
     }
 }

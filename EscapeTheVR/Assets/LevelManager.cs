@@ -60,4 +60,8 @@ public class LevelManager
         }
         return levels;
     }
+
+    public void refreshLevels() {
+        this.levels = readLevels();
+    }
 }
