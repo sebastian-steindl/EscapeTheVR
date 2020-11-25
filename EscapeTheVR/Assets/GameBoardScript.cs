@@ -15,8 +15,6 @@ public class GameBoardScript : MonoBehaviour
     public GameObject slotPrefab;
     private List<ElementStone> allElementStones;
     private Slot lastClosest;
-
-    public AudioSource successSound;
     void Start()
     {
         string path = "/Resources/level" + (PlayerPrefs.GetInt("level",-1)!=-1?""+PlayerPrefs.GetInt("level"):"1")+".xml";
@@ -25,13 +23,12 @@ public class GameBoardScript : MonoBehaviour
         //(Puzzle puz, Level level) = PuzzleXMLReader.readLevel("/Resources/level1.xml", true);
         puzzle = puz;
 
-        successSound = GetComponent<AudioSource>();
-
         gameBoard = new SlotManager(gameObject.transform.position, gameObject.transform.localScale, puzzle.getNumberOfSlots());
         gameBoard.initSlots();
 
         level.puzzleProgrammingElements.ForEach(el => createElementFromPrefab(el));
         gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
+
     }
 
     public DragObject createElementFromPrefab(PuzzleProgrammingElement puzzleElement)
@@ -151,7 +148,8 @@ public class GameBoardScript : MonoBehaviour
         bool puzzleCorrectlySolved = puzzle.evaluatePuzzle();
         if (puzzleCorrectlySolved)
         {
-            successSound.Play();
+            AudioManager.Instance.playSuccess();
+            //successSound.Play();
         }
         return puzzleCorrectlySolved;
     }
