@@ -11,6 +11,7 @@
 			<positionY>3.638</positionY>
 			<positionZ>-2.73</positionZ>
 			<text></text>
+      <hintPath></hintPath>
 		</element>
 		<element isPartOfSolution="true" valueOfId="1">
 			<id>2</id>
@@ -29,4 +30,11 @@
 			<text></text>
 		</element>
 	</program>
+  <code>
+    variable = 32
+    print(variable)
+  </code>
+  <output>
+    32
+  </output>
 </level>

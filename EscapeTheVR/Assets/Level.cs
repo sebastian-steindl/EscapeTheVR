@@ -13,6 +13,10 @@ public class Level
         
     public string descr;
 
+    public string code;
+
+    public string output;
+
     [XmlArray("program")]
     [XmlArrayItem("element")]
     public List<PuzzleProgrammingElement> puzzleProgrammingElements = new List<PuzzleProgrammingElement>();
