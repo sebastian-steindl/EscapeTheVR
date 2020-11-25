@@ -157,12 +157,14 @@ public class DragObject : MonoBehaviour
         hasGravity = false;
         GetComponent<Rigidbody>().useGravity = hasGravity;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
 
     public void enableGravity() {
         hasGravity = true;
         GetComponent<Rigidbody>().useGravity = hasGravity;
+        GetComponent<Rigidbody>().isKinematic = false;
         //GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 9.81f, 0.0f);
     }
 
