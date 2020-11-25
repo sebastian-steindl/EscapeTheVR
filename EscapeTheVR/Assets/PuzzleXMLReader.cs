@@ -6,14 +6,14 @@ using System.Collections.Generic;
 
 public class PuzzleXMLReader
 {
-    public static (Puzzle, Level) createLevel(string filename, bool snapEnabled = false)
+    public static (Puzzle, Level) createLevel(string filename, bool snapEnabled = true)
     {
         var level = readLevel(filename);
         var p = createLevel(level, snapEnabled);
         return (p, level);
     }
 
-    public static Puzzle createLevel(Level level, bool snapEnabled = false) {
+    public static Puzzle createLevel(Level level, bool snapEnabled = true) {
         Puzzle p = new Puzzle(level.name, level.puzzleProgrammingElements.Count, snapEnabled);
         p.setSolution(getSolutionFromXMLPuzzle(level.puzzleProgrammingElements));
         return p;

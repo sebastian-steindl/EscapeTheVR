@@ -66,7 +66,7 @@ public class Puzzle
 
 
         if (flattenedUserSolution.Count == 0) return null;
-        for (int i = 0; i < flattenedCorrectSolution.Count; i++)
+        for (int i = 0; i < flattenedUserSolution.Count; i++)
         {
             // when the current element hasn't yet been moved to a slot, or has been removed from the slot.
             if (flattenedUserSolution[i] == null)
@@ -82,6 +82,13 @@ public class Puzzle
                 wrongIndices.Add(i);
             }
         }
+
+        // User solution has less elements than correct solution. This is the case, if a variable/interval stone has not yet been populated with a value.
+        // Adding the difference in indices to the wrong indices list - imo this should not be necessary because the elements than should be in different order.
+        // Nevertheless to be absolutely sure i will add them to the wrong indices list.
+        for (int i = flattenedUserSolution.Count; i < flattenedCorrectSolution.Count; i++)
+            wrongIndices.Add(i);
+        
         return wrongIndices;
     }
 
