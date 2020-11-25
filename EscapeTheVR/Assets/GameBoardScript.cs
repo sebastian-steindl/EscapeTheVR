@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,7 +26,6 @@ public class GameBoardScript : MonoBehaviour
 
         level.puzzleProgrammingElements.ForEach(el => createElementFromPrefab(el));
         gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
-
     }
 
     public DragObject createElementFromPrefab(PuzzleProgrammingElement puzzleElement)
@@ -145,10 +145,16 @@ public class GameBoardScript : MonoBehaviour
         bool puzzleCorrectlySolved = puzzle.evaluatePuzzle();
         if (puzzleCorrectlySolved)
         {
-            AudioManager.Instance.playSuccess();
-            //successSound.Play();
+            handlePuzzleSolved();
         }
         return puzzleCorrectlySolved;
+    }
+
+    private void handlePuzzleSolved()
+    {
+        AudioManager.Instance.playSuccess();
+        GameObject.Find("Code-Text").GetComponent<TextMeshPro>().text = puzzle.code;
+        GameObject.Find("Output-Text").GetComponent<TextMeshPro>().text = puzzle.output;
     }
 
     public void openMenu() {
