@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,9 +24,24 @@ public class GameBoardScript : MonoBehaviour
         gameBoard = new SlotManager(gameObject.transform.position, gameObject.transform.localScale, puzzle.getNumberOfSlots());
         gameBoard.initSlots();
 
-        level.puzzleProgrammingElements.ForEach(el => createElementFromPrefab(el));
+        //Create programming elements and check if the workbench is needed.
+        bool workbenchNeeded = false;
+        foreach (PuzzleProgrammingElement el in level.puzzleProgrammingElements) {
+            createElementFromPrefab(el);
+            if (el.isPartOfSolution && (el.type == "variable" || el.type == "interval"))
+                workbenchNeeded = true;
+        }
+        //If neccesary create workbench...
+        if(workbenchNeeded)
+        {
+            var workbench = Instantiate(Resources.Load("Workbench", typeof(GameObject)) as GameObject);
+            workbench.transform.parent = this.transform.parent;
+            workbench.transform.position = new Vector3(-3.5f,3.29f,-4.0f); //TODO: Set as values in constant class.
+        }
+
         gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
 
+        LevelManager.Instance().startLevelTimer();
     }
 
     public DragObject createElementFromPrefab(PuzzleProgrammingElement puzzleElement)
@@ -145,8 +161,8 @@ public class GameBoardScript : MonoBehaviour
         bool puzzleCorrectlySolved = puzzle.evaluatePuzzle();
         if (puzzleCorrectlySolved)
         {
-            AudioManager.Instance.playSuccess();
-            //successSound.Play();
+            LevelManager.Instance().stopLevelTimer();
+            LevelManager.Instance().NextLevel();
         }
         return puzzleCorrectlySolved;
     }
