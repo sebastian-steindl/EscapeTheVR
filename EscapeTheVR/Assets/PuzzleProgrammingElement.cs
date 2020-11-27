@@ -15,6 +15,8 @@ public class PuzzleProgrammingElement
 
     public string text;
 
+    public string hintPath;
+
     [XmlAttribute("isPartOfSolution")]
     public bool isPartOfSolution = false;
 

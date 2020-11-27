@@ -16,11 +16,15 @@ public class Puzzle
     private int emptySlots; // if you want to provide empty slots, e.g. puzzle needs 4 but you provide 5 slots
     private bool snapEnabled;
 
-    public Puzzle(string puzzleName, int slots = 0, bool snapEnabled= false)
+    public string code;
+    public string output;
+    public Puzzle(string puzzleName, int slots = 0, string codeStr = "", string outputStr = "", bool snapEnabled = false)
     {
         name = puzzleName;
         emptySlots = slots;
         this.snapEnabled = snapEnabled;
+        code = codeStr;
+        output = outputStr;
 
         solutionGivenByUser = new List<ElementStone>();
         flattenedCorrectSolution = new List<ElementStone>();
@@ -88,7 +92,7 @@ public class Puzzle
         // Nevertheless to be absolutely sure i will add them to the wrong indices list.
         for (int i = flattenedUserSolution.Count; i < flattenedCorrectSolution.Count; i++)
             wrongIndices.Add(i);
-        
+
         return wrongIndices;
     }
 

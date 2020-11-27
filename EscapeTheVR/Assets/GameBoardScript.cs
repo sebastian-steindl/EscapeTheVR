@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
+using TMPro;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -40,7 +42,6 @@ public class GameBoardScript : MonoBehaviour
         }
 
         gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
-
         LevelManager.Instance().startLevelTimer();
     }
 
@@ -162,9 +163,17 @@ public class GameBoardScript : MonoBehaviour
         if (puzzleCorrectlySolved)
         {
             LevelManager.Instance().stopLevelTimer();
-            LevelManager.Instance().NextLevel();
+            //LevelManager.Instance().NextLevel();
+            handlePuzzleSolved();
         }
         return puzzleCorrectlySolved;
+    }
+
+    private void handlePuzzleSolved()
+    {
+        AudioManager.Instance.playSuccess();
+        GameObject.Find("Code-Text").GetComponent<TextMeshPro>().text = puzzle.code;
+        GameObject.Find("Output-Text").GetComponent<TextMeshPro>().text = puzzle.output;
     }
 
     public void openMenu() {

@@ -13,6 +13,8 @@ apiversion | string | current API version. For now this has to be always set to 
 levelId | int | identifier for the level
 name | string | Name of the level, that may be displayed to the user.|
 descr | string | A short description of the level that may be displayed to the user.|
+code | string | The python representation of the puzzle.|
+output | string | The output of the puzzle if applicable.|
 program.element:isPartOfSolution | bool | If set to true, this element has to be set on the solution (GameBoard) for the solution to be correct. *Default value: `false`*|
 program.element:valueOfId | int | Only needed for all programmingElements that are child elements. (These are (`bool`,`number` and `text`) 
 program.element.type | string / programmingElement | What type the generated object should be of.|
@@ -20,6 +22,7 @@ program.element.positionX | float | X-Coordinate where the object should be plac
 program.element.positionY | float | Y-Coordinate where the object should be placed.|
 program.element.positionZ | float | Z-Coordinate where the object should be placed.|
 program.element.text | string | Text that should be displayed on the Object.|
+program.element.hintPath | string | Path, to audio file of the hint.|
 
 ## programmingElement Reference:
 Currently there are the following programmingElement-types:
