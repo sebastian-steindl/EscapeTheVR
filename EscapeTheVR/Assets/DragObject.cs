@@ -14,6 +14,7 @@ public class DragObject : MonoBehaviour
 
     public GameObject gameBoard;
     public string programmingElementType;
+    public bool IsBeingDragged;
 
     public DragObject(string programmingElementType)
     {
@@ -42,16 +43,17 @@ public class DragObject : MonoBehaviour
 
         // with the GetComponent we can call functions from other scripts
         gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(this);
-
         FindObjectOfType<Inventar>().setCurrentlySelectedElement(this);
+        this.IsBeingDragged = true;
     }
 
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
         Debug.Log("DragObject->OnMouseUp  + + + + + + +");
 
         // Re-enable gravity if object is dropped
         GetComponent<Rigidbody>().useGravity = hasGravity;
+        this.IsBeingDragged = false;
 
         var workbench = FindObjectOfType<WorkbenchScript>();
         SlotManager gameBoardSlotManager = gameBoard.GetComponent<GameBoardScript>().GetGameBoard();

@@ -159,6 +159,7 @@ public class SteamVRController : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().useGravity = false;
         gameObject.transform.SetParent(this.transform);
         gameObject.transform.position = this.transform.position;
+        gameObject.GetComponent<DragObject>().IsBeingDragged = true;
 
         return true;
     }
@@ -170,7 +171,7 @@ public class SteamVRController : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
         gameObject.GetComponent<Rigidbody>().velocity = pose.GetVelocity();
         gameObject.GetComponent<Rigidbody>().angularVelocity = pose.GetAngularVelocity();
-        
+        gameObject.GetComponent<DragObject>().IsBeingDragged = false;
 
         return true;
     }
