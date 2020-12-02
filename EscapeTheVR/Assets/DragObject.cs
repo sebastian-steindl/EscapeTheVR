@@ -50,6 +50,7 @@ public class DragObject : MonoBehaviour
     public void OnMouseUp()
     {
         Debug.Log("DragObject->OnMouseUp  + + + + + + +");
+        Debug.Log("OnMouseUp: " + this.gameObject.GetComponent<Rigidbody>().isKinematic);
 
         // Re-enable gravity if object is dropped
         GetComponent<Rigidbody>().useGravity = true;
@@ -101,6 +102,7 @@ public class DragObject : MonoBehaviour
     public void onButtonUp()
     {
         Debug.Log("DragObject->onButtonUp");
+        Debug.Log("OnButtonUp: " + this.gameObject.GetComponent<Rigidbody>().isKinematic);
 
         this.IsBeingDragged = false;
 
