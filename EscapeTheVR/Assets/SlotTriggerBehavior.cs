@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SlotTriggerBehavior : MonoBehaviour
 {
+
+    private GameObject currentCollider = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +20,21 @@ public class SlotTriggerBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (currentCollider == other.gameObject) return;
+        currentCollider = other.gameObject;
         var dragObject = other.gameObject.GetComponent<DragObject>();
 
         // Only snap object into slot if it is not currently being dragged.
         if (dragObject != null && !dragObject.IsBeingDragged)
         {
             dragObject.gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(dragObject);
-            dragObject.OnMouseUp();
+            Debug.Log("Trigger: " + other.gameObject.GetComponent<Rigidbody>().isKinematic);
+            dragObject.onButtonUp();
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (currentCollider == other.gameObject) currentCollider = null;
     }
 }
