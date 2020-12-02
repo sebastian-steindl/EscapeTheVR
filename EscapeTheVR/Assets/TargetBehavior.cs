@@ -9,8 +9,6 @@ public class TargetBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.ControlledObject.GetComponent<Rigidbody>().useGravity = false;
-        this.ControlledObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     // Update is called once per frame
@@ -21,7 +19,6 @@ public class TargetBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        this.ControlledObject.GetComponent<Rigidbody>().isKinematic = false;
-        this.ControlledObject.GetComponent<Rigidbody>().useGravity = true;
+        this.ControlledObject.SetActive(false);
     }
 }
