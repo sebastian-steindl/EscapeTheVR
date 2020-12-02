@@ -40,6 +40,7 @@ public class DragObject : MonoBehaviour
 
         // Disable gravity while dragging
         GetComponent<Rigidbody>().useGravity = false;
+        GetComponent<Rigidbody>().isKinematic = false;
 
         // with the GetComponent we can call functions from other scripts
         gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(this);
@@ -52,6 +53,7 @@ public class DragObject : MonoBehaviour
 
         // Re-enable gravity if object is dropped
         GetComponent<Rigidbody>().useGravity = hasGravity;
+        GetComponent<Rigidbody>().isKinematic = false;
 
         this.onButtonUp();
     }
@@ -80,6 +82,7 @@ public class DragObject : MonoBehaviour
     public void disableGravity() {
         hasGravity = false;
         GetComponent<Rigidbody>().useGravity = hasGravity;
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
 
