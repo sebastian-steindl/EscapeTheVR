@@ -12,12 +12,22 @@ public class ElementStone
     public Color color; // color of the VR stone
 
     public Sprite icon;
+    protected string hintSoundPath;
+
     public ElementStone(Color stoneColor, string description=Constants.descriptionDefault)
     {
         descriptionText = description;
         color = stoneColor; 
     }
 
+    public void PlayHintSound()
+    {
+        var gameObject = GameObject.FindGameObjectWithTag("HintAudioSource");
+        var audioSource = gameObject.GetComponent<AudioSource>();
+        var clip = Resources.Load<AudioClip>(hintSoundPath);
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
 }
 
 public class VariableStone : ElementStone
@@ -26,6 +36,8 @@ public class VariableStone : ElementStone
     public VariableStone(Color stoneColor, string description = Constants.descriptionDefault) : base(stoneColor, description)
     {
         elem = programmingElement.elemVar;
+
+        this.hintSoundPath = "Audio/success_sound";
     }
 }
 

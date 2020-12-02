@@ -40,10 +40,10 @@ public class DragObject : MonoBehaviour
 
         // Disable gravity while dragging
         GetComponent<Rigidbody>().useGravity = false;
+        GetComponent<Rigidbody>().isKinematic = false;
 
         // with the GetComponent we can call functions from other scripts
         gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(this);
-        FindObjectOfType<Inventar>().setCurrentlySelectedElement(this);
         this.IsBeingDragged = true;
     }
 
@@ -52,7 +52,8 @@ public class DragObject : MonoBehaviour
         Debug.Log("DragObject->OnMouseUp  + + + + + + +");
 
         // Re-enable gravity if object is dropped
-        GetComponent<Rigidbody>().useGravity = hasGravity;
+        GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Rigidbody>().isKinematic = false;
 
         this.onButtonUp();
     }
@@ -81,6 +82,7 @@ public class DragObject : MonoBehaviour
     public void disableGravity() {
         hasGravity = false;
         GetComponent<Rigidbody>().useGravity = hasGravity;
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
 
@@ -179,7 +181,6 @@ public class DragObject : MonoBehaviour
         }
 
         // Reset currently selected element in components that keep track of it
-        FindObjectOfType<Inventar>().resetCurrentlySelectedElement();
         gameBoard.GetComponent<GameBoardScript>().resetSelectedElement();
     }
 }
