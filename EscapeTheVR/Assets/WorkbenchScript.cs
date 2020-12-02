@@ -205,11 +205,11 @@ public class WorkbenchScript : MonoBehaviour
                     sb.Append(stone.filledWith.descriptionText);
             }
 
-            //If the text fields are hidden, set them active.
-            if (!GameObject.Find(ContentHeader).activeSelf)
+            //If the text fields are hidden, show them.
+            if (!GameObject.Find(ContentHeader).GetComponent<Renderer>().enabled)
             {
-                GameObject.Find(ContentHeader).SetActive(true);
-                GameObject.Find(ContentText).SetActive(true);
+                GameObject.Find(ContentHeader).GetComponent<Renderer>().enabled=true;
+                GameObject.Find(ContentText).GetComponent<Renderer>().enabled=true;
             }
 
             //Set the text.
@@ -218,8 +218,8 @@ public class WorkbenchScript : MonoBehaviour
         else
         {
             //Do not show the Content Text...
-            GameObject.Find(ContentHeader).SetActive(true);
-            GameObject.Find(ContentText).SetActive(true);
+            GameObject.Find(ContentHeader).GetComponent<Renderer>().enabled = false;
+            GameObject.Find(ContentText).GetComponent<Renderer>().enabled = false;
         }
         
 
