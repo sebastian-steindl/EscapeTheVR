@@ -27,9 +27,6 @@ public class SteamVRController : MonoBehaviour
     /* Object Variables */
     public GameObject collidingObject;
     public GameObject objectInHand;
-    
-
-    
 
 
 
@@ -77,17 +74,26 @@ public class SteamVRController : MonoBehaviour
         if (inventoryOpened)
         {
             TakeObjectFromInventory();
-        }
-        if (collidingObject)
+
+        } else if (collidingObject)
         {
-            if (GrabObject(collidingObject)) objectInHand = collidingObject;
+            if (GrabObject(collidingObject))
+            {
+                objectInHand = collidingObject;
+                registerElementAsActive();
+                objectInHand.GetComponent<DragObject>().onButtonDown();
+            }
         }
     }
     public void TriggerReleaseAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
         if (objectInHand)
         {
-            if (DropObject(objectInHand)) objectInHand = null;
+            if (DropObject(objectInHand))
+            {
+                objectInHand.GetComponent<DragObject>().onButtonUp();
+                objectInHand = null;
+            }
         }
     }
 
@@ -189,10 +195,17 @@ public class SteamVRController : MonoBehaviour
         //If Inventory is empty, don't open it
         if (inventory.Count == 0 || objectInHand) return false;
 
-
         if (inventoryIndex >= inventory.Count) inventoryIndex = 0;
 
+
+        int previousItem = Mathf.Abs((inventoryIndex - 1) % inventory.Count);
+        int nextItem = Mathf.Abs((inventoryIndex + 1) % inventory.Count);
+
+        inventory[previousItem].SetActive(true);
+        inventory[previousItem].GetComponent<Rigidbody>().transform.localPosition -= new Vector3(1, 0, 0);
         inventory[inventoryIndex].SetActive(true);
+        inventory[nextItem].SetActive(true);
+        inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition += new Vector3(1, 0, 0);
 
         inventoryOpened = true;
         return true;
@@ -200,7 +213,14 @@ public class SteamVRController : MonoBehaviour
 
     private bool CloseInventory()
     {
+        int previousItem = Mathf.Abs((inventoryIndex - 1) % inventory.Count);
+        int nextItem = Mathf.Abs((inventoryIndex + 1) % inventory.Count);
+
+        inventory[previousItem].GetComponent<Rigidbody>().transform.localPosition += new Vector3(1, 0, 0);
+        inventory[previousItem].SetActive(false);
         inventory[inventoryIndex].SetActive(false);
+        inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition -= new Vector3(1, 0, 0);
+        inventory[nextItem].SetActive(false);
 
         inventoryOpened = false;
         return false;
@@ -209,22 +229,24 @@ public class SteamVRController : MonoBehaviour
     
     private bool CycleRight()
     {
-        inventory[inventoryIndex].SetActive(false);
+        CloseInventory();
 
-        if (++inventoryIndex >= inventory.Count) inventoryIndex = 0;
+        Debug.Log("Before: " + inventoryIndex);
+        inventoryIndex = Mathf.Abs((++inventoryIndex) % inventory.Count);
+        Debug.Log("After: " + inventoryIndex);
 
-        inventory[inventoryIndex].SetActive(true);
+        OpenInventory();
 
         return true;
     }
 
     private bool CycleLeft()
     {
-        inventory[inventoryIndex].SetActive(false);
+        CloseInventory();
 
-        if (--inventoryIndex < 0) inventoryIndex = (inventory.Count - 1);
+        inventoryIndex = Mathf.Abs((inventoryIndex++) % inventory.Count);
 
-        inventory[inventoryIndex].SetActive(true);
+        OpenInventory();
 
         return true;
     }
@@ -238,9 +260,18 @@ public class SteamVRController : MonoBehaviour
             objectInHand = inventory[inventoryIndex];
             inventory.Remove(objectInHand);
             objectInHand.SetActive(true);
+            registerElementAsActive();
         }
 
         return true;
+    }
+
+    private void registerElementAsActive()
+    {
+        // always call this function when the player has an element in his hand
+        // e.g. inventory, picking up
+        var gameboard = objectInHand.GetComponent<DragObject>().gameBoard;
+        gameboard.GetComponent<GameBoardScript>().registerSelectedElement(objectInHand.GetComponent<DragObject>());
     }
 
 }
