@@ -172,6 +172,8 @@ public class DragObject : MonoBehaviour
 
     public void onButtonDown()
     {
+        this.IsBeingDragged = true;
+
         // Remember distance to camera
         //this.zCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
@@ -191,6 +193,7 @@ public class DragObject : MonoBehaviour
 
         // Re-enable gravity if object is dropped
         //GetComponent<Rigidbody>().useGravity = hasGravity;
+        this.IsBeingDragged = false;
 
         var workbench = FindObjectOfType<WorkbenchScript>();
         SlotManager gameBoardSlotManager = gameBoard.GetComponent<GameBoardScript>().GetGameBoard();
