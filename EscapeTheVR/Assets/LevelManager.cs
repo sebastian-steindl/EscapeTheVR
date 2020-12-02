@@ -115,4 +115,22 @@ public class LevelManager
     public bool areYouDone() {
         return done;
     }
+
+    public String getCurrentLevelElements() {
+        Dictionary<string, int> data = new Dictionary<string, int>();
+        //Count all elements 
+        foreach (PuzzleProgrammingElement p in getCurrentLevel().puzzleProgrammingElements) {
+            if (data.ContainsKey(p.type))
+                data[p.type]++;
+            else
+                data.Add(p.type, 1);
+        }
+
+        //Create final String.
+        StringBuilder sb = new StringBuilder();
+        foreach (string s in data.Keys)
+            sb.Append(data[s]).Append("x ").Append(s).Append("\n");
+
+        return sb.ToString();
+    }
 }

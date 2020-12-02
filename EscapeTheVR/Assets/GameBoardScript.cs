@@ -37,6 +37,7 @@ public class GameBoardScript : MonoBehaviour
         }
         gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
         LevelStartStopHandler.Instance.StartLevel(level.levelId);
+        GameObject.Find("Lieferumfang-Text").GetComponent<TextMeshPro>().text = LevelManager.Instance().getCurrentLevelElements();
     }
 
     public DragObject createElementFromPrefab(PuzzleProgrammingElement puzzleElement)
