@@ -19,10 +19,9 @@ public class GameBoardScript : MonoBehaviour
     private List<ElementStone> allElementStones;
     private Slot lastClosest;
 
-    private Level level;
     void Start()
     {
-        level = LevelManager.Instance().getLevelById(PlayerPrefs.GetInt(Constants.playerPrefsLevel,1));
+        Level level = LevelManager.Instance().getLevelById(PlayerPrefs.GetInt(Constants.playerPrefsLevel,1));
         puzzle = PuzzleXMLReader.createLevel(level);
 
         gameBoard = new SlotManager(gameObject.transform.position, gameObject.transform.localScale, puzzle.getNumberOfSlots());
@@ -32,7 +31,10 @@ public class GameBoardScript : MonoBehaviour
         var workbench = Instantiate(Resources.Load("Workbench", typeof(GameObject)) as GameObject);
         workbench.transform.parent = this.transform.parent;
         workbench.transform.position = new Vector3(-3.5f,3.29f,-4.0f); //TODO: Set as values in constant class.
-
+        foreach (PuzzleProgrammingElement el in level.puzzleProgrammingElements)
+        {
+            createElementFromPrefab(el);
+        }
         gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
         LevelStartStopHandler.Instance.StartLevel(level.levelId);
     }
@@ -162,7 +164,7 @@ public class GameBoardScript : MonoBehaviour
 
     private void handlePuzzleSolved()
     {
-        LevelStartStopHandler.Instance.StopLevel(this.level.levelId);
+        LevelStartStopHandler.Instance.StopLevel(LevelManager.Instance().getCurrentLevel().levelId);
         AudioManager.Instance.playSuccess();
         GameObject.Find("Code-Text").GetComponent<TextMeshPro>().text = puzzle.code;
         GameObject.Find("Output-Text").GetComponent<TextMeshPro>().text = puzzle.output;
