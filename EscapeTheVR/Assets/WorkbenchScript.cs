@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using TMPro;
 using UnityEngine;
 
 public class WorkbenchScript : MonoBehaviour
 {
+
+    private static readonly string ContentText = "WorkbenchContent";
+    private static readonly string ContentHeader = "WorkbenchHeader";
+
     public GameObject slotPrefab;
     public SlotManager containerSlotManager; // this manages the first slot that is always active, and decides how many other slots appear
     public SlotManager contentSlotManager;
@@ -22,7 +28,7 @@ public class WorkbenchScript : MonoBehaviour
         containerSlotManager.initSlots(); 
         containerSlotManager.slots.ForEach(s => createSlotFromPrefab(s));
         contentSlotManager = new SlotManager(gameObject.transform.position + contentSlotOffset, gameObject.transform.localScale, 0);
-
+        updateText();
     }
 
     // Update is called once per frame
@@ -77,6 +83,7 @@ public class WorkbenchScript : MonoBehaviour
                 contentSlotManager.initSlots();
                 contentSlotManager.slots.ForEach(s => createdContentSlots.Add(createSlotFromPrefab(s)));
                 // if selectedElem is a container, checkIf its close enhough to the slot
+                updateText();
                 return containerSlotManager.handlesElementToSlotRelation(selectedElement);
             }
             else return (false, null);
@@ -118,7 +125,7 @@ public class WorkbenchScript : MonoBehaviour
                         
 
                 }
-
+                updateText();
                 // if selectedElem is a container, checkIf its close enhough to the slot
                 return (isCloseEnough, closest);
             }
@@ -165,5 +172,56 @@ public class WorkbenchScript : MonoBehaviour
             default:
                 return -1;
         }
+    }
+
+    private void updateText() {
+        StringBuilder sb = new StringBuilder() ;
+        if (!containerSlotManager.slots[0].isEmpty())
+        {
+            var element = containerSlotManager.slots[0].getElement();
+
+            //Make the descition of what thype the current element actually is.
+            if (element.elem == programmingElement.elemInterval)
+            {
+                var stone = element as IntervalStone;
+                sb.Append("Interval von ");
+                if (stone.from == null)
+                    sb.Append("<Leer>");
+                else
+                    sb.Append(stone.from.descriptionText);
+                sb.Append(" bis ");
+                if (stone.to == null)
+                    sb.Append("<Leer>");
+                else
+                    sb.Append(stone.to.descriptionText);
+            }
+            else
+            {
+                //Since the containerSlotManager only accepts intervals and vars, we can assume that here we have an element of the type VariableStone.
+                var stone = element as VariableStone;
+                if (stone.filledWith == null)
+                    sb.Append("<Leer>");
+                else
+                    sb.Append(stone.filledWith.descriptionText);
+            }
+
+            //If the text fields are hidden, set them active.
+            if (!GameObject.Find(ContentHeader).activeSelf)
+            {
+                GameObject.Find(ContentHeader).SetActive(true);
+                GameObject.Find(ContentText).SetActive(true);
+            }
+
+            //Set the text.
+            GameObject.Find(ContentText).GetComponent<TextMeshPro>().text = sb.ToString() ;
+        }
+        else
+        {
+            //Do not show the Content Text...
+            GameObject.Find(ContentHeader).SetActive(true);
+            GameObject.Find(ContentText).SetActive(true);
+        }
+        
+
     }
 }
