@@ -43,7 +43,6 @@ public class DragObject : MonoBehaviour
 
         // with the GetComponent we can call functions from other scripts
         gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(this);
-        FindObjectOfType<Inventar>().setCurrentlySelectedElement(this);
         this.IsBeingDragged = true;
     }
 
@@ -179,7 +178,6 @@ public class DragObject : MonoBehaviour
         }
 
         // Reset currently selected element in components that keep track of it
-        FindObjectOfType<Inventar>().resetCurrentlySelectedElement();
         gameBoard.GetComponent<GameBoardScript>().resetSelectedElement();
     }
 }
