@@ -173,6 +173,7 @@ public class DragObject : MonoBehaviour
     public void onButtonDown()
     {
         this.IsBeingDragged = true;
+
         // Remember distance to camera
         //this.zCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
