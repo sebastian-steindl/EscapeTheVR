@@ -69,6 +69,7 @@ public class DragObject : MonoBehaviour
         rigidbody.AddForce(force * 300, ForceMode.Acceleration);
     }
 
+    
     private Vector3 GetMouseWorldPos()
     {
         Vector3 mousePoint = Input.mousePosition;
@@ -80,8 +81,6 @@ public class DragObject : MonoBehaviour
     public void disableGravity() {
         hasGravity = false;
         GetComponent<Rigidbody>().useGravity = hasGravity;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<Rigidbody>().isKinematic = true;
     }
 
 

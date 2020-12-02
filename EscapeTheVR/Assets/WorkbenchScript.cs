@@ -51,10 +51,7 @@ public class WorkbenchScript : MonoBehaviour
     private void OnMouseOver()
     {
         if (!gameboard.selectedGameObj) return;
-
-        setSelectedElementToSlotIfCloseEnough();
     }
-
 
     /// <summary>
     /// This function sets the currently selected object to the closest slot, if it is close enough.
@@ -73,7 +70,8 @@ public class WorkbenchScript : MonoBehaviour
         { 
             // there is no container e.g. var / interval yet
             Debug.Log("ContainerSlot is empty");
-            if (selectedProgrammigElementType == programmingElement.elemVar || selectedProgrammigElementType == programmingElement.elemInterval)
+            (bool isCloseEnough, Slot closest) = containerSlotManager.handlesElementToSlotRelation(selectedElement);
+            if (isCloseEnough && (selectedProgrammigElementType == programmingElement.elemVar || selectedProgrammigElementType == programmingElement.elemInterval))
             {
                 contentSlotManager = new SlotManager(gameObject.transform.position+contentSlotOffset, gameObject.transform.localScale, getNumberOfNeededFillSlots(selectedProgrammigElementType));
                 contentSlotManager.initSlots();
@@ -124,7 +122,7 @@ public class WorkbenchScript : MonoBehaviour
                 // if selectedElem is a container, checkIf its close enhough to the slot
                 return (isCloseEnough, closest);
             }
-            else return (false, null);
+            else return containerSlotManager.handlesElementToSlotRelation(selectedElement);
         }
     }
 
