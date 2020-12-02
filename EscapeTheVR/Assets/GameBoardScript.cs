@@ -30,7 +30,8 @@ public class GameBoardScript : MonoBehaviour
         //create workbench
         var workbench = Instantiate(Resources.Load("Workbench", typeof(GameObject)) as GameObject);
         workbench.transform.parent = this.transform.parent;
-        workbench.transform.position = new Vector3(-1.5f,3.29f,-4.0f); //TODO: Set as values in constant class.
+        workbench.transform.position = Constants.workbenchCoords; //TODO: Set as values in constant class.
+        workbench.name = Constants.workbenchName;
         foreach (PuzzleProgrammingElement el in level.puzzleProgrammingElements)
         {
             createElementFromPrefab(el);
