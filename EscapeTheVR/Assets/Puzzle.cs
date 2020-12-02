@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 public class Puzzle
@@ -16,16 +17,19 @@ public class Puzzle
     private int emptySlots; // if you want to provide empty slots, e.g. puzzle needs 4 but you provide 5 slots
     private bool snapEnabled;
 
-    public string code;
+    public List<CodeElement> codeElements;
     public string output;
-    public Puzzle(string puzzleName, int slots = 0, string codeStr = "", string outputStr = "", bool snapEnabled = false)
+
+    //Don't even try to touch it!
+    public bool isSolved = false;
+    public Puzzle(string puzzleName, List<CodeElement> codeElements, int slots = 0, string outputStr = "", bool snapEnabled = false)
     {
         name = puzzleName;
         emptySlots = slots;
         this.snapEnabled = snapEnabled;
-        code = codeStr;
+        this.codeElements = codeElements;
         output = outputStr;
-
+        
         solutionGivenByUser = new List<ElementStone>();
         flattenedCorrectSolution = new List<ElementStone>();
         unflattenedCorrectSolution = new List<ElementStone>();
@@ -42,6 +46,11 @@ public class Puzzle
 
         //If no element is inside the GameBoard, just retrun false, since puzzle is not solved.
         if (wrongIndices == null) return false;
+        
+        //Set solved flag to true
+        if (wrongIndices.Count == 0)
+            isSolved = true;
+
         return wrongIndices.Count == 0;
     }
 
@@ -124,4 +133,19 @@ public class Puzzle
     }
 
     public bool isSnapEnabled() { return snapEnabled; }
+
+    public string createCodeText(int stoneId = -1)
+    {
+        StringBuilder sb = new StringBuilder();
+        foreach (CodeElement e in codeElements)
+        {
+            if (e.elementId == stoneId)
+                sb.Append("<color=").Append(Constants.colorHighlight).Append(">").Append(e.codeElement).Append("</color>") ;
+            else
+                sb.Append(e.codeElement);
+            if (e.newLine)
+                sb.Append("\n");
+        }
+        return sb.ToString();
+    }
 }

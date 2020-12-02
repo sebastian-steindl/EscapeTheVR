@@ -138,6 +138,8 @@ public class GameBoardScript : MonoBehaviour
     {
         selectedGameObj = obj;
         selectedElement = obj.element;
+        if(puzzle.isSolved)
+            GameObject.Find("Code-Text").GetComponent<TextMeshPro>().text = puzzle.createCodeText(obj.element.id);
     }
 
     public ElementStone getSelectedElement()
@@ -166,7 +168,7 @@ public class GameBoardScript : MonoBehaviour
     {
         LevelStartStopHandler.Instance.StopLevel(LevelManager.Instance().getCurrentLevel().levelId);
         AudioManager.Instance.playSuccess();
-        GameObject.Find("Code-Text").GetComponent<TextMeshPro>().text = puzzle.code;
+        GameObject.Find("Code-Text").GetComponent<TextMeshPro>().text = puzzle.createCodeText();
         GameObject.Find("Output-Text").GetComponent<TextMeshPro>().text = puzzle.output;
     }
 

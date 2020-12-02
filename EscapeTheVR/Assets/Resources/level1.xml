@@ -31,8 +31,10 @@
 		</element>
 	</program>
   <code>
-    variable = 32
-    print(variable)
+    <codeElement elementId="1" newLine="true">variable = 32</codeElement>
+    <codeElement elementId="3">print(</codeElement>
+    <codeElement elementId="1">variable</codeElement>
+    <codeElement elementId="3">)</codeElement>
   </code>
   <output>
     32

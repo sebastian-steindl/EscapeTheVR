@@ -14,7 +14,7 @@ public class PuzzleXMLReader
     }
 
     public static Puzzle createLevel(Level level, bool snapEnabled = true) {
-        Puzzle p = new Puzzle(level.name, level.puzzleProgrammingElements.Count, level.code, level.output, snapEnabled);
+        Puzzle p = new Puzzle(level.name, level.codeElements, level.puzzleProgrammingElements.Count, level.output, snapEnabled);
         p.setSolution(getSolutionFromXMLPuzzle(level.puzzleProgrammingElements));
         return p;
     }
