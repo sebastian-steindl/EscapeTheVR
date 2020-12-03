@@ -102,7 +102,6 @@ public class DragObject : MonoBehaviour
     public void onButtonUp()
     {
         Debug.Log("DragObject->onButtonUp");
-        Debug.Log("OnButtonUp: " + this.gameObject.GetComponent<Rigidbody>().isKinematic);
 
         this.IsBeingDragged = false;
 

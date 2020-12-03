@@ -80,8 +80,11 @@ public class SteamVRController : MonoBehaviour
             if (GrabObject(collidingObject))
             {
                 objectInHand = collidingObject;
-                registerElementAsActive();
-                objectInHand.GetComponent<DragObject>().onButtonDown();
+                if (objectInHand.GetComponent<DragObject>())
+                {
+                    registerElementAsActive();
+                    objectInHand.GetComponent<DragObject>().onButtonDown();
+                }
             }
         }
     }
@@ -91,7 +94,10 @@ public class SteamVRController : MonoBehaviour
         {
             if (DropObject(objectInHand))
             {
-                objectInHand.GetComponent<DragObject>().onButtonUp();
+                if (objectInHand.GetComponent<DragObject>())
+                {
+                    objectInHand.GetComponent<DragObject>().onButtonUp();
+                }
                 objectInHand = null;
             }
         }
@@ -165,7 +171,6 @@ public class SteamVRController : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().useGravity = false;
         gameObject.transform.SetParent(this.transform);
         gameObject.transform.position = this.transform.position;
-        gameObject.GetComponent<DragObject>().IsBeingDragged = true;
 
         return true;
     }
@@ -177,7 +182,6 @@ public class SteamVRController : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
         gameObject.GetComponent<Rigidbody>().velocity = pose.GetVelocity();
         gameObject.GetComponent<Rigidbody>().angularVelocity = pose.GetAngularVelocity();
-        gameObject.GetComponent<DragObject>().IsBeingDragged = false;
 
         return true;
     }
@@ -192,20 +196,35 @@ public class SteamVRController : MonoBehaviour
 
     private bool OpenInventory()
     {
-        //If Inventory is empty, don't open it
+        //If Inventory is empty or object is held, don't open it
         if (inventory.Count == 0 || objectInHand) return false;
 
-        if (inventoryIndex >= inventory.Count) inventoryIndex = 0;
+        //Make sure inventoryIndex has no over/underflow
+        inventoryIndex = myModulo(inventoryIndex, inventory.Count);
 
 
-        int previousItem = Mathf.Abs((inventoryIndex - 1) % inventory.Count);
-        int nextItem = Mathf.Abs((inventoryIndex + 1) % inventory.Count);
+        int previousItem = myModulo((inventoryIndex - 1), inventory.Count);
+        int nextItem = myModulo((inventoryIndex + 1), inventory.Count);
 
-        inventory[previousItem].SetActive(true);
-        inventory[previousItem].GetComponent<Rigidbody>().transform.localPosition -= new Vector3(1, 0, 0);
-        inventory[inventoryIndex].SetActive(true);
-        inventory[nextItem].SetActive(true);
-        inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition += new Vector3(1, 0, 0);
+        if(inventory.Count == 1)
+        {
+            inventory[inventoryIndex].SetActive(true);
+        } 
+        else if(inventory.Count == 2)
+        {
+            inventory[inventoryIndex].SetActive(true);
+            inventory[nextItem].SetActive(true);
+            inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition += new Vector3(0.4f, 0, 0);
+        } 
+        else
+        {
+            inventory[previousItem].SetActive(true);
+            inventory[previousItem].GetComponent<Rigidbody>().transform.localPosition -= new Vector3(0.4f, 0, 0);
+            inventory[inventoryIndex].SetActive(true);
+            inventory[nextItem].SetActive(true);
+            inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition += new Vector3(0.4f, 0, 0);
+        }
+        
 
         inventoryOpened = true;
         return true;
@@ -213,14 +232,29 @@ public class SteamVRController : MonoBehaviour
 
     private bool CloseInventory()
     {
-        int previousItem = Mathf.Abs((inventoryIndex - 1) % inventory.Count);
-        int nextItem = Mathf.Abs((inventoryIndex + 1) % inventory.Count);
+        int previousItem = myModulo((inventoryIndex - 1), inventory.Count);
+        int nextItem = myModulo((inventoryIndex + 1), inventory.Count);
 
-        inventory[previousItem].GetComponent<Rigidbody>().transform.localPosition += new Vector3(1, 0, 0);
-        inventory[previousItem].SetActive(false);
-        inventory[inventoryIndex].SetActive(false);
-        inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition -= new Vector3(1, 0, 0);
-        inventory[nextItem].SetActive(false);
+        if (inventory.Count == 1)
+        {
+            inventory[inventoryIndex].SetActive(false);
+        }
+        else if (inventory.Count == 2)
+        {
+            inventory[inventoryIndex].SetActive(false);
+            inventory[nextItem].SetActive(false);
+            inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition -= new Vector3(0.25f, 0, 0);
+        }
+        else
+        {
+            inventory[previousItem].GetComponent<Rigidbody>().transform.localPosition += new Vector3(0.25f, 0, 0);
+            inventory[previousItem].SetActive(false);
+            inventory[inventoryIndex].SetActive(false);
+            inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition -= new Vector3(0.25f, 0, 0);
+            inventory[nextItem].SetActive(false);
+        }
+
+        
 
         inventoryOpened = false;
         return false;
@@ -231,9 +265,7 @@ public class SteamVRController : MonoBehaviour
     {
         CloseInventory();
 
-        Debug.Log("Before: " + inventoryIndex);
-        inventoryIndex = Mathf.Abs((++inventoryIndex) % inventory.Count);
-        Debug.Log("After: " + inventoryIndex);
+        inventoryIndex = myModulo(++inventoryIndex, inventory.Count);
 
         OpenInventory();
 
@@ -244,7 +276,7 @@ public class SteamVRController : MonoBehaviour
     {
         CloseInventory();
 
-        inventoryIndex = Mathf.Abs((inventoryIndex++) % inventory.Count);
+        inventoryIndex = myModulo(--inventoryIndex, inventory.Count);
 
         OpenInventory();
 
@@ -272,6 +304,11 @@ public class SteamVRController : MonoBehaviour
         // e.g. inventory, picking up
         var gameboard = objectInHand.GetComponent<DragObject>().gameBoard;
         gameboard.GetComponent<GameBoardScript>().registerSelectedElement(objectInHand.GetComponent<DragObject>());
+    }
+
+    private int myModulo(int number, int modulo)
+    {
+        return (number % modulo + modulo) % modulo;
     }
 
 }
