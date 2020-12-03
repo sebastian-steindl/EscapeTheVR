@@ -42,9 +42,7 @@ public class DragObject : MonoBehaviour
         GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Rigidbody>().isKinematic = false;
 
-        // with the GetComponent we can call functions from other scripts
-        gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(this);
-        this.IsBeingDragged = true;
+        this.onButtonDown();
     }
 
     public void OnMouseUp()
@@ -95,14 +93,15 @@ public class DragObject : MonoBehaviour
 
     public void onButtonDown()
     {
+        // with the GetComponent we can call functions from other scripts
+        gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(this);
+
         this.IsBeingDragged = true;
     }
 
 
     public void onButtonUp()
     {
-        Debug.Log("DragObject->onButtonUp");
-
         this.IsBeingDragged = false;
 
         var workbench = FindObjectOfType<WorkbenchScript>();

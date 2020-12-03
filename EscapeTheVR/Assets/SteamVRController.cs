@@ -82,7 +82,6 @@ public class SteamVRController : MonoBehaviour
                 objectInHand = collidingObject;
                 if (objectInHand.GetComponent<DragObject>())
                 {
-                    registerElementAsActive();
                     objectInHand.GetComponent<DragObject>().onButtonDown();
                 }
             }
@@ -109,7 +108,8 @@ public class SteamVRController : MonoBehaviour
         {
             OpenInventory();
             
-        } else
+        } 
+        else
         {
             CloseInventory();
         }
@@ -189,6 +189,7 @@ public class SteamVRController : MonoBehaviour
     private bool AddObjectToInventory(GameObject gameObject)
     {
         gameObject.SetActive(false);
+        gameObject.GetComponent<DragObject>().gameBoard.GetComponent<GameBoardScript>().resetSelectedElement();
         inventory.Add(gameObject);
 
         return true;
@@ -224,7 +225,8 @@ public class SteamVRController : MonoBehaviour
             inventory[nextItem].SetActive(true);
             inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition += new Vector3(0.4f, 0, 0);
         }
-        
+
+        inventory[inventoryIndex].GetComponent<DragObject>().gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(inventory[inventoryIndex].GetComponent<DragObject>());
 
         inventoryOpened = true;
         return true;
@@ -243,18 +245,18 @@ public class SteamVRController : MonoBehaviour
         {
             inventory[inventoryIndex].SetActive(false);
             inventory[nextItem].SetActive(false);
-            inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition -= new Vector3(0.25f, 0, 0);
+            inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition -= new Vector3(0.4f, 0, 0);
         }
         else
         {
-            inventory[previousItem].GetComponent<Rigidbody>().transform.localPosition += new Vector3(0.25f, 0, 0);
+            inventory[previousItem].GetComponent<Rigidbody>().transform.localPosition += new Vector3(0.4f, 0, 0);
             inventory[previousItem].SetActive(false);
             inventory[inventoryIndex].SetActive(false);
-            inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition -= new Vector3(0.25f, 0, 0);
+            inventory[nextItem].GetComponent<Rigidbody>().transform.localPosition -= new Vector3(0.4f, 0, 0);
             inventory[nextItem].SetActive(false);
         }
 
-        
+        inventory[inventoryIndex].GetComponent<DragObject>().gameBoard.GetComponent<GameBoardScript>().resetSelectedElement();
 
         inventoryOpened = false;
         return false;
@@ -292,18 +294,10 @@ public class SteamVRController : MonoBehaviour
             objectInHand = inventory[inventoryIndex];
             inventory.Remove(objectInHand);
             objectInHand.SetActive(true);
-            registerElementAsActive();
+            objectInHand.GetComponent<DragObject>().onButtonDown();
         }
 
         return true;
-    }
-
-    private void registerElementAsActive()
-    {
-        // always call this function when the player has an element in his hand
-        // e.g. inventory, picking up
-        var gameboard = objectInHand.GetComponent<DragObject>().gameBoard;
-        gameboard.GetComponent<GameBoardScript>().registerSelectedElement(objectInHand.GetComponent<DragObject>());
     }
 
     private int myModulo(int number, int modulo)
