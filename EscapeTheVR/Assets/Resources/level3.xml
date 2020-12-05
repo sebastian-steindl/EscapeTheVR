@@ -82,4 +82,9 @@
 	<output>
 		You've successfully mastered the conditions exercise!
 	</output>
+	<hintFiles>
+		<hintFile>Audio/success_sound</hintFile>
+		<hintFile>Audio/lasergun</hintFile>
+		<hintFile>Audio/bohrmaschine</hintFile>
+	</hintFiles>
 </level>

@@ -10,7 +10,7 @@ public class Level
     public int levelId;
    
     public string name;
-        
+
     public string descr;
 
     public string output;
@@ -22,4 +22,8 @@ public class Level
     [XmlArray("code")]
     [XmlArrayItem("codeElement")]
     public List<CodeElement> codeElements = new List<CodeElement>();
+
+    [XmlArray("hintFiles")]
+    [XmlArrayItem("hintFile")]
+    public List<string> hintFilePaths = new List<string>();
 }

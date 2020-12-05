@@ -11,7 +11,7 @@
 			<positionY>3.638</positionY>
 			<positionZ>-2.73</positionZ>
 			<text></text>
-      <hintPath></hintPath>
+			<hintPath></hintPath>
 		</element>
 		<element isPartOfSolution="true" valueOfId="1">
 			<id>2</id>
@@ -30,13 +30,18 @@
 			<text></text>
 		</element>
 	</program>
-  <code>
-    <codeElement elementId="1" newLine="true">variable = 32</codeElement>
-    <codeElement elementId="3">print(</codeElement>
-    <codeElement elementId="1">variable</codeElement>
-    <codeElement elementId="3">)</codeElement>
-  </code>
-  <output>
-    32
-  </output>
+	<code>
+		<codeElement elementId="1" newLine="true">variable = 32</codeElement>
+		<codeElement elementId="3">print(</codeElement>
+		<codeElement elementId="1">variable</codeElement>
+		<codeElement elementId="3">)</codeElement>
+	</code>
+	<hintFiles>
+		<hintFile>Audio/success_sound</hintFile>
+		<hintFile>Audio/lasergun</hintFile>
+		<hintFile>Audio/bohrmaschine</hintFile>
+	</hintFiles>
+	<output>
+		32
+	</output>
 </level>
