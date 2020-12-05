@@ -1,0 +1,85 @@
+<level>
+	<apiversion>10</apiversion>
+	<levelId>3</levelId>
+	<name>Conditons 1</name>
+	<descr>In this exercise the output will be depending on the value of a variable.</descr>
+	<program>
+		<element isPartOfSolution="true">
+			<id>1</id>
+			<type>if</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>2</id>
+			<type>variable</type>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.73</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true" valueOfId="1">
+			<id>3</id>
+			<type>number</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text>5</text>
+		</element>
+		<element isPartOfSolution="true" >
+			<id>4</id>
+			<type>==</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>5</id>
+			<type>number</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text>5</text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>6</id>
+			<type>print</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>7</id>
+			<type>text</type>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.239</positionZ>
+			<text>You've successfully mastered the conditions exercise!</text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>8</id>
+			<type>end</type>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.239</positionZ>
+			<text></text>
+		</element>
+	</program>
+	<code>
+		<codeElement elementId="2" newLine="true">variable = 5</codeElement>
+		<codeElement elementId="1">if</codeElement>
+		<codeElement elementId="2">variable</codeElement>
+		<codeElement elementId="4">==</codeElement>
+		<codeElement elementId="5" newLine="true">5</codeElement>
+		<codeElement elementId="6">print(</codeElement>
+		<codeElement elementId="7">"You've successfully mastered the conditions exercise!"</codeElement>
+		<codeElement elementId="6">)</codeElement>		
+	</code>
+	<output>
+		You've successfully mastered the conditions exercise!
+	</output>
+</level>
