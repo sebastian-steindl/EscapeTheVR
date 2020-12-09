@@ -22,8 +22,7 @@ public class GameBoardScript : MonoBehaviour
 
     void Start()
     {
-        PlayerPrefs.DeleteAll();
-        Level level = LevelManager.Instance().loadLevel(PlayerPrefs.GetInt(Constants.playerPrefsLevel,2));
+        Level level = LevelManager.Instance().loadLevel(PlayerPrefs.GetInt(Constants.playerPrefsLevel,1));
         puzzle = PuzzleXMLReader.createLevel(level);
 
         gameBoard = new SlotManager(gameObject.transform.position, gameObject.transform.localScale, puzzle.getNumberOfSlots());
