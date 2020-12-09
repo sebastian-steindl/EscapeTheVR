@@ -25,6 +25,8 @@ program.element.hintPath | string | Path, to audio file of the hint.|
 code.codeElement | string | The code that should be displayed on the whiteboard.|
 code.codeElement:elementId | int | The corrosponding element id. (Needs to be set for highlighting.)|
 code.codeElement:newLine | bool | Marks *last* element of a row.|
+hintFiles | list | The list of audio hints of the level. Will be played in order.
+hintFiles.hintFile | string | The resource path for a audio-level-hint relative to the "Resources" folder.
 
 ## programmingElement Reference:
 Currently there are the following programmingElement-types:
