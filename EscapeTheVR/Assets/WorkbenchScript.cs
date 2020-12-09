@@ -94,22 +94,26 @@ public class WorkbenchScript : MonoBehaviour
             if (selectedProgrammigElementType == programmingElement.elemBool || selectedProgrammigElementType == programmingElement.elemText || selectedProgrammigElementType == programmingElement.elemNumber)
             {
                 (bool isCloseEnough, Slot closest) = contentSlotManager.handlesElementToSlotRelation(selectedElement);
-                if (isCloseEnough) {
-                    
+                if (isCloseEnough)
+                {
+
                     var containerElement = containerSlotManager.slots[0].getElement();
 
                     // Update Var element
-                    if (containerElement.elem == programmingElement.elemVar) {
+                    if (containerElement.elem == programmingElement.elemVar)
+                    {
                         Debug.Log("Update Variable Stome...");
                         VariableStone stone = (VariableStone)containerElement;
                         stone.filledWith = selectedElement.element;
                         containerElement = stone;
                     }
-                    else if (containerElement.elem == programmingElement.elemInterval) { //Code for updating InvervalStones / elements
+                    else if (containerElement.elem == programmingElement.elemInterval)
+                    { //Code for updating InvervalStones / elements
                         Debug.Log("Update Variable Stome...");
 
                         //Interval only works with Numberstones...
-                        if (selectedProgrammigElementType != programmingElement.elemNumber) {
+                        if (selectedProgrammigElementType != programmingElement.elemNumber)
+                        {
                             Console.Error.Write("Tried to update an IntervalStone with a non numeric stone element!");
                             return (false, null);
                         }
@@ -122,14 +126,25 @@ public class WorkbenchScript : MonoBehaviour
                         containerElement = stone;
 
                     }
-                        
+
 
                 }
                 updateText();
                 // if selectedElem is a container, checkIf its close enhough to the slot
                 return (isCloseEnough, closest);
             }
-            else return containerSlotManager.handlesElementToSlotRelation(selectedElement);
+            else
+            {
+                bool isContainerElement = containerSlotManager.Find(selectedElement) != -1;
+                (bool isCloseEnough, Slot closest) = containerSlotManager.handlesElementToSlotRelation(selectedElement);
+                if (!isCloseEnough && isContainerElement)
+                {
+                    Debug.Log("");
+                    resetContentSlots();
+                    updateText();
+                }
+                return (isCloseEnough, closest);
+            }
         }
     }
 
