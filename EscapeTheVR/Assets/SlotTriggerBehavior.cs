@@ -35,6 +35,23 @@ public class SlotTriggerBehavior : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (currentCollider == other.gameObject) currentCollider = null;
+        if (currentCollider == other.gameObject)
+        {
+            Debug.Log("Exitting Collider.");
+            currentCollider = null;
+
+            // Check if you are closer to the workbench than the gameboard, since we need to reset the workbench, if you leave it with the current element.
+            // Yes I know, this is ugly but it should work. Hopefully.
+            var workbench = FindObjectOfType<WorkbenchScript>();
+            SlotManager gameBoardSlotManager = FindObjectOfType<GameBoardScript>().GetGameBoard();
+            SlotManager wbContainerSM = workbench.containerSlotManager;
+            var currentSelection = other.gameObject.GetComponent<DragObject>();
+            float closestWbContainerDistance = wbContainerSM.getClostestDistance(currentSelection);
+            float closestGameBoardDistance = gameBoardSlotManager.getClostestDistance(currentSelection);
+            if (closestWbContainerDistance < closestGameBoardDistance)
+            {
+                workbench.setSelectedElementToSlotIfCloseEnough();
+            }
+        }
     }
 }

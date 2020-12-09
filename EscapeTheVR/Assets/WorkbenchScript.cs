@@ -139,7 +139,7 @@ public class WorkbenchScript : MonoBehaviour
                 (bool isCloseEnough, Slot closest) = containerSlotManager.handlesElementToSlotRelation(selectedElement);
                 if (!isCloseEnough && isContainerElement)
                 {
-                    Debug.Log("");
+                    Debug.Log("Reset Containerslot.");
                     resetContentSlots();
                     updateText();
                 }
