@@ -19,7 +19,7 @@ public class LevelHintButtonBehavior : MonoBehaviour
         
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         var currentLevel = LevelManager.Instance().getCurrentLevel();
         
@@ -38,14 +38,7 @@ public class LevelHintButtonBehavior : MonoBehaviour
     {
         this.PlayHintSound(lvl.hintFilePaths[this.nextSoundIndex]);
 
-        if (lvl.hintFilePaths.Count > this.nextSoundIndex + 1)
-        {
-            this.nextSoundIndex++;
-        }
-        else
-        {
-            this.nextSoundIndex = 0;
-        }
+        this.nextSoundIndex = ++this.nextSoundIndex % lvl.hintFilePaths.Count;
     }
 
     public void PlayHintSound(string hintSoundPath)
