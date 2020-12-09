@@ -20,7 +20,7 @@
 			<positionZ>-2.73</positionZ>
 			<text></text>
 		</element>
-		<element isPartOfSolution="true" valueOfId="1">
+		<element isPartOfSolution="true" valueOfId="2">
 			<id>3</id>
 			<type>number</type>
 			<positionX>-1.93</positionX>
@@ -37,7 +37,7 @@
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
-			<id>5</id>
+			<id>3</id>
 			<type>number</type>
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
