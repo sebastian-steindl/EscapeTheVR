@@ -41,8 +41,6 @@ public class GameBoardScript : MonoBehaviour
             DragObject dragObj = createElementFromPrefab(programmingElement);
             if (programmingElement.isLocked)
             {
-                Debug.Log("!!!!!!! Len: " + gameBoard.slots.Count);
-                Debug.Log("!!!!!!! i to update: " + i);
                 gameBoard.slots[i].setElement(dragObj);
                 dragObj.transform.position = gameBoard.slots[i].position;
                 dragObj.disableGravity();
