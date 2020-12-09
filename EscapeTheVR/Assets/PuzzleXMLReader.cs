@@ -52,23 +52,29 @@ public class PuzzleXMLReader
                         filledWithStone.descriptionText = el.text;
                         filledWithStone.id = el.id;
                         if (el.valueOfId == -1)
-                            break;
-                        (list.Find(pElement => pElement.id == el.valueOfId) as VariableStone).filledWith = filledWithStone;
+                            list.Add(filledWithStone);
+                        else
+                            (list.Find(pElement => pElement.id == el.valueOfId) as VariableStone).filledWith = filledWithStone;
                         break;
                     case programmingElement.elemText:
                         ElementStone filledStone = ElementStoneFactory.Instance.createElementStone(el.type);
                         filledStone.descriptionText = el.text;
                         filledStone.id = el.id;
                         if (el.valueOfId == -1)
-                            break;
-                        (list.Find(pElement => pElement.id == el.valueOfId) as VariableStone).filledWith = filledStone;
+                            list.Add(filledStone);
+                        else
+                            (list.Find(pElement => pElement.id == el.valueOfId) as VariableStone).filledWith = filledStone;
                         break;
                     case programmingElement.elemNumber:
                         ElementStone fillStone = ElementStoneFactory.Instance.createElementStone(el.type);
                         fillStone.descriptionText = el.text;
                         fillStone.id = el.id;
-                        if (el.valueOfId == -1) break;
-                            var correspondingElement = list.Find(pElement => pElement.id == el.valueOfId);
+                        if (el.valueOfId == -1)
+                        {
+                            list.Add(fillStone);
+                            break;
+                        }
+                        var correspondingElement = list.Find(pElement => pElement.id == el.valueOfId);
                         if (correspondingElement is VariableStone)
                             (list.Find(pElement => pElement.id == el.valueOfId) as VariableStone).filledWith = fillStone;
                         else if (correspondingElement is IntervalStone)
