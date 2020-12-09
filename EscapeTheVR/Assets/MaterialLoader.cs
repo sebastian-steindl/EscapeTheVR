@@ -35,8 +35,8 @@ public class MaterialLoader
         {
             case "variable":
                 return "RedMaterial";
-            //case "for":
-            //    return programmingElement.elemFor;
+            case "for":
+                return "BlueMaterial";
             //case "if":
             //    return programmingElement.elemIf;
             //case "while":
@@ -49,14 +49,14 @@ public class MaterialLoader
             //    return programmingElement.elemLogicalOr;
             //case "!":
             //    return programmingElement.elemNegation;
-            //case "text":
-            //    break;
-            //case "number":
-            //    break;
+            case "text":
+                return "BlackMaterial";
+            case "number":
+                return "YellowMaterial";
             //case "bool":
             //    break;
-            //case "interval":
-            //    break;
+            case "interval":
+                return "PurpleMaterial";
             case "print()":
                 return "GreenMaterial";
             default:
