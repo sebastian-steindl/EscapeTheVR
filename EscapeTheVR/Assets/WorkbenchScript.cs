@@ -199,7 +199,7 @@ public class WorkbenchScript : MonoBehaviour
             if (element.elem == programmingElement.elemInterval)
             {
                 var stone = element as IntervalStone;
-                sb.Append("Interval von ");
+                sb.Append("Von ");
                 if (stone.from == null)
                     sb.Append("<Leer>");
                 else
