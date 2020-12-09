@@ -21,7 +21,7 @@
 			<positionZ>-2.6</positionZ>
 			<text>32</text>
 		</element>
-		<element isPartOfSolution="true">
+		<element isPartOfSolution="true" isLocked="true">
 			<id>3</id>
 			<type>print()</type>
 			<positionX>-1.9</positionX>

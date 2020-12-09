@@ -167,7 +167,9 @@ public class SteamVRController : MonoBehaviour
         //Remove Constraints needed for mouse
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        if (gameObject.GetComponent<DragObject>()) {
+            if(!gameObject.GetComponent<DragObject>().isLocked) gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        }
         gameObject.GetComponent<Rigidbody>().useGravity = false;
         gameObject.transform.SetParent(this.transform);
         gameObject.transform.position = this.transform.position;
@@ -179,7 +181,10 @@ public class SteamVRController : MonoBehaviour
     {
         gameObject.transform.SetParent(null);
         gameObject.GetComponent<Rigidbody>().useGravity = true;
-        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        if (gameObject.GetComponent<DragObject>())
+        {
+            if (!gameObject.GetComponent<DragObject>().isLocked) gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        }
         gameObject.GetComponent<Rigidbody>().velocity = pose.GetVelocity();
         gameObject.GetComponent<Rigidbody>().angularVelocity = pose.GetAngularVelocity();
 

@@ -15,7 +15,7 @@ public class DragObject : MonoBehaviour
     public GameObject gameBoard;
     public string programmingElementType;
     public bool IsBeingDragged;
-
+    public bool isLocked;
     public DragObject(string programmingElementType)
     {
         this.programmingElementType = programmingElementType;
@@ -40,7 +40,7 @@ public class DragObject : MonoBehaviour
 
         // Disable gravity while dragging
         GetComponent<Rigidbody>().useGravity = false;
-        GetComponent<Rigidbody>().isKinematic = false;
+        if (!this.isLocked) GetComponent<Rigidbody>().isKinematic = false;
 
         this.onButtonDown();
     }
@@ -52,7 +52,7 @@ public class DragObject : MonoBehaviour
 
         // Re-enable gravity if object is dropped
         GetComponent<Rigidbody>().useGravity = true;
-        GetComponent<Rigidbody>().isKinematic = false;
+        if (!this.isLocked) GetComponent<Rigidbody>().isKinematic = false;
 
         this.onButtonUp();
     }
@@ -81,14 +81,14 @@ public class DragObject : MonoBehaviour
     public void disableGravity() {
         hasGravity = false;
         GetComponent<Rigidbody>().useGravity = hasGravity;
-        GetComponent<Rigidbody>().isKinematic = true;
+        if (!this.isLocked) GetComponent<Rigidbody>().isKinematic = true;
     }
 
 
     public void enableGravity() {
         hasGravity = true;
         GetComponent<Rigidbody>().useGravity = hasGravity;
-        GetComponent<Rigidbody>().isKinematic = false;
+        if (!this.isLocked) GetComponent<Rigidbody>().isKinematic = false;
     }
 
     public void onButtonDown()

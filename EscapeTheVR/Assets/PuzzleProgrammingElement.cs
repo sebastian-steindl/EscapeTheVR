@@ -21,7 +21,7 @@ public class PuzzleProgrammingElement
     public bool isPartOfSolution = false;
 
     [XmlAttribute("valueOfId")]
-    public int valueOfId;
+    public int valueOfId = -1;
 
     [XmlAttribute("isLocked")]
     public bool isLocked = false;

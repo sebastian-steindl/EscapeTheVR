@@ -44,6 +44,14 @@ public class SlotManager
         }
     }
 
+    internal void unlockAllDragObjects()
+    {
+        slots.ForEach(s =>
+        {
+            s.GetDragObject().isLocked = false;
+        });
+    }
+
     internal (bool, Slot) checkIfElementIsPlacedOverASlot(DragObject gameObject)
     {
         // c# 7 tuple syntax, finally you can write code nearly as nice as in python

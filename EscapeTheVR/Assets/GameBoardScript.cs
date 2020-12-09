@@ -32,11 +32,24 @@ public class GameBoardScript : MonoBehaviour
         workbench.transform.parent = this.transform.parent;
         workbench.transform.position = Constants.workbenchCoords; //TODO: Set as values in constant class.
         workbench.name = Constants.workbenchName;
-        foreach (PuzzleProgrammingElement el in level.puzzleProgrammingElements)
-        {
-            createElementFromPrefab(el);
-        }
+
         gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
+        int i = 0;
+        foreach (PuzzleProgrammingElement programmingElement in level.puzzleProgrammingElements)
+        {
+            DragObject dragObj = createElementFromPrefab(programmingElement);
+            if (programmingElement.isLocked)
+            {
+                Debug.Log("!!!!!!! Len: " + gameBoard.slots.Count);
+                Debug.Log("!!!!!!! i to update: " + i);
+                gameBoard.slots[i].setElement(dragObj);
+                dragObj.transform.position = gameBoard.slots[i].position;
+                dragObj.disableGravity();
+            }
+            if (programmingElement.isPartOfSolution && -1 != programmingElement.valueOfId) i++;
+        }
+
+
         LevelStartStopHandler.Instance.StartLevel(level.levelId);
         GameObject.Find("Lieferumfang-Text").GetComponent<TextMeshPro>().text = LevelManager.Instance().getCurrentLevelElements();
     }
@@ -51,8 +64,10 @@ public class GameBoardScript : MonoBehaviour
 
         if (puzzleElement.text!= null && puzzleElement.text.Length>0) 
             instantiated.GetComponent<DragObject>().element.descriptionText= puzzleElement.text;
-        
-        return null;
+
+        instantiated.GetComponent<DragObject>().isLocked = puzzleElement.isLocked;
+
+        return instantiated.GetComponent<DragObject>();
     }
 
     private GameObject getPrefabForPuzzleProgrammingElement(PuzzleProgrammingElement puzzleProgrammingElement)
@@ -178,6 +193,9 @@ public class GameBoardScript : MonoBehaviour
         AudioManager.Instance.playSuccess();
         updateCodeText();
         GameObject.Find("Output-Text").GetComponent<TextMeshPro>().text = puzzle.output;
+
+        // when the puzzle was solved, all locked DragObjects should be unlocked
+        gameBoard.unlockAllDragObjects();
     }
 
     public void openMenu() {
