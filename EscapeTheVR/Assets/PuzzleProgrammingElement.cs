@@ -22,4 +22,7 @@ public class PuzzleProgrammingElement
 
     [XmlAttribute("valueOfId")]
     public int valueOfId;
+
+    [XmlAttribute("isLocked")]
+    public bool isLocked = false;
 }

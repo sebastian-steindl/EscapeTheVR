@@ -15,6 +15,8 @@ public class Level
 
     public string output;
 
+    public bool startFromCode = false; //Internally also known as "inverse mode"
+
     [XmlArray("program")]
     [XmlArrayItem("element")]
     public List<PuzzleProgrammingElement> puzzleProgrammingElements = new List<PuzzleProgrammingElement>();

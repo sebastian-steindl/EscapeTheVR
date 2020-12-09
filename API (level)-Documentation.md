@@ -1,6 +1,8 @@
 # API (level)-Documentation
 *Aplies to API-version* :1.0
+
 *Fileformat* : XML
+
 *Filename pattern*: `level<levelId>.xml` in `Assets/Resources`
 
 ## How are the elements orderd?
@@ -14,8 +16,10 @@ levelId | int | identifier for the level
 name | string | Name of the level, that may be displayed to the user.|
 descr | string | A short description of the level that may be displayed to the user.|
 output | string | The output of the puzzle if applicable.|
+startFromCode | bool | Determens if the code should be displayed from the start. The user now has to "rebuild" the code with the given elements. Internally called "inverse mode".|
 program.element:isPartOfSolution | bool | If set to true, this element has to be set on the solution (GameBoard) for the solution to be correct. *Default value: `false`*|
 program.element:valueOfId | int | Only needed for all programmingElements that are child elements. (These are (`bool`,`number` and `text`) 
+program.element:isLocked | bool | Only needs to be set, if this element should be locked on the GameBoard.|
 program.element.type | string / programmingElement | What type the generated object should be of.|
 program.element.positionX | float | X-Coordinate where the object should be placed.|
 program.element.positionY | float | Y-Coordinate where the object should be placed.|
