@@ -143,7 +143,7 @@ public class GameBoardScript : MonoBehaviour
         if (puzzle.isSolved) updateCodeText(selectedElement.id);
     }
 
-    private void updateCodeText(int selectedStoneId = -1)
+    public void updateCodeText(int selectedStoneId = -1)
     {
         GameObject.Find("Code-Text").GetComponent<TextMeshPro>().text = puzzle.createCodeText(selectedStoneId);
     }

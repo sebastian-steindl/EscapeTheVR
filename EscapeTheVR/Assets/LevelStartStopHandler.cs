@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 
 using UnityEngine;
-public class LevelStartStopHandler
+public class LevelStartStopHandler : MonoBehaviour
 {
     private static LevelStartStopHandler instance = new LevelStartStopHandler();
 
+    private GameBoardScript gameboard; 
     private LevelStartStopHandler()
     {
-
+        gameboard = FindObjectOfType<GameBoardScript>();
     }
 
     public static LevelStartStopHandler Instance
@@ -27,6 +28,11 @@ public class LevelStartStopHandler
                 break;
             case 2:
                 Debug.Log("Level 2 started");
+                break;
+            case 3:
+                // this inverses the game mode, i.e. the code is shown right at the beginngin 
+                // TODO --> level hints/beschreibung anpassen
+                gameboard.updateCodeText();
                 break;
             default:
                 Debug.Log("LevelStartStopHandler::StartLevel called but no case was programmed for levelId: " + levelId);
