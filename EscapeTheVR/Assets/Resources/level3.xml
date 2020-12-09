@@ -46,7 +46,7 @@
 		</element>
 		<element isPartOfSolution="true">
 			<id>6</id>
-			<type>print</type>
+			<type>print()</type>
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>

@@ -5,6 +5,7 @@ using TMPro;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameBoardScript : MonoBehaviour
 {
@@ -102,7 +103,7 @@ public class GameBoardScript : MonoBehaviour
             case "end":
                 return Resources.Load("prefabEndElement", typeof(GameObject)) as GameObject;
             default:
-                return Resources.Load("prefabVarElement", typeof(GameObject)) as GameObject;
+                throw new ArgumentOutOfRangeException("Unknown element type: " + puzzleProgrammingElement.type);
         }
     }
 
