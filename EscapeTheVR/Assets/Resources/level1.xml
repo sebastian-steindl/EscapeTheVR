@@ -4,6 +4,14 @@
 	<name>Hello World</name>
 	<descr>Create a program which outputs "Hello World!".</descr>
 	<program>
+		<element isPartOfSolution="true" isLocked="true">
+			<id>3</id>
+			<type>print()</type>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.239</positionZ>
+			<text></text>
+		</element>
 		<element isPartOfSolution="true">
 			<id>1</id>
 			<type>variable</type>
@@ -20,14 +28,6 @@
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>
 			<text>32</text>
-		</element>
-		<element isPartOfSolution="true" isLocked="true">
-			<id>3</id>
-			<type>print()</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.239</positionZ>
-			<text></text>
 		</element>
 	</program>
 	<code>
