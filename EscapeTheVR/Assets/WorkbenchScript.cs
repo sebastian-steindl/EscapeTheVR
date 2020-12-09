@@ -22,9 +22,9 @@ public class WorkbenchScript : MonoBehaviour
     {
         gameboard = FindObjectOfType<GameBoardScript>();
         createdContentSlots = new List<GameObject>();
-
-        containerSlotManager = new SlotManager(gameObject.transform.position, gameObject.transform.localScale, 1);
-        contentSlotOffset = new Vector3(0,0,0.5f);
+        var negativContainerSlotOffset = new Vector3(0, 0, -0.4f);
+        containerSlotManager = new SlotManager(gameObject.transform.position + negativContainerSlotOffset, gameObject.transform.localScale, 1);
+        contentSlotOffset = new Vector3(0,0,0.4f);
         containerSlotManager.initSlots(); 
         containerSlotManager.slots.ForEach(s => createSlotFromPrefab(s));
         contentSlotManager = new SlotManager(gameObject.transform.position + contentSlotOffset, gameObject.transform.localScale, 0);

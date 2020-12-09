@@ -28,7 +28,6 @@ public class SlotTriggerBehavior : MonoBehaviour
         if (dragObject != null && !dragObject.IsBeingDragged)
         {
             dragObject.gameBoard.GetComponent<GameBoardScript>().registerSelectedElement(dragObject);
-            Debug.Log("Trigger: " + other.gameObject.GetComponent<Rigidbody>().isKinematic);
             dragObject.onButtonUp();
         }
     }
@@ -37,7 +36,7 @@ public class SlotTriggerBehavior : MonoBehaviour
     {
         if (currentCollider == other.gameObject)
         {
-            Debug.Log("Exitting Collider.");
+
             currentCollider = null;
 
             // Check if you are closer to the workbench than the gameboard, since we need to reset the workbench, if you leave it with the current element.

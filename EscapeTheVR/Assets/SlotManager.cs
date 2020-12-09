@@ -75,7 +75,7 @@ public class SlotManager
                 slots[selObjIndex].resetElement();
             }
 
-            Debug.Log("***Close enough***");
+            //Debug.Log("***Close enough***");
             closestSlot.setElement(selectedGameObj);
         }
         else 
