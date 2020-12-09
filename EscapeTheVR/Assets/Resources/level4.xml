@@ -1,0 +1,96 @@
+﻿<level>
+	<apiversion>10</apiversion>
+	<levelId>4</levelId>
+	<name>For 1</name>
+	<descr>Print the text "Print in a loop" 5 times.</descr>
+	<program>
+		<element isPartOfSolution="true">
+			<id>1</id>
+			<type>for</type>
+			<positionX>-2.105</positionX>
+			<positionY>5.016</positionY>
+			<positionZ>-9.802</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>2</id>
+			<type>interval</type>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.73</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true" valueOfId="2">
+			<id>3</id>
+			<type>number</type>
+			<positionX>-1.752</positionX>
+			<positionY>5.016</positionY>
+			<positionZ>-9.802</positionZ>
+			<text>0</text>
+		</element>
+		<element isPartOfSolution="true" valueOfId="2">
+			<id>4</id>
+			<type>number</type>
+			<positionX>-6.03</positionX>
+			<positionY>-2.35</positionY>
+			<positionZ>1.33</positionZ>
+			<text>5</text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>5</id>
+			<type>print()</type>
+			<positionX>7.135</positionX>
+			<positionY>1.689</positionY>
+			<positionZ>-2.6</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>6</id>
+			<type>variable</type>
+			<positionX>-5.8</positionX>
+			<positionY>1.91</positionY>
+			<positionZ>-6.27</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true" valueOfId="6">
+			<id>7</id>
+			<type>text</type>
+			<positionX>-10.034</positionX>
+			<positionY>1.68</positionY>
+			<positionZ>1.985</positionZ>
+			<text>Print in a loop</text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>8</id>
+			<type>end</type>
+			<positionX>-2.574</positionX>
+			<positionY>1.68</positionY>
+			<positionZ>2.07</positionZ>
+			<text></text>
+		</element>
+	</program>
+	<code>
+		<codeElement elementId="1">for</codeElement>
+		<codeElement elementId="2"> i in range(</codeElement>
+		<codeElement elementId="4">0</codeElement>
+		<codeElement elementId="2">, </codeElement>
+		<codeElement elementId="3">5</codeElement>
+		<codeElement elementId="2" newLine="true">)</codeElement>
+		<codeElement elementId="5">print(</codeElement>
+		<codeElement elementId="6">"Print in a loop"</codeElement>
+		<codeElement elementId="5" newLine="true">)</codeElement>
+		<codeElement elementId="8">end</codeElement>
+	</code>
+	<output>
+Print in a loop
+Print in a loop
+Print in a loop
+Print in a loop
+Print in a loop
+	</output>
+	<hintFiles>
+		<hintFile>Audio/success_sound</hintFile>
+		<hintFile>Audio/lasergun</hintFile>
+		<hintFile>Audio/bohrmaschine</hintFile>
+	</hintFiles>
+</level>
