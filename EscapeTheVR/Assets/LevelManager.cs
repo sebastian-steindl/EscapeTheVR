@@ -32,6 +32,13 @@ public class LevelManager
         return getLevel(currentLevelId < 2 ? 0 : currentLevelId - 2);
     }
 
+    public Level loadLevel(int id)
+    {
+        currentLevelId = id;
+        return getLevelById(id);
+    }
+
+
     private Level getLevel(int id) {
         return levels[id];
     }
