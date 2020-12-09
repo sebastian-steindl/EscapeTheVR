@@ -1,0 +1,89 @@
+﻿<level>
+	<apiversion>10</apiversion>
+	<levelId>5</levelId>
+	<name>Infinite while loop</name>
+	<descr>Baue eine Schleife, die einen Text unendlich oft ausgibt.</descr>
+	<program>
+		<element isPartOfSolution="true">
+			<id>1</id>
+			<type>while</type>
+			<positionX>-2.105</positionX>
+			<positionY>5.016</positionY>
+			<positionZ>-9.802</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>2</id>
+			<type>variable</type>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.73</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true" valueOfId="2">
+			<id>3</id>
+			<type>bool</type>
+			<positionX>-1.752</positionX>
+			<positionY>5.016</positionY>
+			<positionZ>-9.802</positionZ>
+			<text>true</text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>4</id>
+			<type>print()</type>
+			<positionX>7.135</positionX>
+			<positionY>1.689</positionY>
+			<positionZ>-2.6</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>5</id>
+			<type>variable</type>
+			<positionX>-5.8</positionX>
+			<positionY>1.91</positionY>
+			<positionZ>-6.27</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true" valueOfId="5">
+			<id>7</id>
+			<type>text</type>
+			<positionX>-10.034</positionX>
+			<positionY>1.68</positionY>
+			<positionZ>1.985</positionZ>
+			<text>Unendlich viel Text...</text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>8</id>
+			<type>end</type>
+			<positionX>-2.574</positionX>
+			<positionY>1.68</positionY>
+			<positionZ>2.07</positionZ>
+			<text></text>
+		</element>
+	</program>
+	<code>
+		<codeElement elementId="2" newLine="true">condition = true</codeElement>
+		<codeElement elementId="1">while(</codeElement>
+		<codeElement elementId="2">condition</codeElement>
+		<codeElement elementId="1" newLine="true">):</codeElement>
+		<codeElement elementId="4">print(</codeElement>
+		<codeElement elementId="5">"Unendlich viel Text..."</codeElement>
+		<codeElement elementId="4" newLine="true">)</codeElement>
+		<codeElement elementId="8">end</codeElement>
+	</code>
+	<output>
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+	</output>
+	<hintFiles>
+		<hintFile>Audio/success_sound</hintFile>
+		<hintFile>Audio/lasergun</hintFile>
+		<hintFile>Audio/bohrmaschine</hintFile>
+	</hintFiles>
+</level>
