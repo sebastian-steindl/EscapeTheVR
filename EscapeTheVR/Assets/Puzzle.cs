@@ -84,7 +84,11 @@ public class Puzzle
             // when the current element hasn't yet been moved to a slot, or has been removed from the slot.
             if (flattenedUserSolution[i] == null)
             {
-                wrongIndices.Add(i);
+                // This is the case if a slot is not correctly populated.
+                if (flattenedCorrectSolution[i]!=null)
+                    wrongIndices.Add(i);
+                
+                //The else case is when we have a variable element, which does not need to be initialized / has no direct value.
                 continue;
             }
 
