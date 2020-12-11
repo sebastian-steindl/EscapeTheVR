@@ -1,0 +1,37 @@
+<level>
+	<apiversion>10</apiversion>
+	<levelId>99</levelId>
+	<name>Print() Beispiel</name>
+	<descr>Hier benutzt du das erste Mal eine Funktion. Gib den Text aus.</descr>
+	<program>
+		<element isPartOfSolution="true">
+			<id>1</id>
+			<type>print()</type>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.239</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true" valueOfId="1">
+			<id>2</id>
+			<type>text</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text>Diesen Text solltest du ausgeben!</text>
+		</element>
+	</program>
+	<code>
+		<codeElement elementId="1">print(</codeElement>
+		<codeElement elementId="2">Diesen Text solltest du ausgeben!</codeElement>
+		<codeElement elementId="1">)</codeElement>
+	</code>
+	<hintFiles>
+		<hintFile>Audio/success_sound</hintFile>
+		<hintFile>Audio/lasergun</hintFile>
+		<hintFile>Audio/bohrmaschine</hintFile>
+	</hintFiles>
+	<output>
+		Diesen Text solltest du ausgeben!
+	</output>
+</level>

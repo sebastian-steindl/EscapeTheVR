@@ -1,0 +1,35 @@
+<level>
+	<apiversion>10</apiversion>
+	<levelId>0</levelId>
+	<name>Variable befüllen</name>
+	<descr>Befülle die Variable mit einem Wert. Eine grundlegende Aufgabe der Programmierung.</descr>
+	<program>
+		<element isPartOfSolution="true">
+			<id>1</id>
+			<type>variable</type>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.73</positionZ>
+			<text></text>
+			<hintPath></hintPath>
+		</element>
+		<element isPartOfSolution="true" valueOfId="1">
+			<id>2</id>
+			<type>number</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text>32</text>
+		</element>
+	</program>
+	<code>
+		<codeElement elementId="1" newLine="true">variable = 32</codeElement>
+	</code>
+	<hintFiles>
+		<hintFile>Audio/success_sound</hintFile>
+		<hintFile>Audio/lasergun</hintFile>
+		<hintFile>Audio/bohrmaschine</hintFile>
+	</hintFiles>
+	<output>
+	</output>
+</level>
