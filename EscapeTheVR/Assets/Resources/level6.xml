@@ -2,7 +2,7 @@
 	<apiversion>10</apiversion>
 	<levelId>6</levelId>
 	<name>Double trouble!</name>
-	<descr>Deine Aufgabe ist es, die Zahl 2 so lange zu verdoppeln, bis sie den Wert 10 erreicht!</descr>
+	<descr>Deine Aufgabe ist es, die Zahl 2 so lange zu verdoppeln, bis sie den Wert 8 erreicht!</descr>
 	<program>
 		<element isPartOfSolution="true">
 			<id>1</id>
@@ -20,7 +20,7 @@
 			<positionZ>-2.6</positionZ>
 			<text></text>
 		</element>
-		<element isPartOfSolution="true" valueOfId="1">
+		<element isPartOfSolution="true" valueOfId="2">
 			<id>3</id>
 			<type>number</type>
 			<positionX>-1.93</positionX>
@@ -30,22 +30,14 @@
 		</element>
 		<element>
 			<id>4</id>
-			<type>!</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
-			<text></text>
-		</element>
-		<element>
-			<id>5</id>
-			<type>==</type>
+			<type>!=</type>
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
-			<id>4</id>
+			<id>5</id>
 			<type>variable</type>
 			<positionX>-1.9</positionX>
 			<positionY>3.638</positionY>
@@ -53,42 +45,49 @@
 			<text></text>
 			<hintPath></hintPath>
 		</element>
-		<element isPartOfSolution="true" valueOfId="1">
-			<id>5</id>
+		<element isPartOfSolution="true" valueOfId="5">
+			<id>6</id>
 			<type>number</type>
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>
-			<text>10</text>
+			<text>16</text>
 		</element>
-		<element isPartOfSolution="true" valueOfId="1">
-			<id>5</id>
-			<type>number</type>
+		<element isPartOfSolution="true" isLocked="true">
+			<id>7</id>
+			<type>variable</type>
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>
-			<text>10</text>
+			<text></text>
 		</element>
-		<element isPartOfSolution="true" valueOfId="1">
-			<id>5</id>
+		<element isPartOfSolution="true">
+			<id>8</id>
+			<type>*=</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>9</id>
 			<type>number</type>
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>
-			<text>10</text>
+			<text>2</text>
 		</element>
 	</program>
 	<code>
-		<codeElement elementId="1" newLine="true">variable = 32</codeElement>
-		<codeElement elementId="3">while</codeElement>
-		<codeElement elementId="4">i in range(</codeElement>
-		<codeElement elementId="5">0, </codeElement>
-		<codeElement elementId="6">5</codeElement>
-		<codeElement elementId="4">)</codeElement>
-		<codeElement elementId="3">:</codeElement>
-		<codeElement elementId="7">		print(</codeElement>
-		<codeElement elementId="1" newLine="true">		variable</codeElement>
-		<codeElement elementId="7">		)</codeElement>
+		<codeElement elementId="2" newLine="true">variable = 2</codeElement>
+		<codeElement elementId="1">while (</codeElement>
+		<codeElement elementId="2">variable </codeElement>
+		<codeElement elementId="4">!= </codeElement>
+		<codeElement elementId="6">16</codeElement>
+		<codeElement elementId="1" newLine="true">):</codeElement>
+		<codeElement elementId="2">		variable</codeElement>
+		<codeElement elementId="8">		*=</codeElement>
+		<codeElement elementId="9">		2</codeElement>
 	</code>
 	<hintFiles>
 		<hintFile>Audio/success_sound</hintFile>
