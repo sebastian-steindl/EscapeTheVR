@@ -102,6 +102,10 @@ public class GameBoardScript : MonoBehaviour
                 return Resources.Load("prefabEndElement", typeof(GameObject)) as GameObject;
             case "if":
                 return Resources.Load("prefabIfElement", typeof(GameObject)) as GameObject;
+            case "!=":
+                return Resources.Load("prefabNotEqualsElement", typeof(GameObject)) as GameObject;
+            case "*=":
+                return Resources.Load("prefabMultiplyEqualsElement",  typeof(GameObject)) as GameObject;
             default:
                 throw new ArgumentOutOfRangeException("Unknown element type: " + puzzleProgrammingElement.type);
         }

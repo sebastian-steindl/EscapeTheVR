@@ -67,5 +67,7 @@ public enum programmingElement
     elemNumber, // number for variables (int)
     elemBool, // bool for variables
     elemInterval, // interval between two ints, e.g. used in for
-    elemEnd //End of loops/conditions
+    elemEnd,//End of loops/conditions
+    elemNotEquals, // !=
+    elemMultiplyEquals, // *=
 }

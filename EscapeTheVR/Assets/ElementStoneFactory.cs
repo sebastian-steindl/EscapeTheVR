@@ -38,7 +38,7 @@ public class ElementStoneFactory
         return es;
 
     }
-
+    [Obsolete("Das wird denke ich nicht mehr verwendet.")]
     private Sprite getIcon(programmingElement elem)
     {
         // todo fill switch case
@@ -78,7 +78,7 @@ public class ElementStoneFactory
         }
         return Resources.Load("ItemPlaceholder", typeof(Sprite)) as Sprite;
     }
-
+    [Obsolete("Das wird denke ich nicht mehr verwendet.")]
     private string getDescription(programmingElement elem)
     {
         // todo fill switch case
@@ -120,6 +120,7 @@ public class ElementStoneFactory
         return Constants.descriptionDefault;
     }
 
+    [Obsolete("Das wird denke ich nicht mehr verwendet, da die Farbe über das Prefab kommt.")]
     private Color getStoneColor(programmingElement elem)
     {
         // todo fill switch case
@@ -192,6 +193,10 @@ public class ElementStoneFactory
                 return programmingElement.elemInterval;
             case "end":
                 return programmingElement.elemEnd;
+            case "*=":
+                return programmingElement.elemMultiplyEquals;
+            case "!=":
+                return programmingElement.elemNotEquals;
             default:
                 return programmingElement.elemVar;
         }
