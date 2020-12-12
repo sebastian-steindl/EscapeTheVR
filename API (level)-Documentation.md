@@ -8,6 +8,10 @@
 ## How are the elements orderd?
 The order in the XML file determens the order of the `element`-tags appear in the `program` section. There is only one exception: if an element has the attribute `program.element:isPartOtSolution` set to false, the element will be ignored.
 
+## How to add a new Element?
+1) Create the prefab. Example: Drag a prefab into the scene, rename it to the new prefabName, drag it into the Resources folder and choose the option to create a new Prefab.
+2) Update both switch cases in: ElementStoneFactory.cs::getProgrammingElementByString() AND GameboardScript.cs::getPrefabForPuzzleProgrammingElement()
+
 ## Fields
  Field | Value | Description |
 --- | --- | --- |
@@ -48,4 +52,5 @@ Currently there are the following programmingElement-types:
 - `bool`: represents a bool value
 - `interval`: creates an interval (needs to number blocks as reference)
 - `end`: marks the end of a sequence
-
+- `!=`: not equals
+- `*=`: multiply equals, i.e.: i*=2 is the same as i = i*2
