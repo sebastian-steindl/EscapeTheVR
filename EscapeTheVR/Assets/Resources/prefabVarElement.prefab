@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3293026878377923129}
   - component: {fileID: 3293026878377923130}
   m_Layer: 0
-  m_Name: variable
+  m_Name: prefabVarElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: e37d1fd79aea64a918d046b55e3f048c, type: 3}
+  - {fileID: 2100000, guid: 582d2cfd4842c954d82eba0d037da054, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

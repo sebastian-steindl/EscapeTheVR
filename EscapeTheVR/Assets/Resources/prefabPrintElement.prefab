@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: -9153571769960554306}
   - component: {fileID: -2090409762288611024}
   m_Layer: 0
-  m_Name: print()
+  m_Name: prefabPrintElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +217,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 1a5bbfe5cbe8949c98cdcdbfbd74313e, type: 3}
+  - {fileID: 2100000, guid: b581dd7f344f54a4a9477210a69989ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
