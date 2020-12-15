@@ -6,6 +6,7 @@ public class LevelHintButtonBehavior : MonoBehaviour
 {
     private int levelID = -1;
     private int nextSoundIndex = 0;
+    private Collider lastCollider = null;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,25 @@ public class LevelHintButtonBehavior : MonoBehaviour
         }
 
         this.PlayNextHint(currentLevel);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other);
+        Debug.Log(other.name);
+        if (other.name == "Sphere (2)")
+        {
+            OnMouseDown();
+            lastCollider = other;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if(lastCollider == other)
+        {
+            lastCollider = null;
+        }
     }
 
     // Cycle through all sounds of the level.

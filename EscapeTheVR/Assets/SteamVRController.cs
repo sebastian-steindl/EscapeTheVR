@@ -145,12 +145,10 @@ public class SteamVRController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (!other.GetComponent<Rigidbody>())
+        if (other.GetComponent<Rigidbody>())
         {
-            return;
-        }
-
-        collidingObject = other.gameObject;
+            collidingObject = other.gameObject;
+        } 
     }
 
     public void OnTriggerExit(Collider other)
