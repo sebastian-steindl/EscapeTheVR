@@ -1,34 +1,49 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Pointer : MonoBehaviour
 {
-    [SerializeField] protected float defaultLength = 3.0f;
+    public float m_DefaultLength = 5.0f;
+    public GameObject m_Dot;
+    public VRInputModule m_InputModule;
 
-    private LineRenderer lineRenderer = null;
+    private LineRenderer m_LineRenderer = null;
 
     private void Awake()
     {
-        lineRenderer = GetComponent<LineRenderer>();
+        m_LineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
     {
-        UpdateLength();
+        UpdateLine();
     }
 
-    private void UpdateLength()
-    { 
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, GetEnd());
-    }
-
-    protected virtual Vector3 GetEnd()
+    private void UpdateLine()
     {
-        return CalculateEnd(defaultLength);
+        PointerEventData data = m_InputModule.GetData();
+        float targetLength = data.pointerCurrentRaycast.distance == 0 ? m_DefaultLength : data.pointerCurrentRaycast.distance;
+
+        RaycastHit hit = CreateRaycast(targetLength);
+
+        Vector3 endPosition = transform.position + (transform.forward * targetLength);
+
+        if (hit.collider != null) endPosition = hit.point;
+
+        m_Dot.transform.position = endPosition;
+
+        m_LineRenderer.SetPosition(0, transform.position);
+        m_LineRenderer.SetPosition(1, endPosition);
     }
 
-    protected Vector3 CalculateEnd(float length)
+    private RaycastHit CreateRaycast(float length)
     {
-        return transform.position + (transform.forward * length);
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, transform.forward);
+        Physics.Raycast(ray, out hit, m_DefaultLength);
+
+        return hit;
     }
 }
