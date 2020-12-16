@@ -16,7 +16,7 @@ public class SlotManager
     public Vector3 pos;
     public Vector3 scale;
 
-    public float marginTopBottom = 0.25f;
+    public float marginTopBottom = 0.35f;
     public float marginLeftRight = 0.25f;
 
     public SlotManager(Vector3 pos, Vector3 scale, int slotNum = 1)
@@ -131,8 +131,8 @@ public class SlotManager
 
         float availableWidth = scale.z - 2 * marginLeftRight;
         float availableHeight = scale.y - 2 * marginTopBottom;
-        float xOffset = 0.5f;
-        float slotX = pos.x + xOffset;
+        float zOffset = 1.0f;
+        float slotZ = pos.z + zOffset;
 
         int columns = (int)Math.Floor(availableWidth / slotWidthHeight);
 
@@ -144,7 +144,7 @@ public class SlotManager
             for (int j = 0; j < columns; j++)
             {
                 float slotY = pos.y + marginTopBottom + i * (slotWidthHeight + padding);
-                float slotZ = pos.z + marginLeftRight + j * (slotWidthHeight + padding);
+                float slotX = pos.x + marginLeftRight + j * (slotWidthHeight + padding);
                 Debug.Log("Adding position: x, y, z" + slotX + ", " + slotY + ", " + slotZ);
                 slotPositions.Add(new Vector3(slotX, slotY, slotZ));
             }
