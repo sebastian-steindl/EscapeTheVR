@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 3398176662187554844}
   - component: {fileID: 1767491599567763385}
   - component: {fileID: 4567656587160306547}
+  - component: {fileID: 3568994355387232998}
+  - component: {fileID: 2590296122856621179}
   m_Layer: 0
-  m_Name: gameboard 1
+  m_Name: gameBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,3 +81,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3568994355387232998
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622061484368618150}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.040241685, y: 0.0030877185, z: 0.019999996}
+  m_Center: {x: -0.010120843, y: -0.009391366, z: 0}
+--- !u!114 &2590296122856621179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622061484368618150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531c6f2f6c1c4284b9be55fd73434b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedGameObj: {fileID: 0}
+  slotPrefab: {fileID: 2349171535577940172, guid: ea11757697e1bb24bab3861d39fa2444,
+    type: 3}
