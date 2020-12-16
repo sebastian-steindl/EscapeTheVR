@@ -2,7 +2,7 @@
 	<apiversion>10</apiversion>
 	<levelId>6</levelId>
 	<name>Double trouble!</name>
-	<descr>Deine Aufgabe ist es, die Zahl 2 so lange zu verdoppeln, bis sie den Wert 16 erreicht!</descr>
+	<descr>Deine Aufgabe ist es, die Zahl 4 so lange zu verdoppeln, bis sie den Wert 32 erreicht!</descr>
 	<program>
 		<element isPartOfSolution="true" isLocked="true">
 			<id>1</id>
@@ -26,7 +26,7 @@
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>
-			<text>2</text>
+			<text>4</text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>4</id>
@@ -51,7 +51,7 @@
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>
-			<text>16</text>
+			<text>32</text>
 		</element>
 		<element isPartOfSolution="true" isLocked="true">
 			<id>7</id>
@@ -79,11 +79,11 @@
 		</element>
 	</program>
 	<code>
-		<codeElement elementId="2" newLine="true">variable = 2</codeElement>
+		<codeElement elementId="2" newLine="true">variable = 4</codeElement>
 		<codeElement elementId="1">while (</codeElement>
 		<codeElement elementId="2">variable </codeElement>
 		<codeElement elementId="4">!= </codeElement>
-		<codeElement elementId="6">16</codeElement>
+		<codeElement elementId="6">32</codeElement>
 		<codeElement elementId="1" newLine="true">):</codeElement>
 		<codeElement elementId="2">		variable</codeElement>
 		<codeElement elementId="8">		*=</codeElement>
