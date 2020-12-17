@@ -15,6 +15,7 @@ public class LevelButton : MonoBehaviour
     {
         Debug.Log(text);
         GetComponentInChildren<TMP_Text>().text = text;
+        GetComponentInChildren<TMP_Text>().fontSize = 32;
     }
 
     private void Update()
