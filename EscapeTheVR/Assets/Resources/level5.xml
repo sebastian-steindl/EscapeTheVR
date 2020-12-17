@@ -1,6 +1,6 @@
 ﻿<level>
 	<apiversion>10</apiversion>
-	<levelId>4</levelId>
+	<levelId>5</levelId>
 	<name>Schleifen-Schleife</name>
 	<descr>Wie schon in Level 3 sollst du auch hier den Text fünf mal ausgeben - allerdings mit einer for-Schleife.</descr>
 	<program>
@@ -70,8 +70,8 @@
 		</element>
 	</program>
 	<code>
-		<codeElement elementId="1">for</codeElement>
-		<codeElement elementId="2"> i in range(</codeElement>
+		<codeElement elementId="1">for </codeElement>
+		<codeElement elementId="2">i in range(</codeElement>
 		<codeElement elementId="4">0</codeElement>
 		<codeElement elementId="2">, </codeElement>
 		<codeElement elementId="3">5</codeElement>

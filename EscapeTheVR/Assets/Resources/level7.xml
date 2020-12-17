@@ -1,6 +1,6 @@
 <level>
 	<apiversion>10</apiversion>
-	<levelId>6</levelId>
+	<levelId>7</levelId>
 	<name>Double trouble!</name>
 	<descr>Deine Aufgabe ist es, die Zahl 4 so lange zu verdoppeln, bis sie den Wert 32 erreicht!</descr>
 	<program>
@@ -80,11 +80,11 @@
 	</program>
 	<code>
 		<codeElement elementId="2" newLine="true">variable = 4</codeElement>
-		<codeElement elementId="1">while (</codeElement>
+		<codeElement elementId="1">while </codeElement>
 		<codeElement elementId="2">variable </codeElement>
 		<codeElement elementId="4">!= </codeElement>
 		<codeElement elementId="6">32</codeElement>
-		<codeElement elementId="1" newLine="true">):</codeElement>
+		<codeElement elementId="1" newLine="true">:</codeElement>
 		<codeElement elementId="2">		variable</codeElement>
 		<codeElement elementId="8">		*=</codeElement>
 		<codeElement elementId="9">		2</codeElement>

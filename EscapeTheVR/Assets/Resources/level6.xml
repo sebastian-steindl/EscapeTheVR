@@ -1,6 +1,6 @@
 ﻿<level>
 	<apiversion>10</apiversion>
-	<levelId>5</levelId>
+	<levelId>6</levelId>
 	<name>Can't stop won't stop!</name>
 	<descr>Baue eine Schleife, die einen Text unendlich oft ausgibt. Beim Programmieren möchte man eine solche Endlosschleife meistens vermeiden.</descr>
 	<program>
@@ -68,7 +68,7 @@
 		<codeElement elementId="1" newLine="true">):</codeElement>
 		<codeElement elementId="4">print(</codeElement>
 		<codeElement elementId="5">"Unendlich viel Text..."</codeElement>
-		<codeElement elementId="4" newLine="true">)</codeElement>
+		<codeElement elementId="4">)</codeElement>
 		<codeElement elementId="8">end</codeElement>
 	</code>
 	<output>

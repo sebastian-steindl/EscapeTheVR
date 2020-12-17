@@ -1,6 +1,6 @@
 <level>
 	<apiversion>10</apiversion>
-	<levelId>3</levelId>
+	<levelId>4</levelId>
 	<name>Allgemeine Handelsbedingungen</name>
 	<descr>Oft will man in Abhängigkeit eines Wertes unterschiedlich Handeln.
 	Wie man das löst, siehst du hier. Gib den Text aus, falls die Variable den Wert 5 hat.</descr>
@@ -72,9 +72,9 @@
 	</program>
 	<code>
 		<codeElement elementId="2" newLine="true">variable = 5</codeElement>
-		<codeElement elementId="1">if</codeElement>
-		<codeElement elementId="2">variable</codeElement>
-		<codeElement elementId="4">==</codeElement>
+		<codeElement elementId="1">if </codeElement>
+		<codeElement elementId="2">variable </codeElement>
+		<codeElement elementId="4">== </codeElement>
 		<codeElement elementId="5" newLine="true">5</codeElement>
 		<codeElement elementId="6">print(</codeElement>
 		<codeElement elementId="7">"Mich sollst du nur sehen, wenn die Variable den Wert 5 hat!"</codeElement>

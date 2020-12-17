@@ -1,6 +1,6 @@
 <level>
 	<apiversion>10</apiversion>
-	<levelId>99</levelId>
+	<levelId>1</levelId>
 	<name>Die Funktion Print()</name>
 	<descr>Hier benutzt du das erste Mal eine sog. Funktion. Nutze sie um Text auszugeben.</descr>
 	<program>

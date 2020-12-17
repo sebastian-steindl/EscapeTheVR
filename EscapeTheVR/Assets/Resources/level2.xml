@@ -1,6 +1,6 @@
 <level>
 	<apiversion>10</apiversion>
-	<levelId>1</levelId>
+	<levelId>2</levelId>
 	<name>Hallo Welt!</name>
 	<descr>Nutze dein Wissen aus den vorherigen Leveln um "Hallo Welt!" auszugeben.</descr>
 	<program>

@@ -1,6 +1,6 @@
 <level>
 	<apiversion>10</apiversion>
-	<levelId>2</levelId>
+	<levelId>3</levelId>
 	<name>Ordentlich reinschleifen</name>
 	<descr>Hier lernst du Schleifen kennen. Rufe die print()-Funktion fünf mal auf - mit nur einem Stein!</descr>
 	<program>
@@ -72,15 +72,15 @@
 	</program>
 	<code>
 		<codeElement elementId="1" newLine="true">variable = 32</codeElement>
-		<codeElement elementId="3">while</codeElement>
+		<codeElement elementId="3">while </codeElement>
 		<codeElement elementId="4">i in range(</codeElement>
 		<codeElement elementId="5">0, </codeElement>
 		<codeElement elementId="6">5</codeElement>
 		<codeElement elementId="4">)</codeElement>
 		<codeElement elementId="3">:</codeElement>
 		<codeElement elementId="7">		print(</codeElement>
-		<codeElement elementId="1" newLine="true">		variable</codeElement>
-		<codeElement elementId="7">		)</codeElement>
+		<codeElement elementId="1">variable</codeElement>
+		<codeElement elementId="7">)</codeElement>
 	</code>
 	<output>
 		32
