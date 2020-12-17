@@ -131,7 +131,7 @@ public class SlotManager
 
         float availableWidth = scale.z - 2 * marginLeftRight;
         float availableHeight = scale.y - 2 * marginTopBottom;
-        float zOffset = 1.0f;
+        float zOffset = 1.2f;
         float slotZ = pos.z + zOffset;
 
         int columns = (int)Math.Floor(availableWidth / slotWidthHeight);
