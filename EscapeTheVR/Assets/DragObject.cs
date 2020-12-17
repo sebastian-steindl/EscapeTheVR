@@ -29,8 +29,6 @@ public class DragObject : MonoBehaviour
     {
         this.element = ElementStoneFactory.Instance.createElementStone(programmingElementType);
         this.hasGravity = GetComponent<Rigidbody>().useGravity;
-
-        this.gameObject.GetComponent<Renderer>().material = MaterialLoader.Instance.getMaterial(programmingElementType);
     }
 
     private void OnMouseDown()
