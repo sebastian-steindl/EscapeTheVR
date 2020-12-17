@@ -25,6 +25,7 @@ public class Slot
     public void setElement(DragObject dragObject) {
         this.dragObject = dragObject;
         elem = dragObject.element;
+        dragObject.transform.eulerAngles = new Vector3(0f, 0f, 0f);
     }
 
     public void setElement(ElementStone element)
