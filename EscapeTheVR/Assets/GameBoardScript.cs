@@ -31,7 +31,7 @@ public class GameBoardScript : MonoBehaviour
         //create workbench
         var workbench = Instantiate(Resources.Load("Workbench", typeof(GameObject)) as GameObject);
         workbench.transform.parent = this.transform.parent;
-        workbench.transform.position = Constants.workbenchCoords; //TODO: Set as values in constant class.
+        workbench.transform.position = Constants.workbenchCoords;
         workbench.name = Constants.workbenchName;
 
         gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
