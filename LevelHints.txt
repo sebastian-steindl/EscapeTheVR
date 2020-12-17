@@ -1,0 +1,43 @@
+Level 0: Oder als Intro-Text? Wir wollten ja mal eine Spielanleitung
+- Das ist dein erstes Level. In diesem virtuellen Hörsaal findest du Steine, mit denen du Rätsel lösen kannst. Die Rätsel sind ans Programmieren angelehnt. Wenn du mir die Steine gibst, kann ich dir genauere Informationen dazu geben. 
+Die Rätsel kannst du lösen, indem du die Steine in der richtigen Reihenfolge an dem Gameboard befestigst, das direkt hier an der Säule hängt. Manche Steine musst du erst an der Workbench bearbeiten. Die Workbench findest du (...?).
+- Versuche die Variable an der Workbench mit der Zahl zu befüllen.
+- Dann musst du die Variable nur noch in das Gameboard legen
+
+Lvl 1: 
+- Funktionen sind ein sehr wichtiges Element in der Programmierung. Zwischen den Klammern steht die Eingabe, auch Parameter genannt, für die Funktion.
+- Die Print Funktion wird verwendet um ihre Eingabe auszugeben.
+- Versuche also, den Funktionsstein und dann den Textstein auf das Gameboard zu legen.
+
+Lvl 2:
+- Erinnere dich an Level 0 und 1 zurück und nutze dieses Wissen um das Rätsel zu lösen.
+- Weißt du noch? Zuerst hast du die Variable befüllt
+- Und dem Print-Stein kannst du eine Eingabe geben
+
+Lvl 3:
+- Mit Schleifen kann man Aktionen mehrfach ausführen und mit Intervallen kannst du Zahlenbereiche definieren.
+- Nutze die while Schleife um die Print-Funktion mehrfach zu verwenden.
+- Du sollst die Funktion Fünf mal aufrufen, da kann auch ein Intervall nützlich sein.
+
+
+Lvl 4: 
+- Mit dem if-Stein kannst du festlegen, unter welcher Bedingung dein Code ausgeführt werden soll
+- Die Bedingung ist hier variable ist gleich 5. Nur dann soll print aufgerufen werden.
+
+Lvl 5: 
+- Erinner dich an Level 3 zurück.
+- Eine for-Schleife funktioniert sehr ähnlich wie die while Schleife.
+- Du sparst dir hier sogar, die Variable hochzuzählen
+
+Lvl 6: 
+- Oh nein, eine Endlosschleife! 
+- Die while Schleife wird so lange ausgeführt, bis ihr Parameter false ist.
+- Wenn du bewusst eine Endlosschleife erzeugen willst, musst du dafür sorgen, dass der Parameter immer true ist.
+- Probier mal, den Variablenstein mit true zu füllen
+- Den Rest übernimmt die print Funktion!
+
+Lvl 7:
+- So schwer ist das nicht!
+- Zunächst brauchst du wieder eine Schleife
+- Die Bedingung für die Schleife steckt schon im Rätsel
+- Dann muust du die Variable nur noch mit dem richtigen Wert befüllen und in der Schleife mit dem passenden Wert multiplizieren
