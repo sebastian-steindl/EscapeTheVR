@@ -12,7 +12,7 @@
 			<positionZ>-2.239</positionZ>
 			<text></text>
 		</element>
-		<element isPartOfSolution="true" valueOfId="1">
+		<element isPartOfSolution="true" >
 			<id>2</id>
 			<type>text</type>
 			<positionX>-1.93</positionX>

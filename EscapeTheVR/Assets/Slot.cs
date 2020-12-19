@@ -28,11 +28,6 @@ public class Slot
         dragObject.transform.eulerAngles = new Vector3(0f, 0f, 0f);
     }
 
-    public void setElement(ElementStone element)
-    {
-        elem = element;
-    }
-
     public ElementStone getElement()
     {
         return elem;

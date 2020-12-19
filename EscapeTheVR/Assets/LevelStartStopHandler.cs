@@ -21,15 +21,15 @@ public class LevelStartStopHandler : MonoBehaviour
     {
         LevelManager.Instance().startLevelTimer();
 
+        Debug.Log("Level" + levelId.ToString() + "started");
+
         switch (levelId)
         {
             case 1:
-                Debug.Log("Level 1 started");
                 break;
             case 2:
-                Debug.Log("Level 2 started");
                 break;
-            case 3:
+            case 6:
                 // this inverses the game mode, i.e. the code is shown right at the beginngin 
                 // TODO --> level hints/beschreibung anpassen
                 gameboard.updateCodeText();
