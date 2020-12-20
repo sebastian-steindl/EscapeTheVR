@@ -38,6 +38,12 @@ public class LevelStartStopHandler : MonoBehaviour
                 Debug.Log("LevelStartStopHandler::StartLevel called but no case was programmed for levelId: " + levelId);
                 break;
         }
+
+        // Reset the shelf board on every level
+        foreach (var target in FindObjectsOfType<TargetBehavior>())
+        {
+            target.ControlledObject.SetActive(true);
+        }
     }
 
     public void StopLevel(int levelId)
