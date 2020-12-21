@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class ChangeSceneScript : MonoBehaviour
 {
-    private bool playAudio = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,15 +54,11 @@ public class ChangeSceneScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playAudio)
-        {
-            playAudio = false;
-            AudioManager.Instance.playSuccess();
-        }
     }
 
     public void startLevel()
     {
+        LevelManager.Instance().NextLevel();
         SceneManager.LoadScene("GameScene");
     }
 

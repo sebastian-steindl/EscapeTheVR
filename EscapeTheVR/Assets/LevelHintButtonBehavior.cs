@@ -23,6 +23,7 @@ public class LevelHintButtonBehavior : MonoBehaviour
     public void OnMouseDown()
     {
         var currentLevel = LevelManager.Instance().getCurrentLevel();
+        Debug.Log("Fu!");
         
         // Reset sound index when the next level is loaded.
         if (currentLevel.levelId != this.levelID)
@@ -38,6 +39,7 @@ public class LevelHintButtonBehavior : MonoBehaviour
     {
         Debug.Log(other);
         Debug.Log(other.name);
+        Debug.Log("Well");
         if (other.name == "Sphere (2)")
         {
             OnMouseDown();

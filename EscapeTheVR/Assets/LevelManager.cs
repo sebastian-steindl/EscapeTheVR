@@ -66,8 +66,6 @@ public class LevelManager
         }
         else
             done = true;
-
-        SceneManager.LoadScene("ChangeScene");
     }
 
     public void startLevelTimer() {
