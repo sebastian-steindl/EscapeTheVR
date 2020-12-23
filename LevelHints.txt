@@ -29,6 +29,7 @@ Lvl 2:
 - Und dem Print-Stein kannst du eine Eingabe geben
 
 Lvl 3:
+- Das Spielbrett ist nach oben gerutscht. Da hast du wohl einen Bug gefunden! Wenn du sehr groß bist, hast du Glück gehabt. Ansonsten kannst du hoffentlich gut werfen....Ein anderer Workaround fällt mir auch nicht ein.
 - Mit Schleifen kann man Aktionen mehrfach ausführen und mit Intervallen kannst du Zahlenbereiche definieren.
 - Nutze die while Schleife um die Print-Funktion mehrfach zu verwenden.
 - Du sollst die Funktion fünf mal aufrufen, da kann auch ein Intervall nützlich sein.
