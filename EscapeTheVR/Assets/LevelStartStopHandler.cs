@@ -29,6 +29,12 @@ public class LevelStartStopHandler : MonoBehaviour
                 break;
             case 2:
                 break;
+
+            case 4:
+                var positionChange = new Vector3(0, 2f, 0);
+                gameboard.transform.position += positionChange;
+                gameboard.updateSlotPositions(positionChange);
+                break;
             case 6:
                 // this inverses the game mode, i.e. the code is shown right at the beginngin 
                 // TODO --> level hints/beschreibung anpassen
@@ -57,6 +63,12 @@ public class LevelStartStopHandler : MonoBehaviour
                 break;
             case 2:
                 Debug.Log("Level 2 stopped");
+                break;
+            case 4:
+                // TODO: This is probably not needed, since they are created again with the beginning of the next level
+                var positionChange = new Vector3(0, -2f, 0);
+                gameboard.transform.position += positionChange;
+                gameboard.updateSlotPositions(positionChange);
                 break;
             default:
                 Debug.Log("LevelStartStopHandler::StartLevel called but no case was programmed for levelId: " + levelId);

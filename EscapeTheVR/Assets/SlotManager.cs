@@ -47,6 +47,7 @@ public class SlotManager
         }
     }
 
+
     internal void unlockAllDragObjects()
     {
         slots.ForEach(s =>

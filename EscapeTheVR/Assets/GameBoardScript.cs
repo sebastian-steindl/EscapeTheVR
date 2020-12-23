@@ -19,10 +19,11 @@ public class GameBoardScript : MonoBehaviour
     public GameObject slotPrefab;
     private List<ElementStone> allElementStones;
     private Slot lastClosest;
+    private List<GameObject> createdSlotGameObjects = new List<GameObject>();
 
     void Start()
     {
-        Level level = LevelManager.Instance().loadLevel(PlayerPrefs.GetInt(Constants.playerPrefsLevel,1));
+        Level level = LevelManager.Instance().loadLevel(PlayerPrefs.GetInt(Constants.playerPrefsLevel,4));
         puzzle = PuzzleXMLReader.createLevel(level);
 
         Debug.Log("Size: " + gameObject.GetComponent<MeshRenderer>().bounds.size);
@@ -34,7 +35,7 @@ public class GameBoardScript : MonoBehaviour
         workbench.transform.position = Constants.workbenchCoords;
         workbench.name = Constants.workbenchName;
 
-        gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
+        gameBoard.slots.ForEach(s => createdSlotGameObjects.Add(createSlotFromPrefab(s)));
         int i = 0;
         foreach (PuzzleProgrammingElement programmingElement in level.puzzleProgrammingElements)
         {
@@ -111,13 +112,34 @@ public class GameBoardScript : MonoBehaviour
         }
     }
 
-    public Slot createSlotFromPrefab(Slot slot)
+    public GameObject createSlotFromPrefab(Slot slot)
     {
         GameObject instantiated = Instantiate(slotPrefab);
         instantiated.transform.position = slot.position;
-        return null;
+        return instantiated;
+    }
+    internal void updateSlotPositions(Vector3 positionChange)
+    {
+        createdSlotGameObjects.ForEach(s =>
+        {
+            s.transform.position += positionChange;
+        });
     }
 
+    /*
+    This resets all slots where the element wasn't locked by the XML and drops them to the floor.     
+    */
+    internal void resetSlots()
+    {
+        gameBoard.slots.ForEach(s =>
+        {
+            if(!s.GetDragObject().isLocked) {
+                s.GetDragObject().transform.position += new Vector3(0f, 0f, 1f);
+                s.GetDragObject().enableGravity();
+                s.resetElement();
+            }
+        });
+    }
     public SlotManager GetGameBoard() { return gameBoard; }
 
     // Update is called once per frame

@@ -14,6 +14,7 @@ public class Slot
     private float height;
     static float threshold = 0.3f;
     private DragObject dragObject;
+    
 
     public Slot(Vector3 pos, float width, float height)
     {
