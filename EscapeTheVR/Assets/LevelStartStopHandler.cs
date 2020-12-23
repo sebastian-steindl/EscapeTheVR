@@ -30,7 +30,7 @@ public class LevelStartStopHandler : MonoBehaviour
             case 2:
                 break;
 
-            case 4:
+            case 3:
                 var positionChange = new Vector3(0, 2f, 0);
                 gameboard.transform.position += positionChange;
                 gameboard.updateSlotPositions(positionChange);
@@ -64,7 +64,7 @@ public class LevelStartStopHandler : MonoBehaviour
             case 2:
                 Debug.Log("Level 2 stopped");
                 break;
-            case 4:
+            case 3:
                 // TODO: This is probably not needed, since they are created again with the beginning of the next level
                 var positionChange = new Vector3(0, -2f, 0);
                 gameboard.transform.position += positionChange;
