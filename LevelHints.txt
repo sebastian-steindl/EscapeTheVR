@@ -24,7 +24,7 @@ Lvl 1:
 - Versuche also mal, den Funktionsstein und dann den Textstein auf das Spielbrett zu legen.
 
 Lvl 2:
-- Erinnere dich an die ersten beiden Rätsel zurück und nutze dieses Wissen, um dieses zu lösen.
+- Erinnere dich an die ersten beiden Rätsel zurück und nutze dieses Wissen, um dieses Rätsel zu lösen.
 - Weißt du noch? Zuerst hast du die Variable an der Werkbank befüllt
 - Und dem Print-Stein kannst du eine Eingabe geben
 
