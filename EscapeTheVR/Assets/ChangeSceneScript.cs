@@ -16,7 +16,7 @@ public class ChangeSceneScript : MonoBehaviour
         {
             if (t.name == "LevelText")
             {
-                t.text = levelMan.getLastLevel().name;
+                t.text = "\"" + levelMan.getLastLevel().name + "\"";
                 continue;
             }
             if (t.name == "TimeText")
