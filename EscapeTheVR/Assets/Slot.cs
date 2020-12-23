@@ -17,7 +17,7 @@ public class Slot
 
     public Slot(Vector3 pos, float width, float height)
     {
-        position = pos;
+        position = new Vector3(pos.x + width, pos.y + height, pos.z);
         this.width = width;
         this.height = height;
     }

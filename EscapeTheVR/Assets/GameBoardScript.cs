@@ -25,9 +25,9 @@ public class GameBoardScript : MonoBehaviour
         Level level = LevelManager.Instance().loadLevel(PlayerPrefs.GetInt(Constants.playerPrefsLevel,1));
         puzzle = PuzzleXMLReader.createLevel(level);
 
-        gameBoard = new SlotManager(gameObject.transform.position, gameObject.transform.localScale, puzzle.getNumberOfSlots());
+        Debug.Log("Size: " + gameObject.GetComponent<MeshRenderer>().bounds.size);
+        gameBoard = new SlotManager(gameObject.transform.position, gameObject.GetComponent<MeshRenderer>().bounds.size, puzzle.getNumberOfSlots());
         gameBoard.initSlots();
-
         //create workbench
         var workbench = Instantiate(Resources.Load("Workbench", typeof(GameObject)) as GameObject);
         workbench.transform.parent = this.transform.parent;
