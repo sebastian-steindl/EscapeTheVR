@@ -10,7 +10,6 @@ public class ButtonResetGameboard : MonoBehaviour
     private Collider lastCollider = null;
     void Start()
     {
-        gameboard = FindObjectOfType<GameBoardScript>();
     }
 
     // Update is called once per frame
@@ -20,20 +19,15 @@ public class ButtonResetGameboard : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        //gameboard.resetSlots();
+        if (!gameboard) gameboard = FindObjectOfType<GameBoardScript>();
+        gameboard.resetSlots();
     }
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
-        Debug.Log(other.name);
         if (other.name == "Sphere (2)")
         {
             OnMouseDown();
             lastCollider = other;
-        }
-        else
-        {
-            Debug.LogWarning("IS THIS CORRECT? The name was not Spehere (2) but still calling OnMouseDown()");
         }
     }
 
