@@ -124,6 +124,7 @@ public class GameBoardScript : MonoBehaviour
         {
             s.transform.position += positionChange;
         });
+        gameBoard.slots.ForEach(s => s.position += positionChange);
     }
 
     /*
@@ -131,12 +132,18 @@ public class GameBoardScript : MonoBehaviour
     */
     internal void resetSlots()
     {
+        Debug.LogWarning("RESET SLOTS CALLED");
         gameBoard.slots.ForEach(s =>
         {
-            if(!s.GetDragObject().isLocked) {
-                s.GetDragObject().transform.position += new Vector3(0f, 0f, 1f);
-                s.GetDragObject().enableGravity();
-                s.resetElement();
+            // if the slot has no element in it, the dragObject will be null
+            if (s.GetDragObject() != null)
+            { 
+                // if the element was locked by XML don't reset its slot
+                if(!s.GetDragObject().isLocked) {
+                    s.GetDragObject().transform.position += new Vector3(0f, 0f, 1f);
+                    s.GetDragObject().enableGravity();
+                    s.resetElement();
+                }
             }
         });
     }
