@@ -24,7 +24,7 @@ public class WorkbenchScript : MonoBehaviour
         createdContentSlots = new List<GameObject>();
         var negativContainerSlotOffset = new Vector3(0, 0, -0.4f);
         containerSlotManager = new SlotManager(gameObject.transform.position + negativContainerSlotOffset, gameObject.GetComponentInChildren<MeshRenderer>().bounds.size, 1, 0.7f);
-        contentSlotOffset = new Vector3(0,0,0.4f);
+        contentSlotOffset = new Vector3(-0.9f,0,0);
         containerSlotManager.initSlots(); 
         containerSlotManager.slots.ForEach(s => createSlotFromPrefab(s));
         contentSlotManager = new SlotManager(gameObject.transform.position + contentSlotOffset, gameObject.GetComponentInChildren<MeshRenderer>().bounds.size, 0, 0.7f);
@@ -79,7 +79,7 @@ public class WorkbenchScript : MonoBehaviour
             (bool isCloseEnough, Slot closest) = containerSlotManager.handlesElementToSlotRelation(selectedElement);
             if (isCloseEnough && (selectedProgrammigElementType == programmingElement.elemVar || selectedProgrammigElementType == programmingElement.elemInterval))
             {
-                contentSlotManager = new SlotManager(gameObject.transform.position+contentSlotOffset, gameObject.transform.localScale, getNumberOfNeededFillSlots(selectedProgrammigElementType));
+                contentSlotManager = new SlotManager(gameObject.transform.position+contentSlotOffset, gameObject.GetComponentInChildren<MeshRenderer>().bounds.size, getNumberOfNeededFillSlots(selectedProgrammigElementType), 0.4f);
                 contentSlotManager.initSlots();
                 contentSlotManager.slots.ForEach(s => createdContentSlots.Add(createSlotFromPrefab(s)));
                 // if selectedElem is a container, checkIf its close enhough to the slot
