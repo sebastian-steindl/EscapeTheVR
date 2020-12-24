@@ -278,7 +278,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7003495708189396488}
   - component: {fileID: 7045772504210906674}
-  - component: {fileID: 2703832214031584771}
   m_Layer: 0
   m_Name: Workbench
   m_TagString: Untagged
@@ -317,19 +316,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotPrefab: {fileID: 2349171535577940172, guid: ea11757697e1bb24bab3861d39fa2444,
     type: 3}
---- !u!65 &2703832214031584771
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6428550047067171689}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8568085258175610182
 GameObject:
   m_ObjectHideFlags: 0
