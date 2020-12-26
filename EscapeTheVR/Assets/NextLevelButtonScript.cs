@@ -20,11 +20,12 @@ public class NextLevelButtonScript : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("We are going to change the scene.");
-        if(FindObjectOfType<GameBoardScript>().puzzle.isSolved)
+        if (FindObjectOfType<GameBoardScript>().puzzle?.isSolved == true)
+        {
             SceneManager.LoadScene("ChangeScene");
+        }
     }
 
-    //I'm not sure if this will be necessary for the button to work in VR...
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("OnTriggerEnterCalled!");
