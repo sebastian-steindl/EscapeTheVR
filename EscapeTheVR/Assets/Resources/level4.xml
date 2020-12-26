@@ -8,49 +8,49 @@
 		<element isPartOfSolution="true">
 			<id>1</id>
 			<type>if</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
+			<positionX>9.38</positionX>
+			<positionY>-2.55</positionY>
+			<positionZ>-10.86</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>2</id>
 			<type>variable</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.73</positionZ>
+			<positionX>6.08</positionX>
+			<positionY>2.15</positionY>
+			<positionZ>-4.41</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true" valueOfId="2">
 			<id>3</id>
 			<type>number</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
+			<positionX>-9.36</positionX>
+			<positionY>1.70</positionY>
+			<positionZ>-9.50</positionZ>
 			<text>5</text>
 		</element>
 		<element isPartOfSolution="true" >
 			<id>4</id>
 			<type>==</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
+			<positionX>-6.00</positionX>
+			<positionY>1.79</positionY>
+			<positionZ>2.68</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>3</id>
 			<type>number</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
+			<positionX>-10.19</positionX>
+			<positionY>1.46</positionY>
+			<positionZ>-0.56</positionZ>
 			<text>5</text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>6</id>
 			<type>print()</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
+			<positionX>-1.64</positionX>
+			<positionY>5.03</positionY>
+			<positionZ>-9.83</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
@@ -64,9 +64,9 @@
 		<element isPartOfSolution="true">
 			<id>8</id>
 			<type>end</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.239</positionZ>
+			<positionX>10.05</positionX>
+			<positionY>1.55</positionY>
+			<positionZ>4.91</positionZ>
 			<text></text>
 		</element>
 	</program>
