@@ -1,12 +1,12 @@
 Intro: 
-- Hallo angehender Student, du bist hier in einem virtuellen Hörsaal der OTH Amberg-Weiden! 
+- Hallo angehender Student, du bist hier in einem virtuellen Hörsaal der OTH Amberg-Weiden! Ich bin dein Professor. Du findest mich neben dem Smartboard.
 - Diese Hörsaal ist ein Escape-Room. Du musst Rätsel lösen um darin weiterzukommen.
 - Die Rätsel kannst du lösen, indem du die Steine, in der richtigen Reihenfolge an dem Spielbrett befestigst. Die Steine sind in diesem Raum versteck.
 - Das Spielbrett hängt hier an der Säule. Manche Steine musst du erst an der Werkbank bearbeiten. Die Werkbank findest du am anderen Ende des Raumes an der Wand.
 - An dem Smartboard gibt es eine Auflistung aller Steine, die dir für dieses Rätsel zur Verfügung stehen. Denk daran, sie können überall versteckt sein.
 - Außerdem steht dort auch der Programmier-Code, den du erzeugt hast und auch dessen Ausgabe - natürlich erst, nachdem du das Rätsel gelöst hast.
 - Wenn du einen Stein aufhebst, kannst du ihn in dein Inventar legen. Mit deinem Controller kannst du das Inventar öffnen und einen Stein wieder in die Hand nehmen. 
-- Wenn du dem Professor einen Stein gibst, wird er dir etwas über ihn erzählen.
+- Wenn du mir einen Stein gibst, werde ich dir etwas über ihn erzählen.
 - Falls du einen Tipp zum Rätsel allgemein brauchst, kannst du den Knopf am Pult drücken.
 - Um das Spielbrett zurückzusetzen kannst du den Knopf verwenden, der darunter steht.
 - Sobald du ein Rätsel gelöst hast, kannst du dir auf dem Smartboard anzuschauen, was die Steine im Code bewirken. Nimm den Stein dafür einfach aus dem Spielbrett in die Hand.
