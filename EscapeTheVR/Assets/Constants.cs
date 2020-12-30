@@ -15,7 +15,7 @@ public static class Constants
                 Workbench Data
          */
     public static readonly string workbenchName = "Workbench";
-    public static readonly Vector3 workbenchCoords = new Vector3(-1.5f, 3.29f, -4.0f);
+    public static readonly Vector3 workbenchCoords = new Vector3(-7f, 3.5f, -10f);
 
 
 

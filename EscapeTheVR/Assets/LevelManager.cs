@@ -12,7 +12,7 @@ public class LevelManager
 {
     private static LevelManager levelInstance = new LevelManager();
     private List<Level> levels;
-    private int currentLevelId = 1;
+    private int currentLevelId = 0;
     private Stopwatch stopwatch;
     private bool done = false;
 
@@ -25,11 +25,11 @@ public class LevelManager
 
     public Level getCurrentLevel()
     {
-        return getLevel(currentLevelId ==0 ? 0 : currentLevelId - 1);//Since there is currently no level with the id 0, there needs to be this offset by one. 
+        return getLevel(currentLevelId);
     }
 
     public Level getLastLevel() {
-        return getLevel(currentLevelId < 2 ? 0 : currentLevelId - 2);
+        return getLevel(currentLevelId < 1 ? 0 : currentLevelId - 1);
     }
 
     public Level loadLevel(int id)
@@ -66,8 +66,6 @@ public class LevelManager
         }
         else
             done = true;
-
-        SceneManager.LoadScene("ChangeScene");
     }
 
     public void startLevelTimer() {

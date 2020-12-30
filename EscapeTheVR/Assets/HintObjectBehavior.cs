@@ -22,5 +22,12 @@ public class HintObjectBehavior : MonoBehaviour
         if (elementStone == null) return;
 
         elementStone.PlayHintSound();
+
+        // Play laughing animation
+        var anim = gameObject.GetComponent<Animation>();
+        if (!anim.isPlaying)
+        {
+            anim.Play("Armature|jiggling");
+        }
     }
 }

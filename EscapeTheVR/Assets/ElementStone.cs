@@ -26,7 +26,11 @@ public class ElementStone
         var audioSource = gameObject.GetComponent<AudioSource>();
         var clip = Resources.Load<AudioClip>(hintSoundPath);
         audioSource.clip = clip;
-        audioSource.Play();
+
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
     }
 }
 

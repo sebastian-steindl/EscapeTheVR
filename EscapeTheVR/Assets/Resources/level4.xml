@@ -1,92 +1,87 @@
-﻿<level>
+<level>
 	<apiversion>10</apiversion>
 	<levelId>4</levelId>
-	<name>For 1</name>
-	<descr>Print the text "Print in a loop" 5 times.</descr>
+	<name>Allgemeine Handelsbedingungen</name>
+	<descr>Oft will man in Abhängigkeit eines Wertes unterschiedlich Handeln.
+	Wie man das löst, siehst du hier. Gib den Text aus, falls die Variable den Wert 5 hat.</descr>
 	<program>
 		<element isPartOfSolution="true">
 			<id>1</id>
-			<type>for</type>
-			<positionX>-2.105</positionX>
-			<positionY>5.016</positionY>
-			<positionZ>-9.802</positionZ>
+			<type>if</type>
+			<positionX>9.38</positionX>
+			<positionY>-2.55</positionY>
+			<positionZ>-10.86</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>2</id>
-			<type>interval</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.73</positionZ>
+			<type>variable</type>
+			<positionX>6.08</positionX>
+			<positionY>2.15</positionY>
+			<positionZ>-4.41</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true" valueOfId="2">
 			<id>3</id>
 			<type>number</type>
-			<positionX>-1.752</positionX>
-			<positionY>5.016</positionY>
-			<positionZ>-9.802</positionZ>
-			<text>0</text>
+			<positionX>-9.36</positionX>
+			<positionY>1.70</positionY>
+			<positionZ>-9.50</positionZ>
+			<text>5</text>
 		</element>
-		<element isPartOfSolution="true" valueOfId="2">
+		<element isPartOfSolution="true" >
 			<id>4</id>
+			<type>==</type>
+			<positionX>-6.00</positionX>
+			<positionY>1.79</positionY>
+			<positionZ>2.68</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>3</id>
 			<type>number</type>
-			<positionX>-6.03</positionX>
-			<positionY>-2.35</positionY>
-			<positionZ>1.33</positionZ>
+			<positionX>-10.19</positionX>
+			<positionY>1.46</positionY>
+			<positionZ>-0.56</positionZ>
 			<text>5</text>
 		</element>
 		<element isPartOfSolution="true">
-			<id>5</id>
+			<id>6</id>
 			<type>print()</type>
-			<positionX>7.135</positionX>
-			<positionY>1.689</positionY>
-			<positionZ>-2.6</positionZ>
+			<positionX>-1.64</positionX>
+			<positionY>5.03</positionY>
+			<positionZ>-9.83</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
-			<id>6</id>
-			<type>variable</type>
-			<positionX>-5.8</positionX>
-			<positionY>1.91</positionY>
-			<positionZ>-6.27</positionZ>
-			<text></text>
-		</element>
-		<element isPartOfSolution="true" valueOfId="6">
 			<id>7</id>
 			<type>text</type>
-			<positionX>-10.034</positionX>
-			<positionY>1.68</positionY>
-			<positionZ>1.985</positionZ>
-			<text>Print in a loop</text>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.239</positionZ>
+			<text>Mich sollst du nur sehen, wenn die Variable den Wert 5 hat!</text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>8</id>
 			<type>end</type>
-			<positionX>-2.574</positionX>
-			<positionY>1.68</positionY>
-			<positionZ>2.07</positionZ>
+			<positionX>10.05</positionX>
+			<positionY>1.55</positionY>
+			<positionZ>4.91</positionZ>
 			<text></text>
 		</element>
 	</program>
 	<code>
-		<codeElement elementId="1">for</codeElement>
-		<codeElement elementId="2"> i in range(</codeElement>
-		<codeElement elementId="4">0</codeElement>
-		<codeElement elementId="2">, </codeElement>
-		<codeElement elementId="3">5</codeElement>
-		<codeElement elementId="2" newLine="true">)</codeElement>
-		<codeElement elementId="5">print(</codeElement>
-		<codeElement elementId="6">"Print in a loop"</codeElement>
-		<codeElement elementId="5" newLine="true">)</codeElement>
-		<codeElement elementId="8">end</codeElement>
+		<codeElement elementId="2" newLine="true">variable = 5</codeElement>
+		<codeElement elementId="1">if </codeElement>
+		<codeElement elementId="2">variable </codeElement>
+		<codeElement elementId="4">== </codeElement>
+		<codeElement elementId="5" newLine="true">5</codeElement>
+		<codeElement elementId="6">print(</codeElement>
+		<codeElement elementId="7">"Mich sollst du nur sehen, wenn die Variable den Wert 5 hat!"</codeElement>
+		<codeElement elementId="6">)</codeElement>		
 	</code>
 	<output>
-Print in a loop
-Print in a loop
-Print in a loop
-Print in a loop
-Print in a loop
+		Mich sollst du nur sehen, wenn die Variable den Wert 5 hat!
 	</output>
 	<hintFiles>
 		<hintFile>Audio/success_sound</hintFile>

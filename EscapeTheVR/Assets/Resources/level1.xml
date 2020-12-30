@@ -1,40 +1,30 @@
 <level>
 	<apiversion>10</apiversion>
 	<levelId>1</levelId>
-	<name>Hello World</name>
-	<descr>Create a program which outputs "Hello World!".</descr>
+	<name>Die Funktion Print()</name>
+	<descr>Hier benutzt du das erste Mal eine sog. Funktion. Nutze sie um Text auszugeben.</descr>
 	<program>
-		<element isPartOfSolution="true" isLocked="true">
-			<id>3</id>
+		<element isPartOfSolution="true">
+			<id>1</id>
 			<type>print()</type>
 			<positionX>-1.9</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.239</positionZ>
 			<text></text>
 		</element>
-		<element isPartOfSolution="true">
-			<id>1</id>
-			<type>variable</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.73</positionZ>
-			<text></text>
-			<hintPath></hintPath>
-		</element>
-		<element isPartOfSolution="true" valueOfId="1">
+		<element isPartOfSolution="true" >
 			<id>2</id>
-			<type>number</type>
+			<type>text</type>
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>
-			<text>32</text>
+			<text>Diesen Text solltest du ausgeben!</text>
 		</element>
 	</program>
 	<code>
-		<codeElement elementId="1" newLine="true">variable = 32</codeElement>
-		<codeElement elementId="3">print(</codeElement>
-		<codeElement elementId="1">variable</codeElement>
-		<codeElement elementId="3">)</codeElement>
+		<codeElement elementId="1">print(</codeElement>
+		<codeElement elementId="2">Diesen Text solltest du ausgeben!</codeElement>
+		<codeElement elementId="1">)</codeElement>
 	</code>
 	<hintFiles>
 		<hintFile>Audio/success_sound</hintFile>
@@ -42,6 +32,6 @@
 		<hintFile>Audio/bohrmaschine</hintFile>
 	</hintFiles>
 	<output>
-		32
+		Diesen Text solltest du ausgeben!
 	</output>
 </level>

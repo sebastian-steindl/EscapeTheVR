@@ -1,0 +1,58 @@
+Intro: 
+- Hallo angehender Student, du bist hier in einem virtuellen Hörsaal der OTH Amberg-Weiden! Ich bin dein Professor. Du findest mich neben dem Smartboard.
+- Diese Hörsaal ist ein Escape-Room. Du musst Rätsel lösen um darin weiterzukommen.
+- Die Rätsel kannst du lösen, indem du die Steine, in der richtigen Reihenfolge an dem Spielbrett befestigst. Die Steine sind in diesem Raum versteck.
+- Das Spielbrett hängt hier an der Säule. Manche Steine musst du erst an der Werkbank bearbeiten. Die Werkbank findest du am anderen Ende des Raumes an der Wand.
+- An dem Smartboard gibt es eine Auflistung aller Steine, die dir für dieses Rätsel zur Verfügung stehen. Denk daran, sie können überall versteckt sein.
+- Außerdem steht dort auch der Programmier-Code, den du erzeugt hast und auch dessen Ausgabe - natürlich erst, nachdem du das Rätsel gelöst hast.
+- Wenn du einen Stein aufhebst, kannst du ihn in dein Inventar legen. Mit deinem Controller kannst du das Inventar öffnen und einen Stein wieder in die Hand nehmen. 
+- Wenn du mir einen Stein gibst, werde ich dir etwas über ihn erzählen.
+- Falls du einen Tipp zum Rätsel allgemein brauchst, kannst du den Knopf am Pult drücken.
+- Um das Spielbrett zurückzusetzen kannst du den Knopf verwenden, der darunter steht.
+- Sobald du ein Rätsel gelöst hast, kannst du dir auf dem Smartboard anzuschauen, was die Steine im Code bewirken. Nimm den Stein dafür einfach aus dem Spielbrett in die Hand.
+- Außerdem kannst du nach dem Lösen eines Rätsels den Knopf in der Nähe der Werkbank drücken, um zum nächsten Rätsel zu springen. 
+- Viel Spaß!
+
+Level 0:
+- Das ist dein erstes Level. In diesem virtuellen Hörsaal findest du Steine, mit denen du Rätsel lösen kannst. Die Rätsel sind ans Programmieren angelehnt. Wenn du mir die Steine gibst, kann ich dir genauere Informationen dazu geben. 
+- Versuche die Variable an der Werkbank mit der Zahl zu befüllen.
+- Dann musst du die Variable nur noch in das Spielbrett legen
+
+Lvl 1: 
+- Funktionen sind ein sehr wichtiges Element in der Programmierung. Zwischen den Klammern steht die Eingabe für die Funktion, die auch Parameter genannt wird.
+- Die Print Funktion wird verwendet um ihre Eingabe auszugeben.
+- Versuche also mal, den Funktionsstein und dann den Textstein auf das Spielbrett zu legen.
+
+Lvl 2:
+- Erinnere dich an die ersten beiden Rätsel zurück und nutze dieses Wissen, um dieses Rätsel zu lösen.
+- Weißt du noch? Zuerst hast du die Variable an der Werkbank befüllt
+- Und dem Print-Stein kannst du eine Eingabe geben
+
+Lvl 3:
+- Das Spielbrett ist nach oben gerutscht. Da hast du wohl einen Bug gefunden! Wenn du sehr groß bist, hast du Glück gehabt. Ansonsten kannst du hoffentlich gut werfen....Ein anderer Workaround fällt mir auch nicht ein.
+- Mit Schleifen kann man Aktionen mehrfach ausführen und mit Intervallen kannst du Zahlenbereiche definieren.
+- Nutze die while Schleife um die Print-Funktion mehrfach zu verwenden.
+- Du sollst die Funktion fünf mal aufrufen, da kann auch ein Intervall nützlich sein.
+
+
+Lvl 4: 
+- Mit dem if-Stein kannst du festlegen, unter welcher Bedingung dein Code ausgeführt werden soll
+- Die Print-Funktion soll nur aufgerufen werden, wenn die Variable den Wert fünf hat.
+
+Lvl 5: 
+- Denk an das Rätsel, in dem du eine for-Schleife verwendet hast.
+- Eine for-Schleife funktioniert sehr ähnlich wie die while Schleife.
+- Du sparst dir hier sogar, die Variable hochzuzählen
+
+Lvl 6: 
+- Oh nein, eine Endlosschleife! 
+- Dieses Rätsel ist besonders. Der Code wird dir schon am Smartboard angezeigt. Du musst die Steine nur noch richtig ins Spielbrett legen. 
+- Die while Schleife wiederholt sich so lange, bis ihre Bedingung nicht mehr erfüllt ist.
+- Wenn du bewusst eine Endlosschleife erzeugen willst, musst du dafür sorgen, dass der Parameter immer true ist.
+- Probier mal, den Variablenstein mit true zu füllen
+- Den Rest übernimmt die print Funktion!
+
+Lvl 7:
+- Zunächst brauchst du wieder eine Schleife
+- Die Bedingung für die Schleife steckt schon im Rätsel
+- Dann musst du die Variable nur noch mit dem richtigen Wert befüllen und in der Schleife mit dem passenden Wert multiplizieren

@@ -1,64 +1,65 @@
 <level>
 	<apiversion>10</apiversion>
 	<levelId>3</levelId>
-	<name>Conditons 1</name>
-	<descr>In this exercise the output will be depending on the value of a variable.</descr>
+	<name>Ordentlich reinschleifen</name>
+	<descr>Hier lernst du Schleifen kennen. Rufe die print()-Funktion fünf mal auf - mit nur einem Stein!</descr>
 	<program>
+
 		<element isPartOfSolution="true">
-			<id>1</id>
-			<type>if</type>
+			<id>3</id>
+			<type>while</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text>32</text>
+		</element>
+		<element isPartOfSolution="true" >
+			<id>4</id>
+			<type>interval</type>
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>
 			<text></text>
 		</element>
+		<element isPartOfSolution="true" valueOfId="4">
+			<id>5</id>
+			<type>number</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text>0</text>
+		</element>
+		<element isPartOfSolution="true" valueOfId="4">
+			<id>6</id>
+			<type>number</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text>5</text>
+		</element>
 		<element isPartOfSolution="true">
-			<id>2</id>
+			<id>7</id>
+			<type>print()</type>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.239</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>1</id>
 			<type>variable</type>
 			<positionX>-1.9</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.73</positionZ>
 			<text></text>
 		</element>
-		<element isPartOfSolution="true" valueOfId="2">
-			<id>3</id>
+		<element isPartOfSolution="true" valueOfId="1">
+			<id>2</id>
 			<type>number</type>
 			<positionX>-1.93</positionX>
 			<positionY>3.638</positionY>
 			<positionZ>-2.6</positionZ>
-			<text>5</text>
-		</element>
-		<element isPartOfSolution="true" >
-			<id>4</id>
-			<type>==</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
-			<text></text>
-		</element>
-		<element isPartOfSolution="true">
-			<id>3</id>
-			<type>number</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
-			<text>5</text>
-		</element>
-		<element isPartOfSolution="true">
-			<id>6</id>
-			<type>print()</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
-			<text></text>
-		</element>
-		<element isPartOfSolution="true">
-			<id>7</id>
-			<type>text</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.239</positionZ>
-			<text>You've successfully mastered the conditions exercise!</text>
+			<text>32</text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>8</id>
@@ -70,17 +71,23 @@
 		</element>
 	</program>
 	<code>
-		<codeElement elementId="2" newLine="true">variable = 5</codeElement>
-		<codeElement elementId="1">if</codeElement>
-		<codeElement elementId="2">variable</codeElement>
-		<codeElement elementId="4">==</codeElement>
-		<codeElement elementId="5" newLine="true">5</codeElement>
-		<codeElement elementId="6">print(</codeElement>
-		<codeElement elementId="7">"You've successfully mastered the conditions exercise!"</codeElement>
-		<codeElement elementId="6">)</codeElement>		
+		<codeElement elementId="1" newLine="true">variable = 32</codeElement>
+		<codeElement elementId="3">while </codeElement>
+		<codeElement elementId="4">i in range(</codeElement>
+		<codeElement elementId="5">0, </codeElement>
+		<codeElement elementId="6">5</codeElement>
+		<codeElement elementId="4">)</codeElement>
+		<codeElement elementId="3">:</codeElement>
+		<codeElement elementId="7">		print(</codeElement>
+		<codeElement elementId="1">variable</codeElement>
+		<codeElement elementId="7">)</codeElement>
 	</code>
 	<output>
-		You've successfully mastered the conditions exercise!
+		32
+		32
+		32
+		32
+		32
 	</output>
 	<hintFiles>
 		<hintFile>Audio/success_sound</hintFile>

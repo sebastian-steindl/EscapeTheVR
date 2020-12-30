@@ -9,17 +9,19 @@ public class SlotManager
 {
     private int numberOfSlots;
     private List<Vector3> slotPositions;
-    private float slotWidthHeight = 0.25f;
+    private float slotWidthHeight = 0.3f;
     public List<Slot> slots { get; }
 
     // vr gameboard position and scale
     public Vector3 pos;
     public Vector3 scale;
 
-    public float marginTopBottom = 0.25f;
+    public float marginTopBottom = 0.35f;
     public float marginLeftRight = 0.25f;
 
-    public SlotManager(Vector3 pos, Vector3 scale, int slotNum = 1)
+    private float slotZOffset = 1.2f;
+
+    public SlotManager(Vector3 pos, Vector3 scale, int slotNum = 1, float slotZOffset = 1.2f)
     {
         this.pos = pos;
         this.scale = scale;
@@ -27,6 +29,7 @@ public class SlotManager
         slots = new List<Slot>();
         slotPositions = new List<Vector3>();
         numberOfSlots = slotNum;
+        this.slotZOffset = slotZOffset;
     }
 
     internal void addSlot(Slot slot)
@@ -43,6 +46,7 @@ public class SlotManager
             addSlot(new Slot(slotPositions.ElementAt(i), slotWidthHeight, slotWidthHeight));
         }
     }
+
 
     internal void unlockAllDragObjects()
     {
@@ -129,27 +133,25 @@ public class SlotManager
     {
         float padding = 1.5f * slotWidthHeight;
 
-        float availableWidth = scale.z - 2 * marginLeftRight;
-        float availableHeight = scale.y - 2 * marginTopBottom;
-        float xOffset = 0.5f;
-        float slotX = pos.x + xOffset;
+        float availableWidth = scale.x - 2 * marginLeftRight;
+      
+        float slotZ = pos.z + this.slotZOffset;
 
-        int columns = (int)Math.Floor(availableWidth / slotWidthHeight);
-
+        double columns = Math.Floor(availableWidth / (slotWidthHeight + padding));
+        Debug.Log("++++++++++++++++++++POS " + pos);
         if (columns > numberOfSlots) columns = numberOfSlots;
-
         int rows = (int)Math.Ceiling((double)(numberOfSlots / columns));
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
-                float slotY = pos.y + marginTopBottom + i * (slotWidthHeight + padding);
-                float slotZ = pos.z + marginLeftRight + j * (slotWidthHeight + padding);
+                float slotY = pos.y - i * (slotWidthHeight + padding);
+                float slotX = pos.x - j * (slotWidthHeight + padding);
                 Debug.Log("Adding position: x, y, z" + slotX + ", " + slotY + ", " + slotZ);
                 slotPositions.Add(new Vector3(slotX, slotY, slotZ));
             }
+            columns = numberOfSlots - columns * (i+1)>= columns ? columns : numberOfSlots - columns * (i + 1);
         }
-        Debug.Log("after generation: number" + slotPositions.Count);
     }
 
     public void setNumberOfSlots(int nr)

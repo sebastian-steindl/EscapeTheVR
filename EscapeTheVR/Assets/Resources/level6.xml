@@ -1,99 +1,90 @@
-<level>
+﻿<level>
 	<apiversion>10</apiversion>
 	<levelId>6</levelId>
-	<name>Double trouble!</name>
-	<descr>Deine Aufgabe ist es, die Zahl 2 so lange zu verdoppeln, bis sie den Wert 16 erreicht!</descr>
+	<name>Can't stop won't stop!</name>
+	<descr>Baue eine Schleife, die einen Text unendlich oft ausgibt. Beim Programmieren möchte man eine solche Endlosschleife meistens vermeiden.</descr>
 	<program>
-		<element isPartOfSolution="true" isLocked="true">
+		<element isPartOfSolution="true">
 			<id>1</id>
 			<type>while</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.239</positionZ>
+			<positionX>-2.105</positionX>
+			<positionY>5.016</positionY>
+			<positionZ>-9.802</positionZ>
 			<text></text>
 		</element>
-		<element isPartOfSolution="true" >
+		<element isPartOfSolution="true">
 			<id>2</id>
 			<type>variable</type>
-			<positionX>-1.93</positionX>
+			<positionX>-1.9</positionX>
 			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
+			<positionZ>-2.73</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true" valueOfId="2">
 			<id>3</id>
-			<type>number</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
-			<text>2</text>
+			<type>bool</type>
+			<positionX>-1.752</positionX>
+			<positionY>5.016</positionY>
+			<positionZ>-9.802</positionZ>
+			<text>true</text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>4</id>
-			<type>!=</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
+			<type>print()</type>
+			<positionX>7.135</positionX>
+			<positionY>1.689</positionY>
 			<positionZ>-2.6</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>5</id>
 			<type>variable</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.73</positionZ>
+			<positionX>-5.8</positionX>
+			<positionY>1.91</positionY>
+			<positionZ>-6.27</positionZ>
 			<text></text>
-			<hintPath></hintPath>
 		</element>
 		<element isPartOfSolution="true" valueOfId="5">
-			<id>6</id>
-			<type>number</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
-			<text>16</text>
-		</element>
-		<element isPartOfSolution="true" isLocked="true">
 			<id>7</id>
-			<type>variable</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
-			<text></text>
+			<type>text</type>
+			<positionX>-10.034</positionX>
+			<positionY>1.68</positionY>
+			<positionZ>1.985</positionZ>
+			<text>Unendlich viel Text...</text>
 		</element>
-		<element isPartOfSolution="true" isLocked="true">
+		<element isPartOfSolution="true">
 			<id>8</id>
-			<type>*=</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
+			<type>end</type>
+			<positionX>-2.574</positionX>
+			<positionY>1.68</positionY>
+			<positionZ>2.07</positionZ>
 			<text></text>
-		</element>
-		<element isPartOfSolution="true" isLocked="true">
-			<id>9</id>
-			<type>number</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
-			<text>2</text>
 		</element>
 	</program>
 	<code>
-		<codeElement elementId="2" newLine="true">variable = 2</codeElement>
-		<codeElement elementId="1">while (</codeElement>
-		<codeElement elementId="2">variable </codeElement>
-		<codeElement elementId="4">!= </codeElement>
-		<codeElement elementId="6">16</codeElement>
+		<codeElement elementId="2" newLine="true">condition = true</codeElement>
+		<codeElement elementId="1">while(</codeElement>
+		<codeElement elementId="2">condition</codeElement>
 		<codeElement elementId="1" newLine="true">):</codeElement>
-		<codeElement elementId="2">		variable</codeElement>
-		<codeElement elementId="8">		*=</codeElement>
-		<codeElement elementId="9">		2</codeElement>
+		<codeElement elementId="4">print(</codeElement>
+		<codeElement elementId="5">"Unendlich viel Text..."</codeElement>
+		<codeElement elementId="4">)</codeElement>
+		<codeElement elementId="8">end</codeElement>
 	</code>
+	<output>
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+Unendlich viel Text...
+[Output truncated]
+	</output>
 	<hintFiles>
 		<hintFile>Audio/success_sound</hintFile>
 		<hintFile>Audio/lasergun</hintFile>
 		<hintFile>Audio/bohrmaschine</hintFile>
 	</hintFiles>
-	<output>
-	</output>
 </level>

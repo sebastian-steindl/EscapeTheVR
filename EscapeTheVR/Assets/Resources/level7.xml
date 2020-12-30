@@ -1,0 +1,99 @@
+<level>
+	<apiversion>10</apiversion>
+	<levelId>7</levelId>
+	<name>Double trouble!</name>
+	<descr>Deine Aufgabe ist es, die Zahl 4 so lange zu verdoppeln, bis sie den Wert 32 erreicht!</descr>
+	<program>
+		<element isPartOfSolution="true" isLocked="true">
+			<id>1</id>
+			<type>while</type>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.239</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true" >
+			<id>2</id>
+			<type>variable</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true" valueOfId="2">
+			<id>3</id>
+			<type>number</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text>4</text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>4</id>
+			<type>!=</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true">
+			<id>5</id>
+			<type>variable</type>
+			<positionX>-1.9</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.73</positionZ>
+			<text></text>
+			<hintPath></hintPath>
+		</element>
+		<element isPartOfSolution="true" valueOfId="5">
+			<id>6</id>
+			<type>number</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text>32</text>
+		</element>
+		<element isPartOfSolution="true" isLocked="true">
+			<id>7</id>
+			<type>variable</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true" isLocked="true">
+			<id>8</id>
+			<type>*=</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text></text>
+		</element>
+		<element isPartOfSolution="true" isLocked="true">
+			<id>9</id>
+			<type>number</type>
+			<positionX>-1.93</positionX>
+			<positionY>3.638</positionY>
+			<positionZ>-2.6</positionZ>
+			<text>2</text>
+		</element>
+	</program>
+	<code>
+		<codeElement elementId="2" newLine="true">variable = 4</codeElement>
+		<codeElement elementId="1">while </codeElement>
+		<codeElement elementId="2">variable </codeElement>
+		<codeElement elementId="4">!= </codeElement>
+		<codeElement elementId="6">32</codeElement>
+		<codeElement elementId="1" newLine="true">:</codeElement>
+		<codeElement elementId="2">		variable</codeElement>
+		<codeElement elementId="8">		*=</codeElement>
+		<codeElement elementId="9">		2</codeElement>
+	</code>
+	<hintFiles>
+		<hintFile>Audio/success_sound</hintFile>
+		<hintFile>Audio/lasergun</hintFile>
+		<hintFile>Audio/bohrmaschine</hintFile>
+	</hintFiles>
+	<output>
+	</output>
+</level>

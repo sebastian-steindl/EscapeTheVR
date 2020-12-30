@@ -19,22 +19,23 @@ public class GameBoardScript : MonoBehaviour
     public GameObject slotPrefab;
     private List<ElementStone> allElementStones;
     private Slot lastClosest;
+    private List<GameObject> createdSlotGameObjects = new List<GameObject>();
 
     void Start()
     {
         Level level = LevelManager.Instance().loadLevel(PlayerPrefs.GetInt(Constants.playerPrefsLevel,1));
         puzzle = PuzzleXMLReader.createLevel(level);
 
-        gameBoard = new SlotManager(gameObject.transform.position, gameObject.transform.localScale, puzzle.getNumberOfSlots());
+        Debug.Log("Size: " + gameObject.GetComponent<MeshRenderer>().bounds.size);
+        gameBoard = new SlotManager(gameObject.transform.position, gameObject.GetComponent<MeshRenderer>().bounds.size, puzzle.getNumberOfSlots());
         gameBoard.initSlots();
-
         //create workbench
         var workbench = Instantiate(Resources.Load("Workbench", typeof(GameObject)) as GameObject);
         workbench.transform.parent = this.transform.parent;
-        workbench.transform.position = Constants.workbenchCoords; //TODO: Set as values in constant class.
+        workbench.transform.position = Constants.workbenchCoords;
         workbench.name = Constants.workbenchName;
 
-        gameBoard.slots.ForEach(s => createSlotFromPrefab(s));
+        gameBoard.slots.ForEach(s => createdSlotGameObjects.Add(createSlotFromPrefab(s)));
         int i = 0;
         foreach (PuzzleProgrammingElement programmingElement in level.puzzleProgrammingElements)
         {
@@ -111,13 +112,41 @@ public class GameBoardScript : MonoBehaviour
         }
     }
 
-    public Slot createSlotFromPrefab(Slot slot)
+    public GameObject createSlotFromPrefab(Slot slot)
     {
         GameObject instantiated = Instantiate(slotPrefab);
         instantiated.transform.position = slot.position;
-        return null;
+        return instantiated;
+    }
+    internal void updateSlotPositions(Vector3 positionChange)
+    {
+        createdSlotGameObjects.ForEach(s =>
+        {
+            s.transform.position += positionChange;
+        });
+        gameBoard.slots.ForEach(s => s.position += positionChange);
     }
 
+    /*
+    This resets all slots where the element wasn't locked by the XML and drops them to the floor.     
+    */
+    internal void resetSlots()
+    {
+        Debug.LogWarning("RESET SLOTS CALLED");
+        gameBoard.slots.ForEach(s =>
+        {
+            // if the slot has no element in it, the dragObject will be null
+            if (s.GetDragObject() != null)
+            { 
+                // if the element was locked by XML don't reset its slot
+                if(!s.GetDragObject().isLocked) {
+                    s.GetDragObject().transform.position += new Vector3(0f, 0f, 1f);
+                    s.GetDragObject().enableGravity();
+                    s.resetElement();
+                }
+            }
+        });
+    }
     public SlotManager GetGameBoard() { return gameBoard; }
 
     // Update is called once per frame
