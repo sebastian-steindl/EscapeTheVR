@@ -5,7 +5,7 @@ Intro:
 - Das Spielbrett hängt hier an der Säule. Manche Steine musst du erst an der Werkbank bearbeiten. Die Werkbank findest du am anderen Ende des Raumes an der Wand.
 - An dem Smartboard gibt es eine Auflistung aller Steine, die dir für dieses Rätsel zur Verfügung stehen. Denk daran, sie können überall versteckt sein.
 - Außerdem steht dort auch der Programmier-Code, den du erzeugt hast und auch dessen Ausgabe - natürlich erst, nachdem du das Rätsel gelöst hast.
-- (@DENNIS) Wenn du einen Stein aufhebst, liegt dieser in deinem Inventar. Mit deinem Controller kannst du das Inventar öffnen und einen Stein wieder in die Hand nehmen. 
+- Wenn du einen Stein aufhebst, kannst du ihn in dein Inventar legen. Mit deinem Controller kannst du das Inventar öffnen und einen Stein wieder in die Hand nehmen. 
 - Wenn du dem Professor einen Stein gibst, wird er dir etwas über ihn erzählen.
 - Falls du einen Tipp zum Rätsel allgemein brauchst, kannst du den Knopf am Pult drücken.
 - Um das Spielbrett zurückzusetzen kannst du den Knopf verwenden, der darunter steht.
