@@ -92,6 +92,11 @@ public class WalkingBehavior : MonoBehaviour
                 return;
             case State.StayLeft:
 
+                if (!anim.isPlaying)
+                {
+                    anim.Play("Armature|idle");
+                }
+
                 if ((DateTime.Now - this.waitingStarted).TotalSeconds > 30)
                 {
                     this.currentState = State.TurnRight;
@@ -99,6 +104,11 @@ public class WalkingBehavior : MonoBehaviour
                 }
                 return;
             case State.StayRight:
+
+                if (!anim.isPlaying)
+                {
+                    anim.Play("Armature|idle");
+                }
 
                 if ((DateTime.Now - this.waitingStarted).TotalSeconds > 30)
                 {
