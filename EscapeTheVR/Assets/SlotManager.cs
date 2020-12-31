@@ -8,7 +8,7 @@ using System.Linq;
 public class SlotManager
 {
     private int numberOfSlots;
-    private List<Vector3> slotPositions;
+    public List<Vector3> slotPositions;
     private float slotWidthHeight = 0.3f;
     public List<Slot> slots { get; }
 
@@ -47,6 +47,29 @@ public class SlotManager
         }
     }
 
+    internal void initIntervalSlots(Vector3 containerSlotPosition)
+    {
+        slots.Clear(); //empty list
+
+        float padding = 1.5f * slotWidthHeight;
+
+        float availableWidth = scale.x - 2 * marginLeftRight;
+
+        float slotZ = pos.z + this.slotZOffset;
+        float slotY = pos.y;
+        double columns = Math.Floor(availableWidth / (slotWidthHeight + padding));
+
+        float slotX_1 = pos.x + 2 * (slotWidthHeight + padding); //- * (slotWidthHeight + padding);
+        float slotX_2 = pos.x - 0f * (slotWidthHeight + padding);
+
+        slotPositions.Add(new Vector3(slotX_1, slotY, slotZ));
+        slotPositions.Add(new Vector3(slotX_2, slotY, slotZ));
+        
+        for (int i = 0; i < numberOfSlots; i++)
+        {
+            addSlot(new Slot(slotPositions.ElementAt(i), slotWidthHeight, slotWidthHeight));
+        }
+    }
 
     internal void unlockAllDragObjects()
     {

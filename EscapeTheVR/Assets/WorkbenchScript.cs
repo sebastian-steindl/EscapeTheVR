@@ -80,7 +80,11 @@ public class WorkbenchScript : MonoBehaviour
             if (isCloseEnough && (selectedProgrammigElementType == programmingElement.elemVar || selectedProgrammigElementType == programmingElement.elemInterval))
             {
                 contentSlotManager = new SlotManager(gameObject.transform.position+contentSlotOffset, gameObject.GetComponentInChildren<MeshRenderer>().bounds.size, getNumberOfNeededFillSlots(selectedProgrammigElementType), 0.4f);
-                contentSlotManager.initSlots();
+                if (selectedProgrammigElementType == programmingElement.elemInterval)
+                {
+                    contentSlotManager.initIntervalSlots(containerSlotManager.slotPositions[0]);
+                }
+                else contentSlotManager.initSlots();
                 contentSlotManager.slots.ForEach(s => createdContentSlots.Add(createSlotFromPrefab(s)));
                 // if selectedElem is a container, checkIf its close enhough to the slot
                 updateText();
