@@ -16,7 +16,9 @@ public class WorkbenchScript : MonoBehaviour
     public SlotManager contentSlotManager;
     Vector3 contentSlotOffset;
     private GameBoardScript gameboard;
-    private List<GameObject> createdContentSlots;    
+    private List<GameObject> createdContentSlots;
+
+    private DateTime lastCreationOfCombinedObject;
 
     void Start()
     {
@@ -106,10 +108,52 @@ public class WorkbenchScript : MonoBehaviour
                     // Update Var element
                     if (containerElement.elem == programmingElement.elemVar)
                     {
-                        Debug.Log("Update Variable Stome...");
+                        Debug.Log("Update Variable Stone...");
                         VariableStone stone = (VariableStone)containerElement;
+
                         stone.filledWith = selectedElement.element;
                         containerElement = stone;
+                       
+                        // this is a hack because the function gets called twice
+                        // TODO fix function being called twice
+                        if (lastCreationOfCombinedObject==null ||(DateTime.Now - lastCreationOfCombinedObject).TotalSeconds > 2)
+                        {
+
+                        // creation of new GameObject
+                        VariableStone prevElemStone = stone;
+                        PuzzleProgrammingElement newPuzzleProgrammingElem = new PuzzleProgrammingElement();
+                        newPuzzleProgrammingElem.id = prevElemStone.id;
+                        newPuzzleProgrammingElem.isLocked = false;
+                        // TODO types
+                        newPuzzleProgrammingElem.type = "variable_filled_";
+
+                            switch (selectedElement.element.elem)
+                            {
+                                
+                                case programmingElement.elemText:
+                                    newPuzzleProgrammingElem.type += "text";
+                                    break;
+                                case programmingElement.elemNumber:
+                                    newPuzzleProgrammingElem.type += "number";
+                                    break;
+                                case programmingElement.elemBool:
+                                    newPuzzleProgrammingElem.type += "bool";
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            newPuzzleProgrammingElem.text = prevElemStone.descriptionText;
+                        Vector3 oldPos = containerSlotManager.slots[0].GetDragObject().transform.position;
+                        newPuzzleProgrammingElem.positionX = oldPos.x;
+                        newPuzzleProgrammingElem.positionY = oldPos.y;
+                        newPuzzleProgrammingElem.positionZ = oldPos.z + 1.0f; // offset to remove it from workbench
+
+                        DragObject instantiated = gameboard.createElementFromPrefab(newPuzzleProgrammingElem);
+                        instantiated.element = prevElemStone;
+                        this.lastCreationOfCombinedObject = DateTime.Now;
+
+                        }
                     }
                     else if (containerElement.elem == programmingElement.elemInterval)
                     { //Code for updating InvervalStones / elements

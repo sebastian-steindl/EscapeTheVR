@@ -23,7 +23,7 @@ public class GameBoardScript : MonoBehaviour
 
     void Start()
     {
-        Level level = LevelManager.Instance().loadLevel(PlayerPrefs.GetInt(Constants.playerPrefsLevel,3));
+        Level level = LevelManager.Instance().loadLevel(PlayerPrefs.GetInt(Constants.playerPrefsLevel,0));
         puzzle = PuzzleXMLReader.createLevel(level);
 
         Debug.Log("Size: " + gameObject.GetComponent<MeshRenderer>().bounds.size);
@@ -75,6 +75,12 @@ public class GameBoardScript : MonoBehaviour
 
         switch (puzzleProgrammingElement.type)
         {
+            case "variable_filled_text": // TODO create prefabs
+                return Resources.Load("prefabVarFilledText", typeof(GameObject)) as GameObject;
+            case "variable_filled_number": // TODO create prefabs
+                return Resources.Load("prefabVarFilledNumber", typeof(GameObject)) as GameObject;
+            case "variable_filled_bool": // TODO create prefabs
+                return Resources.Load("prefabVarFilledBool", typeof(GameObject)) as GameObject;
             case "print()":
                 return Resources.Load("prefabPrintElement", typeof(GameObject)) as GameObject;
             case "variable":
