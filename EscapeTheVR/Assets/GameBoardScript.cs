@@ -81,6 +81,8 @@ public class GameBoardScript : MonoBehaviour
                 return Resources.Load("prefabVarFilledNumber", typeof(GameObject)) as GameObject;
             case "variable_filled_bool": // TODO create prefabs
                 return Resources.Load("prefabVarFilledBool", typeof(GameObject)) as GameObject;
+            case "interval_filled": // TODO create prefabs
+                return Resources.Load("prefabIntervalFilled", typeof(GameObject)) as GameObject;
             case "print()":
                 return Resources.Load("prefabPrintElement", typeof(GameObject)) as GameObject;
             case "variable":

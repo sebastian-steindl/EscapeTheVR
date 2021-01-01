@@ -129,7 +129,6 @@ public class WorkbenchScript : MonoBehaviour
 
                             switch (selectedElement.element.elem)
                             {
-                                
                                 case programmingElement.elemText:
                                     newPuzzleProgrammingElem.type += "text";
                                     break;
@@ -152,12 +151,11 @@ public class WorkbenchScript : MonoBehaviour
                         DragObject instantiated = gameboard.createElementFromPrefab(newPuzzleProgrammingElem);
                         instantiated.element = prevElemStone;
                         this.lastCreationOfCombinedObject = DateTime.Now;
-
                         }
                     }
                     else if (containerElement.elem == programmingElement.elemInterval)
                     { //Code for updating InvervalStones / elements
-                        Debug.Log("Update Variable Stome...");
+                        Debug.Log("Update InvervalStone...");
 
                         //Interval only works with Numberstones...
                         if (selectedProgrammigElementType != programmingElement.elemNumber)
@@ -168,10 +166,37 @@ public class WorkbenchScript : MonoBehaviour
 
                         IntervalStone stone = (IntervalStone)containerElement;
                         if (closest == contentSlotManager.slots[0])
+                        {
                             stone.from = selectedElement.element;
+                            containerElement = stone;
+                        }
                         else
+                        {
                             stone.to = selectedElement.element;
-                        containerElement = stone;
+                            containerElement = stone;
+                            // this is a hack because the function gets called twice
+                            // TODO fix function being called twice
+                            if (lastCreationOfCombinedObject == null || (DateTime.Now - lastCreationOfCombinedObject).TotalSeconds > 2)
+                            {
+                                // creation of new GameObject
+                                IntervalStone prevElemStone = stone;
+                                PuzzleProgrammingElement newPuzzleProgrammingElem = new PuzzleProgrammingElement();
+                                newPuzzleProgrammingElem.id = prevElemStone.id;
+                                newPuzzleProgrammingElem.isLocked = false;
+                                // TODO types
+                                newPuzzleProgrammingElem.type = "interval_filled";
+                                newPuzzleProgrammingElem.text = prevElemStone.descriptionText;
+                                Vector3 oldPos = containerSlotManager.slots[0].GetDragObject().transform.position;
+                                newPuzzleProgrammingElem.positionX = oldPos.x;
+                                newPuzzleProgrammingElem.positionY = oldPos.y;
+                                newPuzzleProgrammingElem.positionZ = oldPos.z + 1.0f; // offset to remove it from workbench
+
+                                DragObject instantiated = gameboard.createElementFromPrefab(newPuzzleProgrammingElem);
+                                instantiated.element = prevElemStone;
+                                this.lastCreationOfCombinedObject = DateTime.Now;
+                            }
+                        }
+
 
                     }
 
