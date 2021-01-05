@@ -124,6 +124,11 @@ public class WorkbenchScript : MonoBehaviour
                         // TODO fix function being called twice
                         if (orgElements[0]==null || orgElements[0].element.id != selectedElement.element.id)
                         {
+                            //Destroy old object...
+                            var oldObj = GameObject.Find("VAR_" + stone.uuid);
+                            Debug.Log("Zerstoere: VAR_" + stone.id);
+                            if (oldObj)
+                                Destroy(oldObj);
 
                             // creation of new GameObject
                             VariableStone prevElemStone = stone;
@@ -157,6 +162,7 @@ public class WorkbenchScript : MonoBehaviour
 
                             DragObject instantiated = gameboard.createElementFromPrefab(newPuzzleProgrammingElem);
                             instantiated.element = prevElemStone;
+                            instantiated.name = "VAR_" + prevElemStone.uuid;
                         }
                     }
                     else if (containerElement.elem == programmingElement.elemInterval)
@@ -189,6 +195,12 @@ public class WorkbenchScript : MonoBehaviour
                         // Only generate stone, if both slots are populated and at least one element actually has changed.
                         if (stone.from != null && stone.to != null && changed)
                         {
+                            //Destroy old object...
+                            var oldObj = GameObject.Find("INT_" + stone.uuid);
+                            Debug.Log("Zerstoere: INT_" + stone.id);
+                            if (oldObj)
+                                Destroy(oldObj);
+                     
                             // creation of new GameObject
                             IntervalStone prevElemStone = stone;
                             PuzzleProgrammingElement newPuzzleProgrammingElem = new PuzzleProgrammingElement();
@@ -197,13 +209,15 @@ public class WorkbenchScript : MonoBehaviour
                             // TODO types
                             newPuzzleProgrammingElem.type = "interval_filled";
                             newPuzzleProgrammingElem.text = prevElemStone.descriptionText;
+                            
                             Vector3 oldPos = containerSlotManager.slots[0].GetDragObject().transform.position;
                             newPuzzleProgrammingElem.positionX = oldPos.x;
                             newPuzzleProgrammingElem.positionY = oldPos.y;
                             newPuzzleProgrammingElem.positionZ = oldPos.z + 1.0f; // offset to remove it from workbench
 
                             DragObject instantiated = gameboard.createElementFromPrefab(newPuzzleProgrammingElem);
-                            instantiated.element = prevElemStone;    
+                            instantiated.element = prevElemStone;
+                            instantiated.name = "INT_" + prevElemStone.uuid;
                         }
                     }
 

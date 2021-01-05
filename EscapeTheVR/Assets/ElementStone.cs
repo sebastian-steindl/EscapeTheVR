@@ -37,10 +37,11 @@ public class ElementStone
 public class VariableStone : ElementStone
 {
     public ElementStone filledWith;
+    public string uuid { get; }
     public VariableStone(Color stoneColor, string description = Constants.descriptionDefault) : base(stoneColor, description)
     {
         elem = programmingElement.elemVar;
-
+        uuid = System.Guid.NewGuid().ToString();
         this.hintSoundPath = "Audio/success_sound";
     }
 }
@@ -49,9 +50,11 @@ public class IntervalStone : ElementStone
 {
     public ElementStone from;
     public ElementStone to;
+    public string uuid { get; }
     public IntervalStone(Color stoneColor, string description = Constants.descriptionDefault) : base(stoneColor, description)
     {
         elem = programmingElement.elemInterval;
+        uuid = System.Guid.NewGuid().ToString();
     }
 }
 public enum programmingElement
