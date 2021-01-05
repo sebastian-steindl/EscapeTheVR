@@ -18,7 +18,6 @@ public class WorkbenchScript : MonoBehaviour
     private GameBoardScript gameboard;
     private List<GameObject> createdContentSlots;
 
-    private DateTime lastCreationOfCombinedObject;
 
     void Start()
     {
@@ -99,11 +98,18 @@ public class WorkbenchScript : MonoBehaviour
             // Content slots only allow boolean, number and text values. 
             if (selectedProgrammigElementType == programmingElement.elemBool || selectedProgrammigElementType == programmingElement.elemText || selectedProgrammigElementType == programmingElement.elemNumber)
             {
+
+                //Save the original data...
+                List<DragObject> orgElements = new List<DragObject>();
+                contentSlotManager.slots.ForEach(s => orgElements.Add(s.GetDragObject()));
+
                 (bool isCloseEnough, Slot closest) = contentSlotManager.handlesElementToSlotRelation(selectedElement);
                 if (isCloseEnough)
                 {
 
                     var containerElement = containerSlotManager.slots[0].getElement();
+
+                    bool changed = false;
 
                     // Update Var element
                     if (containerElement.elem == programmingElement.elemVar)
@@ -113,50 +119,49 @@ public class WorkbenchScript : MonoBehaviour
 
                         stone.filledWith = selectedElement.element;
                         containerElement = stone;
-                       
+
                         // this is a hack because the function gets called twice
                         // TODO fix function being called twice
-                        if (lastCreationOfCombinedObject==null ||(DateTime.Now - lastCreationOfCombinedObject).TotalSeconds > 2)
+                        if (orgElements[0]==null || orgElements[0].element.id != selectedElement.element.id)
                         {
 
-                        // creation of new GameObject
-                        VariableStone prevElemStone = stone;
-                        PuzzleProgrammingElement newPuzzleProgrammingElem = new PuzzleProgrammingElement();
-                        newPuzzleProgrammingElem.id = prevElemStone.id;
-                        newPuzzleProgrammingElem.isLocked = false;
-                        // TODO types
-                        newPuzzleProgrammingElem.type = "variable_filled_";
+                            // creation of new GameObject
+                            VariableStone prevElemStone = stone;
+                            PuzzleProgrammingElement newPuzzleProgrammingElem = new PuzzleProgrammingElement();
+                            newPuzzleProgrammingElem.id = prevElemStone.id;
+                            newPuzzleProgrammingElem.isLocked = false;
+                            // TODO types
+                            newPuzzleProgrammingElem.type = "variable_filled_";
 
-                            switch (selectedElement.element.elem)
-                            {
-                                case programmingElement.elemText:
-                                    newPuzzleProgrammingElem.type += "text";
-                                    break;
-                                case programmingElement.elemNumber:
-                                    newPuzzleProgrammingElem.type += "number";
-                                    break;
-                                case programmingElement.elemBool:
-                                    newPuzzleProgrammingElem.type += "bool";
-                                    break;
-                                default:
-                                    break;
-                            }
+                                switch (selectedElement.element.elem)
+                                {
+                                    case programmingElement.elemText:
+                                        newPuzzleProgrammingElem.type += "text";
+                                        break;
+                                    case programmingElement.elemNumber:
+                                        newPuzzleProgrammingElem.type += "number";
+                                        break;
+                                    case programmingElement.elemBool:
+                                        newPuzzleProgrammingElem.type += "bool";
+                                        break;
+                                    default:
+                                        break;
+                                }
 
-                            newPuzzleProgrammingElem.text = prevElemStone.descriptionText;
-                        Vector3 oldPos = containerSlotManager.slots[0].GetDragObject().transform.position;
-                        newPuzzleProgrammingElem.positionX = oldPos.x;
-                        newPuzzleProgrammingElem.positionY = oldPos.y;
-                        newPuzzleProgrammingElem.positionZ = oldPos.z + 1.0f; // offset to remove it from workbench
+                                newPuzzleProgrammingElem.text = prevElemStone.descriptionText;
+                            //Only create this element, when the element changed.
+                            Vector3 oldPos = containerSlotManager.slots[0].GetDragObject().transform.position;
+                            newPuzzleProgrammingElem.positionX = oldPos.x;
+                            newPuzzleProgrammingElem.positionY = oldPos.y;
+                            newPuzzleProgrammingElem.positionZ = oldPos.z + 1.0f; // offset to remove it from workbench
 
-                        DragObject instantiated = gameboard.createElementFromPrefab(newPuzzleProgrammingElem);
-                        instantiated.element = prevElemStone;
-                        this.lastCreationOfCombinedObject = DateTime.Now;
+                            DragObject instantiated = gameboard.createElementFromPrefab(newPuzzleProgrammingElem);
+                            instantiated.element = prevElemStone;
                         }
                     }
                     else if (containerElement.elem == programmingElement.elemInterval)
                     { //Code for updating InvervalStones / elements
                         Debug.Log("Update InvervalStone...");
-
                         //Interval only works with Numberstones...
                         if (selectedProgrammigElementType != programmingElement.elemNumber)
                         {
@@ -169,35 +174,37 @@ public class WorkbenchScript : MonoBehaviour
                         {
                             stone.from = selectedElement.element;
                             containerElement = stone;
+                            changed = orgElements[0]==null?true:selectedElement.element.id != orgElements[0].element.id;
+                            //Debug.Log("Neue Untergrenze: " + changed + "\tSelected: "+selectedElement.element.id+"\tBereits da:"+(orgElements[0]==null?"null":""+orgElements[0].element.id));
                         }
                         else
                         {
                             stone.to = selectedElement.element;
                             containerElement = stone;
-                            // this is a hack because the function gets called twice
-                            // TODO fix function being called twice
-                            if (lastCreationOfCombinedObject == null || (DateTime.Now - lastCreationOfCombinedObject).TotalSeconds > 2)
-                            {
-                                // creation of new GameObject
-                                IntervalStone prevElemStone = stone;
-                                PuzzleProgrammingElement newPuzzleProgrammingElem = new PuzzleProgrammingElement();
-                                newPuzzleProgrammingElem.id = prevElemStone.id;
-                                newPuzzleProgrammingElem.isLocked = false;
-                                // TODO types
-                                newPuzzleProgrammingElem.type = "interval_filled";
-                                newPuzzleProgrammingElem.text = prevElemStone.descriptionText;
-                                Vector3 oldPos = containerSlotManager.slots[0].GetDragObject().transform.position;
-                                newPuzzleProgrammingElem.positionX = oldPos.x;
-                                newPuzzleProgrammingElem.positionY = oldPos.y;
-                                newPuzzleProgrammingElem.positionZ = oldPos.z + 1.0f; // offset to remove it from workbench
-
-                                DragObject instantiated = gameboard.createElementFromPrefab(newPuzzleProgrammingElem);
-                                instantiated.element = prevElemStone;
-                                this.lastCreationOfCombinedObject = DateTime.Now;
-                            }
+                            changed = orgElements[1] == null ? true : selectedElement.element.id != orgElements[1].element.id;
+                            //Debug.Log("Neue Obergrenze: " + changed + "\tSelected: " + selectedElement.element.id + "\tBereits da:" + (orgElements[1] == null ? "null" : ""+orgElements[1].element.id));
                         }
 
 
+                        // Only generate stone, if both slots are populated and at least one element actually has changed.
+                        if (stone.from != null && stone.to != null && changed)
+                        {
+                            // creation of new GameObject
+                            IntervalStone prevElemStone = stone;
+                            PuzzleProgrammingElement newPuzzleProgrammingElem = new PuzzleProgrammingElement();
+                            newPuzzleProgrammingElem.id = prevElemStone.id;
+                            newPuzzleProgrammingElem.isLocked = false;
+                            // TODO types
+                            newPuzzleProgrammingElem.type = "interval_filled";
+                            newPuzzleProgrammingElem.text = prevElemStone.descriptionText;
+                            Vector3 oldPos = containerSlotManager.slots[0].GetDragObject().transform.position;
+                            newPuzzleProgrammingElem.positionX = oldPos.x;
+                            newPuzzleProgrammingElem.positionY = oldPos.y;
+                            newPuzzleProgrammingElem.positionZ = oldPos.z + 1.0f; // offset to remove it from workbench
+
+                            DragObject instantiated = gameboard.createElementFromPrefab(newPuzzleProgrammingElem);
+                            instantiated.element = prevElemStone;    
+                        }
                     }
 
 
