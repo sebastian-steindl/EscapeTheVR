@@ -38,7 +38,7 @@ public class DragObject : MonoBehaviour
 
         // Disable gravity while dragging
         GetComponent<Rigidbody>().useGravity = false;
-        if (!this.isLocked) GetComponent<Rigidbody>().isKinematic = false;
+        if (!this.isLocked) GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
         this.onButtonDown();
     }
@@ -46,11 +46,11 @@ public class DragObject : MonoBehaviour
     public void OnMouseUp()
     {
         Debug.Log("DragObject->OnMouseUp  + + + + + + +");
-        Debug.Log("OnMouseUp: " + this.gameObject.GetComponent<Rigidbody>().isKinematic);
+        Debug.Log("OnMouseUp: ");
 
         // Re-enable gravity if object is dropped
         GetComponent<Rigidbody>().useGravity = true;
-        if (!this.isLocked) GetComponent<Rigidbody>().isKinematic = false;
+        if (!this.isLocked) GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
         this.onButtonUp();
     }
@@ -79,14 +79,14 @@ public class DragObject : MonoBehaviour
     public void disableGravity() {
         hasGravity = false;
         GetComponent<Rigidbody>().useGravity = hasGravity;
-        if (!this.isLocked) GetComponent<Rigidbody>().isKinematic = true;
+        if (!this.isLocked) GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
 
 
     public void enableGravity() {
         hasGravity = true;
         GetComponent<Rigidbody>().useGravity = hasGravity;
-        if (!this.isLocked) GetComponent<Rigidbody>().isKinematic = false;
+        if (!this.isLocked) GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     public void onButtonDown()

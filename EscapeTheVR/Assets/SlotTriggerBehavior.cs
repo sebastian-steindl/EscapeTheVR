@@ -20,6 +20,7 @@ public class SlotTriggerBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("OnTriggerEnter");
         if (currentCollider == other.gameObject) return;
         currentCollider = other.gameObject;
         var dragObject = other.gameObject.GetComponent<DragObject>();
@@ -34,6 +35,8 @@ public class SlotTriggerBehavior : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("OnTriggerExit");
+
         if (currentCollider == other.gameObject)
         {
 

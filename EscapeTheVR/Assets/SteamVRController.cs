@@ -166,7 +166,7 @@ public class SteamVRController : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
         if (gameObject.GetComponent<DragObject>()) {
-            if(!gameObject.GetComponent<DragObject>().isLocked) gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            if(!gameObject.GetComponent<DragObject>().isLocked) gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
         gameObject.GetComponent<Rigidbody>().useGravity = false;
         gameObject.transform.SetParent(this.transform);
@@ -181,7 +181,7 @@ public class SteamVRController : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         if (gameObject.GetComponent<DragObject>())
         {
-            if (!gameObject.GetComponent<DragObject>().isLocked) gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            if (!gameObject.GetComponent<DragObject>().isLocked) gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         }
         gameObject.GetComponent<Rigidbody>().velocity = pose.GetVelocity();
         gameObject.GetComponent<Rigidbody>().angularVelocity = pose.GetAngularVelocity();
