@@ -9,16 +9,13 @@ public class ElementStone
     public int id; // the position in which it should be placed
 
     public string descriptionText; // text to describe the stone
-    public Color color; // color of the VR stone
 
-    public Sprite icon;
     protected List<string> hintSounds;
     protected int currentHintSoundIndex;
 
-    public ElementStone(Color stoneColor, programmingElement type, string description=Constants.descriptionDefault)
+    public ElementStone(programmingElement type, string description=Constants.descriptionDefault)
     {
         this.descriptionText = description;
-        this.color = stoneColor;
         this.elem = type;
         this.InitHintSounds();
     }
@@ -166,8 +163,8 @@ public class VariableStone : ElementStone
 {
     public ElementStone filledWith;
     public string uuid { get; }
-    public VariableStone(Color stoneColor, string description = Constants.descriptionDefault) 
-        : base(stoneColor, programmingElement.elemVar, description)
+    public VariableStone(string description = Constants.descriptionDefault) 
+        : base(programmingElement.elemVar, description)
     {
         uuid = System.Guid.NewGuid().ToString();
     }
@@ -178,8 +175,8 @@ public class IntervalStone : ElementStone
     public ElementStone from;
     public ElementStone to;
     public string uuid { get; }
-    public IntervalStone(Color stoneColor, string description = Constants.descriptionDefault) 
-        : base(stoneColor, programmingElement.elemInterval, description)
+    public IntervalStone(string description = Constants.descriptionDefault) 
+        : base(programmingElement.elemInterval, description)
     {
         uuid = System.Guid.NewGuid().ToString();
     }
