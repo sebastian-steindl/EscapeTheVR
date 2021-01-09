@@ -37,9 +37,9 @@
 		<codeElement elementId="3">)</codeElement>
 	</code>
 	<hintFiles>
-		<hintFile>Audio/success_sound</hintFile>
-		<hintFile>Audio/lasergun</hintFile>
-		<hintFile>Audio/bohrmaschine</hintFile>
+		<hintFile>Audio/Levelhints/level2_1</hintFile>
+		<hintFile>Audio/Levelhints/level2_2</hintFile>
+		<hintFile>Audio/Levelhints/level2_3</hintFile>
 	</hintFiles>
 	<output>
 		32

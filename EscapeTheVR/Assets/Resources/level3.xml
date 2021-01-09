@@ -90,8 +90,9 @@
 		32
 	</output>
 	<hintFiles>
-		<hintFile>Audio/success_sound</hintFile>
-		<hintFile>Audio/lasergun</hintFile>
-		<hintFile>Audio/bohrmaschine</hintFile>
+		<hintFile>Audio/Levelhints/level3_1</hintFile>
+		<hintFile>Audio/Levelhints/level3_2</hintFile>
+		<hintFile>Audio/Levelhints/level3_3</hintFile>
+		<hintFile>Audio/Levelhints/level3_4</hintFile>
 	</hintFiles>
 </level>

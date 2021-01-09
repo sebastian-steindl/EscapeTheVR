@@ -89,8 +89,8 @@
 		Print in der Schleife
 	</output>
 	<hintFiles>
-		<hintFile>Audio/success_sound</hintFile>
-		<hintFile>Audio/lasergun</hintFile>
-		<hintFile>Audio/bohrmaschine</hintFile>
+		<hintFile>Audio/Levelhints/level5_1</hintFile>
+		<hintFile>Audio/Levelhints/level5_2</hintFile>
+		<hintFile>Audio/Levelhints/level5_3</hintFile>
 	</hintFiles>
 </level>

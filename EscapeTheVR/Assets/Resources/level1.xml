@@ -27,9 +27,7 @@
 		<codeElement elementId="1">)</codeElement>
 	</code>
 	<hintFiles>
-		<hintFile>Audio/success_sound</hintFile>
-		<hintFile>Audio/lasergun</hintFile>
-		<hintFile>Audio/bohrmaschine</hintFile>
+		<hintFile>Audio/Levelhints/level1</hintFile>
 	</hintFiles>
 	<output>
 		Diesen Text solltest du ausgeben!

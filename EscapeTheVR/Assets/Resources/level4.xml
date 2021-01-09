@@ -84,8 +84,7 @@
 		Mich sollst du nur sehen, wenn die Variable den Wert 5 hat!
 	</output>
 	<hintFiles>
-		<hintFile>Audio/success_sound</hintFile>
-		<hintFile>Audio/lasergun</hintFile>
-		<hintFile>Audio/bohrmaschine</hintFile>
+		<hintFile>Audio/Levelhints/level4_1</hintFile>
+		<hintFile>Audio/Levelhints/level4_2</hintFile>
 	</hintFiles>
 </level>

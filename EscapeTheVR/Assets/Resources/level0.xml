@@ -26,9 +26,8 @@
 		<codeElement elementId="1" newLine="true">variable = 32</codeElement>
 	</code>
 	<hintFiles>
-		<hintFile>Audio/success_sound</hintFile>
-		<hintFile>Audio/lasergun</hintFile>
-		<hintFile>Audio/bohrmaschine</hintFile>
+		<hintFile>Audio/Levelhints/level0_1</hintFile>
+		<hintFile>Audio/Levelhints/level0_2</hintFile>
 	</hintFiles>
 	<output>
 	</output>
