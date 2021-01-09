@@ -31,9 +31,8 @@ public class ElementStoneFactory
         else if(elem == programmingElement.elemInterval)
             es = new IntervalStone(color, description);
         else
-            es = new ElementStone(color, description);
+            es = new ElementStone(color, elem, description);
 
-        es.elem = elem;
         es.icon = getIcon(elem);
         return es;
 
