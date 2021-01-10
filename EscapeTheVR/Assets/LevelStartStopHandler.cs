@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 public class LevelStartStopHandler : MonoBehaviour
 {
@@ -25,8 +23,6 @@ public class LevelStartStopHandler : MonoBehaviour
         "Audio/Intro/loesung_2",
         "Audio/Intro/viel_spass_4"
     };
-
-    private Task audioTask;
 
     private LevelStartStopHandler()
     {
