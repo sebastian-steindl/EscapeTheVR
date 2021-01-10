@@ -1,12 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 public class LevelStartStopHandler : MonoBehaviour
 {
     private static LevelStartStopHandler instance = new LevelStartStopHandler();
 
-    private GameBoardScript gameboard; 
+    private GameBoardScript gameboard;
+
+    private readonly List<string> descriptionSounds = new List<string>()
+    {
+        "Audio/Intro/begruessung",
+        "Audio/Intro/erklaerung_1",
+        "Audio/Intro/erklaerung_2",
+        "Audio/Intro/erklaerung_3",
+        "Audio/Intro/erklaerung_4",
+        "Audio/Intro/erklaerung_5",
+        "Audio/Intro/erklaerung_6",
+        "Audio/Intro/erklaerung_7",
+        "Audio/Intro/hilfe",
+        "Audio/Intro/reset",
+        "Audio/Intro/loesung",
+        "Audio/Intro/loesung_2",
+        "Audio/Intro/viel_spass_4"
+    };
+
+    private Task audioTask;
+
     private LevelStartStopHandler()
     {
         gameboard = FindObjectOfType<GameBoardScript>();
@@ -25,6 +46,14 @@ public class LevelStartStopHandler : MonoBehaviour
 
         switch (levelId)
         {
+            case 0:
+                var audioQueue = FindObjectOfType<AudioQueue>();
+                foreach (string audio in this.descriptionSounds)
+                {
+                    audioQueue.Add(audio);
+                }
+                
+                break;
             case 1:
                 break;
             case 2:

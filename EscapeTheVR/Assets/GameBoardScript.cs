@@ -23,7 +23,7 @@ public class GameBoardScript : MonoBehaviour
 
     void Start()
     {
-        Level level = LevelManager.Instance().loadLevel(PlayerPrefs.GetInt(Constants.playerPrefsLevel,3));
+        Level level = LevelManager.Instance().loadLevel(PlayerPrefs.GetInt(Constants.playerPrefsLevel,0));
         puzzle = PuzzleXMLReader.createLevel(level);
 
         Debug.Log("Size: " + gameObject.GetComponent<MeshRenderer>().bounds.size);
