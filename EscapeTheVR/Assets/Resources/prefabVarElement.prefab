@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4923545177453473589}
   - component: {fileID: 3068077203464237254}
   m_Layer: 0
-  m_Name: NEUvariablet
+  m_Name: prefabVarElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,8 +62,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.2232022, y: 2.204144, z: 2.459693}
+  m_Center: {x: -0.48744678, y: 0.053793192, z: 0.05612135}
 --- !u!114 &3068077203464237254
 MonoBehaviour:
   m_ObjectHideFlags: 0
