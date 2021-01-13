@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 3197592768769974410}
   - component: {fileID: 1136751340535256602}
   m_Layer: 0
-  m_Name: variablebool
+  m_Name: prefabVarFilledBool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -396,5 +396,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.3723555, y: 2.3000386, z: 2.3811913}
+  m_Center: {x: -1.0128402, y: -0.02205357, z: 0.05953312}

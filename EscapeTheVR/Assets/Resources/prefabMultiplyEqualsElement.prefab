@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 8707027561801508447}
   - component: {fileID: -2905085634981000161}
   m_Layer: 0
-  m_Name: NEUNEUmultiplyequals
+  m_Name: prefabMultiplyEqualsElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,8 +204,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.6190856, y: 1.0886067, z: 1.2252474}
+  m_Center: {x: 0.04430309, y: -0.004027188, z: 0.05801916}
 --- !u!114 &8707027561801508447
 MonoBehaviour:
   m_ObjectHideFlags: 0
