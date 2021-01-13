@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 1734805505180344372}
   - component: {fileID: 8856679927342607181}
   m_Layer: 0
-  m_Name: NEUoder
+  m_Name: prefabOrElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,8 +204,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.4249033, y: 2.114966, z: 1.1948347}
+  m_Center: {x: 0.34528345, y: 0.024337769, z: 0.54635763}
 --- !u!114 &1734805505180344372
 MonoBehaviour:
   m_ObjectHideFlags: 0
