@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 8921432390708303487}
   - component: {fileID: 8597570738437648111}
   m_Layer: 0
-  m_Name: variabletext
+  m_Name: prefabVarFilledText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,8 +317,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.055243, y: 2.115935, z: 2.3318577}
+  m_Center: {x: -0.9752989, y: -0.036510825, z: 0.110440254}
 --- !u!1 &8059288043822970752
 GameObject:
   m_ObjectHideFlags: 0
