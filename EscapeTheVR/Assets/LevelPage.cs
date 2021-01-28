@@ -13,13 +13,21 @@ public class LevelPage : Page
     {
         List<Level> levels = LevelManager.Instance().getLevels();
         //Currently only optimized for 4 levels in a row, 8 levels total.
-        float y = 470.0f;
+        float y = 500;
+        float z = 2;
+        float scale = 0.005f;
         for (int i = 0; i < levels.Count; i++)
         {
-            if(i%4==0)
-                y-=130;
+            if (i % 4 == 0)
+                y -= 150;
             var curr = createLevelTextFromPrefab(levels[i]);
-            curr.transform.position = new Vector3((250 * (i % 4) + 125), y, 0.0f);
+            curr.transform.localScale = new Vector3(1, 1, 1);
+            Vector3 vector3 = new Vector3((-375 + ((i % 4) * 250))*scale, y*scale, z);
+            curr.transform.position = vector3;
+            //curr.transform.position = new Vector3(curr.transform.position.x / 200, curr.transform.position.y / 194, 2); 
+
+            //curr.transform.position = new Vector3(250 * (i % 4) + 125, y, z);
+
         }
     }
 
