@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelHintButtonBehavior : MonoBehaviour
@@ -7,6 +9,7 @@ public class LevelHintButtonBehavior : MonoBehaviour
     private int levelID = -1;
     private int nextSoundIndex = 0;
     private Collider lastCollider = null;
+    private List<DateTime> lastPlayTime = new List<DateTime>();
 
     // Start is called before the first frame update
     void Start()
@@ -57,8 +60,22 @@ public class LevelHintButtonBehavior : MonoBehaviour
     private void PlayNextHint(Level lvl)
     {
         this.PlayHintSound(lvl.hintFilePaths[this.nextSoundIndex]);
+        this.lastPlayTime.Add(DateTime.Now);
 
-        this.nextSoundIndex = ++this.nextSoundIndex % lvl.hintFilePaths.Count;
+        // Check if user has requested more than 5 hints in the last 20 seconds.
+        foreach (var item in this.lastPlayTime.Where(x => DateTime.Now - x > TimeSpan.FromSeconds(20)).ToList())
+        {
+            this.lastPlayTime.Remove(item);
+        }
+
+        if (this.lastPlayTime.Count >= 5)
+        {
+            FindObjectOfType<WalkingBehavior>()?.PlayAngryAnimation();
+        }
+        else
+        {
+            this.nextSoundIndex = ++this.nextSoundIndex % lvl.hintFilePaths.Count;
+        }
     }
 
     public void PlayHintSound(string hintSoundPath)

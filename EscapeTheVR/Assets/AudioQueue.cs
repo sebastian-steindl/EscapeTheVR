@@ -30,4 +30,10 @@ public class AudioQueue : MonoBehaviour
     {
         this.queue.Add(audiofile);
     }
+
+    public void Flush()
+    {
+        this.queue.Clear();
+        this.AudioSource.Stop();
+    }
 }

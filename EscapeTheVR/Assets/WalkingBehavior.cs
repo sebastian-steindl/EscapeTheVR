@@ -20,6 +20,7 @@ public class WalkingBehavior : MonoBehaviour
     private DateTime waitingStarted;
     private Animation anim;
     private AudioSource audioSource;
+    private string lastPlayingAnimation = "";
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,7 @@ public class WalkingBehavior : MonoBehaviour
                 if (!anim.isPlaying)
                 {
                     anim.Play("Armature|walking");
+                    this.lastPlayingAnimation = "Armature|walking";
                 }
 
                 if (transform.position.z > -2)
@@ -55,6 +57,7 @@ public class WalkingBehavior : MonoBehaviour
                 if (!anim.isPlaying)
                 {
                     anim.Play("Armature|walking");
+                    this.lastPlayingAnimation = "Armature|walking";
                 }
 
                 if (transform.position.z < -7)
@@ -70,12 +73,14 @@ public class WalkingBehavior : MonoBehaviour
                 if (!anim.isPlaying)
                 {
                     anim.Play("Armature|walking");
+                    this.lastPlayingAnimation = "Armature|walking";
                 }
 
                 if (transform.rotation.eulerAngles.y < 90)
                 {
                     this.currentState = State.WalkLeft;
                     anim.Play("Armature|walking");
+                    this.lastPlayingAnimation = "Armature|walking";
                 }
                 return;
             case State.TurnRight:
@@ -84,6 +89,7 @@ public class WalkingBehavior : MonoBehaviour
                 if (!anim.isPlaying)
                 {
                     anim.Play("Armature|walking");
+                    this.lastPlayingAnimation = "Armature|walking";
                 }
 
                 if (transform.rotation.eulerAngles.y > 270)
@@ -96,39 +102,71 @@ public class WalkingBehavior : MonoBehaviour
 
                 if (audioSource.isPlaying)
                 {
-                    // Teacher is speaking, so the speaking animation should be played
-                    anim.Play("Armature|speaking");
+                    // Teacher is speaking, so the speaking animation should be played. Override idle animation
+                    if (!anim.isPlaying || this.lastPlayingAnimation == "Armature|idle")
+                    {
+                        anim.Play("Armature|speaking");
+                        this.lastPlayingAnimation = "Armature|speaking";
+                    }
                 }
                 else
                 {
-                    anim.Play("Armature|idle");
+                    if (!anim.isPlaying)
+                    {
+                        anim.Play("Armature|idle");
+                        this.lastPlayingAnimation = "Armature|idle";
+                    }
                 }
 
                 if ((DateTime.Now - this.waitingStarted).TotalSeconds > 30)
                 {
                     this.currentState = State.TurnRight;
                     anim.Play("Armature|walking");
+                    this.lastPlayingAnimation = "Armature|walking";
                 }
                 return;
             case State.StayRight:
 
                 if (audioSource.isPlaying)
                 {
-                    // Teacher is speaking, so the speaking animation should be played
-                    anim.Play("Armature|speaking");
+                    // Teacher is speaking, so the speaking animation should be played. Override idle animation
+                    if (!anim.isPlaying || this.lastPlayingAnimation == "Armature|idle")
+                    {
+                        anim.Play("Armature|speaking");
+                        this.lastPlayingAnimation = "Armature|speaking";
+                    }
                 }
                 else
                 {
-                    anim.Play("Armature|idle");
+                    if (!anim.isPlaying)
+                    {
+                        anim.Play("Armature|idle");
+                        this.lastPlayingAnimation = "Armature|idle";
+                    }
                 }
 
                 if ((DateTime.Now - this.waitingStarted).TotalSeconds > 30)
                 {
                     this.currentState = State.TurnLeft;
                     anim.Play("Armature|walking");
+                    this.lastPlayingAnimation = "Armature|walking";
                 }
                 return;
         }
+    }
+
+    public void PlayAngryAnimation()
+    {
+        if (currentState == State.StayLeft || currentState == State.StayRight)
+        {
+            anim.Play("Armature|readhead");
+            this.lastPlayingAnimation = "Armature|readhead";
+        }
+
+        // Stop currently playing audio and play angry voice sound
+        var audioQueue = gameObject.GetComponent<AudioQueue>();
+        audioQueue.Flush();
+        audioQueue.Add("Audio/unterlassen_sie_das");
     }
 
     private void OnMouseDown()
