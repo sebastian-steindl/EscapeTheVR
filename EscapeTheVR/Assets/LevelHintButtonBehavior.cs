@@ -59,7 +59,6 @@ public class LevelHintButtonBehavior : MonoBehaviour
     // Cycle through all sounds of the level.
     private void PlayNextHint(Level lvl)
     {
-        this.PlayHintSound(lvl.hintFilePaths[this.nextSoundIndex]);
         this.lastPlayTime.Add(DateTime.Now);
 
         // Check if user has requested more than 5 hints in the last 20 seconds.
@@ -74,6 +73,7 @@ public class LevelHintButtonBehavior : MonoBehaviour
         }
         else
         {
+            this.PlayHintSound(lvl.hintFilePaths[this.nextSoundIndex]);
             this.nextSoundIndex = ++this.nextSoundIndex % lvl.hintFilePaths.Count;
         }
     }

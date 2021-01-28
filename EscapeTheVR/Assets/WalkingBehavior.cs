@@ -157,16 +157,20 @@ public class WalkingBehavior : MonoBehaviour
 
     public void PlayAngryAnimation()
     {
+        // Stop currently playing audio and play angry voice sound
+        var audioQueue = gameObject.GetComponent<AudioQueue>();
+
+        if (audioQueue.AudioSource.clip?.name != "unterlassen_sie_das" || !audioQueue.AudioSource.isPlaying)
+        {
+            audioQueue.Flush();
+            audioQueue.Add("Audio/unterlassen_sie_das");
+        }
+        
         if (currentState == State.StayLeft || currentState == State.StayRight)
         {
             anim.Play("Armature|readhead");
             this.lastPlayingAnimation = "Armature|readhead";
         }
-
-        // Stop currently playing audio and play angry voice sound
-        var audioQueue = gameObject.GetComponent<AudioQueue>();
-        audioQueue.Flush();
-        audioQueue.Add("Audio/unterlassen_sie_das");
     }
 
     private void OnMouseDown()
