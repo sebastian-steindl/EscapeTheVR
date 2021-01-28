@@ -19,6 +19,7 @@ public class AudioQueue : MonoBehaviour
     {
         if (this.AudioSource != null && this.queue.Count > 0 && !this.AudioSource.isPlaying)
         {
+            // Play next audio clip
             this.AudioSource.clip = Resources.Load<AudioClip>(this.queue[0]);
             this.AudioSource.Play();
             this.queue.RemoveAt(0);

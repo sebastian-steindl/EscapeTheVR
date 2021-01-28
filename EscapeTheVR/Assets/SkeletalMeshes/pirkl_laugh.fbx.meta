@@ -21,6 +21,12 @@ ModelImporter:
   - first:
       74: 1229584163444893091
     second: Armature|walking (1)
+  - first:
+      74: -4379575997555310714
+    second: Armature|speaking
+  - first:
+      74: 6959235449046721894
+    second: Armature|readhead
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -108,11 +114,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|duplicate
-      takeName: Armature|duplicate
+      name: Armature|speaking
+      takeName: Armature|speaking
       internalID: 0
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -142,6 +148,35 @@ ModelImporter:
       internalID: 0
       firstFrame: 0
       lastFrame: 99
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|readhead
+      takeName: Armature|readhead
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

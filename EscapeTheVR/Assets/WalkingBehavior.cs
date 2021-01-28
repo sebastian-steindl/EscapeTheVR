@@ -16,20 +16,22 @@ public class WalkingBehavior : MonoBehaviour
         TurnLeft
     }
 
-    State currentState;
-    DateTime waitingStarted;
+    private State currentState;
+    private DateTime waitingStarted;
+    private Animation anim;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         currentState = State.WalkLeft;
+        this.anim = gameObject.GetComponent<Animation>();
+        this.audioSource = gameObject.GetComponent<AudioQueue>().AudioSource;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var anim = gameObject.GetComponent<Animation>();
-
         switch (currentState)
         {
             case State.WalkLeft:
@@ -92,7 +94,12 @@ public class WalkingBehavior : MonoBehaviour
                 return;
             case State.StayLeft:
 
-                if (!anim.isPlaying)
+                if (audioSource.isPlaying)
+                {
+                    // Teacher is speaking, so the speaking animation should be played
+                    anim.Play("Armature|speaking");
+                }
+                else
                 {
                     anim.Play("Armature|idle");
                 }
@@ -105,7 +112,12 @@ public class WalkingBehavior : MonoBehaviour
                 return;
             case State.StayRight:
 
-                if (!anim.isPlaying)
+                if (audioSource.isPlaying)
+                {
+                    // Teacher is speaking, so the speaking animation should be played
+                    anim.Play("Armature|speaking");
+                }
+                else
                 {
                     anim.Play("Armature|idle");
                 }
