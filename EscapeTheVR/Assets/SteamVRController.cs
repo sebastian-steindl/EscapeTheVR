@@ -53,7 +53,7 @@ public class SteamVRController : MonoBehaviour
         lastInventoryItemButton.AddOnStateDownListener(LastInventoryItem, handType);
 
         //Open Menu
-        menuButton.AddOnStateDownListener(TriggerMeAction, handType);
+        //menuButton.AddOnStateDownListener(TriggerMeAction, handType);
     }
     
     void FixedUpdate()
