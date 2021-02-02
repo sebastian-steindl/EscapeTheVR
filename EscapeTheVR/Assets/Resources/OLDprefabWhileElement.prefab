@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2568913332218879609}
   - component: {fileID: -3513944636818764297}
   m_Layer: 0
-  m_Name: prefabWhileElement
+  m_Name: OLDprefabWhileElement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2565369817862509348}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.831, y: 1.84, z: -4.98}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 4520658923601352473}
   - {fileID: 3531755061525343558}
