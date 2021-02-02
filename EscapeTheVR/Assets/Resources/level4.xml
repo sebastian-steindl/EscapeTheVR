@@ -2,14 +2,13 @@
 	<apiversion>10</apiversion>
 	<levelId>4</levelId>
 	<name>Allgemeine Handelsbedingungen</name>
-	<descr>Oft will man in Abhängigkeit eines Wertes unterschiedlich Handeln.
-	Wie man das löst, siehst du hier. Gib den Text aus, falls die Variable den Wert 5 hat.</descr>
+	<descr>Oft will man in Abhängigkeit eines Wertes unterschiedlich Handeln. Wie man das löst, siehst du hier. Gib den Text aus, falls die Variable den Wert 5 hat.</descr>
 	<program>
 		<element isPartOfSolution="true">
 			<id>1</id>
 			<type>if</type>
 			<positionX>9.38</positionX>
-			<positionY>-2.55</positionY>
+			<positionY>-2.35</positionY>
 			<positionZ>-10.86</positionZ>
 			<text></text>
 		</element>
@@ -41,7 +40,7 @@
 			<id>3</id>
 			<type>number</type>
 			<positionX>-10.19</positionX>
-			<positionY>1.46</positionY>
+			<positionY>1.7</positionY>
 			<positionZ>-0.56</positionZ>
 			<text>5</text>
 		</element>
@@ -80,9 +79,7 @@
 		<codeElement elementId="7">"Mich sollst du nur sehen, wenn die Variable den Wert 5 hat!"</codeElement>
 		<codeElement elementId="6">)</codeElement>		
 	</code>
-	<output>
-		Mich sollst du nur sehen, wenn die Variable den Wert 5 hat!
-	</output>
+	<output>Mich sollst du nur sehen, wenn die Variable den Wert 5 hat!</output>
 	<hintFiles>
 		<hintFile>Audio/Levelhints/level4_1</hintFile>
 		<hintFile>Audio/Levelhints/level4_2</hintFile>

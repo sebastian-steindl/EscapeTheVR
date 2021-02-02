@@ -82,11 +82,11 @@
 		<codeElement elementId="8">end</codeElement>
 	</code>
 	<output>
-		Print in der Schleife
-		Print in der Schleife
-		Print in der Schleife
-		Print in der Schleife
-		Print in der Schleife
+Print in der Schleife
+Print in der Schleife
+Print in der Schleife
+Print in der Schleife
+Print in der Schleife
 	</output>
 	<hintFiles>
 		<hintFile>Audio/Levelhints/level5_1</hintFile>

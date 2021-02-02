@@ -37,14 +37,14 @@
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
-			<id>5</id>
+			<id>2</id>
 			<type>variable</type>
 			<positionX>-5.8</positionX>
 			<positionY>1.91</positionY>
 			<positionZ>-6.27</positionZ>
 			<text></text>
 		</element>
-		<element isPartOfSolution="true" valueOfId="5">
+		<element isPartOfSolution="true" valueOfId="2">
 			<id>7</id>
 			<type>text</type>
 			<positionX>-10.034</positionX>
