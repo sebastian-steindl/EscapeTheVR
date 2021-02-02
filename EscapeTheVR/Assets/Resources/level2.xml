@@ -42,6 +42,6 @@
 		<hintFile>Audio/Levelhints/level2_3</hintFile>
 	</hintFiles>
 	<output>
-		32
+		Hallo Welt!
 	</output>
 </level>
