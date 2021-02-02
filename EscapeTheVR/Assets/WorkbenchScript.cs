@@ -121,7 +121,6 @@ public class WorkbenchScript : MonoBehaviour
                         containerElement = stone;
 
                         // this is a hack because the function gets called twice
-                        // TODO fix function being called twice
                         if (orgElements[0]==null || orgElements[0].element.id != selectedElement.element.id)
                         {
                             //Destroy old object...
@@ -135,7 +134,6 @@ public class WorkbenchScript : MonoBehaviour
                             PuzzleProgrammingElement newPuzzleProgrammingElem = new PuzzleProgrammingElement();
                             newPuzzleProgrammingElem.id = prevElemStone.id;
                             newPuzzleProgrammingElem.isLocked = false;
-                            // TODO types
                             newPuzzleProgrammingElem.type = "variable_filled_";
 
                                 switch (selectedElement.element.elem)
