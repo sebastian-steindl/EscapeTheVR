@@ -4791,7 +4791,7 @@ MonoBehaviour:
     actionPath: /actions/default/in/LastInventoryItem
     needsReinit: 0
   menuButton:
-    actionPath: 
+    actionPath: /actions/default/in/Menu
     needsReinit: 0
   pose: {fileID: 0}
   handType: 2
