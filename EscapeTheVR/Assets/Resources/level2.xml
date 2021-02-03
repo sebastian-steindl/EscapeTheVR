@@ -7,26 +7,26 @@
 		<element isPartOfSolution="true" isLocked="true">
 			<id>3</id>
 			<type>print()</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.239</positionZ>
+			<positionX>-6.22</positionX>
+			<positionY>2.118</positionY>
+			<positionZ>-5.377</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>1</id>
 			<type>variable</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.73</positionZ>
+			<positionX>-2.031</positionX>
+			<positionY>-2.312</positionY>
+			<positionZ>-8.491</positionZ>
 			<text></text>
 			<hintPath></hintPath>
 		</element>
 		<element isPartOfSolution="true" valueOfId="1">
 			<id>2</id>
 			<type>text</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
+			<positionX>-4.44</positionX>
+			<positionY>1.311</positionY>
+			<positionZ>-11.00</positionZ>
 			<text>Hallo Welt!</text>
 		</element>
 	</program>

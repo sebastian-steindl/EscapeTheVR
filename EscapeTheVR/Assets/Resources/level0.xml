@@ -7,18 +7,18 @@
 		<element isPartOfSolution="true">
 			<id>1</id>
 			<type>variable</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.73</positionZ>
+      <positionX>5.786</positionX>
+      <positionY>2.46</positionY>
+      <positionZ>-5.95</positionZ>
 			<text></text>
 			<hintPath></hintPath>
 		</element>
 		<element isPartOfSolution="true" valueOfId="1">
 			<id>2</id>
 			<type>number</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
+      <positionX>-3.39</positionX>
+      <positionY>1.933</positionY>
+      <positionZ>-8.32</positionZ>
 			<text>32</text>
 		</element>
 	</program>

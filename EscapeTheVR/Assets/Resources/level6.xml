@@ -7,57 +7,57 @@
 		<element isPartOfSolution="true">
 			<id>1</id>
 			<type>while</type>
-			<positionX>-2.105</positionX>
-			<positionY>5.016</positionY>
-			<positionZ>-9.802</positionZ>
+			<positionX>6.02</positionX>
+			<positionY>-2.26</positionY>
+			<positionZ>-8.08</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>2</id>
 			<type>variable</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.73</positionZ>
+			<positionX>8.45</positionX>
+      <positionY>-2.26</positionY>
+			<positionZ>-9.26</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true" valueOfId="2">
 			<id>3</id>
 			<type>bool</type>
-			<positionX>-1.752</positionX>
-			<positionY>5.016</positionY>
-			<positionZ>-9.802</positionZ>
+			<positionX>7.268</positionX>
+			<positionY>1.751</positionY>
+			<positionZ>-5.597</positionZ>
 			<text>true</text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>4</id>
 			<type>print()</type>
-			<positionX>7.135</positionX>
-			<positionY>1.689</positionY>
-			<positionZ>-2.6</positionZ>
+			<positionX>1.90</positionX>
+			<positionY>-1.493</positionY>
+			<positionZ>-1.71</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>2</id>
 			<type>variable</type>
-			<positionX>-5.8</positionX>
-			<positionY>1.91</positionY>
-			<positionZ>-6.27</positionZ>
+      <positionX>-3.39</positionX>
+      <positionY>1.933</positionY>
+      <positionZ>-8.32</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true" valueOfId="2">
 			<id>7</id>
 			<type>text</type>
-			<positionX>-10.034</positionX>
-			<positionY>1.68</positionY>
-			<positionZ>1.985</positionZ>
+      <positionX>5.786</positionX>
+      <positionY>2.46</positionY>
+      <positionZ>-5.95</positionZ>
 			<text>Unendlich viel Text...</text>
 		</element>
 		<element isPartOfSolution="true">
 			<id>8</id>
 			<type>end</type>
-			<positionX>-2.574</positionX>
-			<positionY>1.68</positionY>
-			<positionZ>2.07</positionZ>
+			<positionX>-1.0</positionX>
+			<positionY>-1.84</positionY>
+			<positionZ>-1.71</positionZ>
 			<text></text>
 		</element>
 	</program>
