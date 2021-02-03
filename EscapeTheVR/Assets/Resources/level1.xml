@@ -7,17 +7,17 @@
 		<element isPartOfSolution="true">
 			<id>1</id>
 			<type>print()</type>
-			<positionX>-1.9</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.239</positionZ>
+      <positionX>5.786</positionX>
+      <positionY>2.46</positionY>
+      <positionZ>-6.4</positionZ>
 			<text></text>
 		</element>
 		<element isPartOfSolution="true" >
 			<id>2</id>
 			<type>text</type>
-			<positionX>-1.93</positionX>
-			<positionY>3.638</positionY>
-			<positionZ>-2.6</positionZ>
+			<positionX>5.591</positionX>
+			<positionY>1.823</positionY>
+			<positionZ>-2.668</positionZ>
 			<text>Diesen Text solltest du ausgeben!</text>
 		</element>
 	</program>
