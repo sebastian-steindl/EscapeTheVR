@@ -28,6 +28,9 @@ public class SteamVRController : MonoBehaviour
     public GameObject collidingObject;
     public GameObject objectInHand;
 
+    private int actionTimer = 0;
+    private bool actionTimerRecently = false;
+
 
 
     /* Unity Methods */
@@ -58,7 +61,13 @@ public class SteamVRController : MonoBehaviour
     
     void FixedUpdate()
     {
+        if(actionTimer > 10)
+        {
+            actionTimerRecently = false;
+            actionTimer = 0;
+        }
 
+        actionTimer++;
     }
 
 
@@ -71,71 +80,109 @@ public class SteamVRController : MonoBehaviour
 
     public void TriggerPressAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        if (inventoryOpened)
+        if (!actionTimerRecently)
         {
-            TakeObjectFromInventory();
-
-        } else if (collidingObject)
-        {
-            if (GrabObject(collidingObject))
+            if (inventoryOpened)
             {
-                objectInHand = collidingObject;
-                if (objectInHand.GetComponent<DragObject>())
+                TakeObjectFromInventory();
+
+            }
+            else if (collidingObject)
+            {
+                if (GrabObject(collidingObject))
                 {
-                    objectInHand.GetComponent<DragObject>().onButtonDown();
+                    objectInHand = collidingObject;
+                    if (objectInHand.GetComponent<DragObject>())
+                    {
+                        objectInHand.GetComponent<DragObject>().onButtonDown();
+                    }
                 }
             }
+
+            actionTimerRecently = true;
+            actionTimer = 0;
+
         }
+        
     }
     public void TriggerReleaseAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        if (objectInHand)
+        if (!actionTimerRecently)
         {
-            if (DropObject(objectInHand))
+            if (objectInHand)
             {
-                if (objectInHand.GetComponent<DragObject>())
+                if (DropObject(objectInHand))
                 {
-                    objectInHand.GetComponent<DragObject>().onButtonUp();
+                    if (objectInHand.GetComponent<DragObject>())
+                    {
+                        objectInHand.GetComponent<DragObject>().onButtonUp();
+                    }
+                    objectInHand = null;
                 }
-                objectInHand = null;
             }
+
+            actionTimerRecently = true;
+            actionTimer = 0;
         }
+        
     }
 
     public void InventoryOpenCloseAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        if (!inventoryOpened)
+        if (!actionTimerRecently)
         {
-            OpenInventory();
-            
-        } 
-        else
-        {
-            CloseInventory();
+            if (!inventoryOpened)
+            {
+                OpenInventory();
+            }
+            else
+            {
+                CloseInventory();
+            }
+            actionTimerRecently = true;
+            actionTimer = 0;
         }
     }
 
     public void AddToInventoryAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        if (objectInHand)
+        if (!actionTimerRecently)
         {
-            if (AddObjectToInventory(objectInHand)) objectInHand = null;
+
+            if (objectInHand)
+            {
+                if (AddObjectToInventory(objectInHand)) objectInHand = null;
+            }
+            actionTimerRecently = true;
+            actionTimer = 0;
         }
+        
     }
 
     public void NextInventoryItem(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        if (inventoryOpened)
+        if (!actionTimerRecently)
         {
-            CycleRight();
+            if (inventoryOpened)
+            {
+                CycleRight();
+            }
+            actionTimerRecently = true;
+            actionTimer = 0;
         }
+        
     }
 
     public void LastInventoryItem(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        if (inventoryOpened)
+        if (!actionTimerRecently)
         {
-            CycleLeft();
+            if (inventoryOpened)
+            {
+                CycleLeft();
+            }
+            actionTimerRecently = true;
+            actionTimer = 0;
         }
     }
 
@@ -290,6 +337,7 @@ public class SteamVRController : MonoBehaviour
 
     private bool TakeObjectFromInventory()
     {
+        if (!inventoryOpened) return false;
         if (GrabObject(inventory[inventoryIndex]))
         {
             CloseInventory();
