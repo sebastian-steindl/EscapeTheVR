@@ -9,7 +9,7 @@ public static class Constants
     */
     public static readonly Color colorPrint = new Color(255, 0, 0);
     public static readonly Color colorVar = new Color(0, 255, 0);
-    public static readonly string colorHighlight = "#f39200";
+    public static readonly string colorHighlight = "#00dfff";
 
     /*
                 Workbench Data
